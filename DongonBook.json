@@ -301,273 +301,277 @@
           }
         }
 
+      }
+    },
+
+    "L'APOTHICAIRE": {
+
+      "enunciate": [
+        "Vos pas vous emmènent jusqu'à une boutique insolite,",
+        "avec de nombreuses plantes sur la devanture,",
+        "mais un étrange gaz sortant de l'intérieur.",
+        "",
+        "Une femme sort pressement et s'arrête avec surprise devant vous.",
+        "' Oh bonjour ! Je...Excusez-moi j'ar...",
+        "gnn...hmpff......argh... fiou, j'ai réussi à extraire son essence.",
+        "Entrez, entrez ! '"
+      ],
+      "Choice1": {
+
+        "access": {
+          "APOTHICAIRE KNOWLEDGE": false
+        },
+        "enunciate": "Demander à propos d'elle.",
+        "event1": {
+
+          "enunciate": [
+            "'Et bien et bien. Je...",
+            "Attendez mettez-vous là, voilà...Donc je suis une",
+            "apothicaire et...euh... j'extrait le pl...plein potentiel",
+            "des plantes pour...*hum*... en faire toute sorte de po...potion !",
+            "",
+            "Oh, je me nomme Eurènie...Quandj'étaispetitejevivaisdanslaforêtetc'estàcemomentquej'aicompris,",
+            "Je comprends parfaitement les...les plantes.'",
+            "...Elle vous fixe avec un regard un peu perturbé,",
+            "elle n'a pas l'habitude de parler d'elle."
+          ],
+          "reward1": {
+
+            "func": "GiveKeyItem",
+            "item1": "APOTHICAIRE KNOWLEDGE"
+          },
+          "reward2": {
+
+            "func": "NextStory",
+            "item1": "L'APOTHICAIRE"
+          }
+        }
       },
+      "Choice2": {
 
-      "L'APOTHICAIRE": {
+        "enunciate": "Questionner l'utilité de ses potions",
+        "event1": {
 
-        "enunciate": [
-          "Vos pas vous emmènent jusqu'à une boutique insolite,",
-          "avec de nombreuses plantes sur la devanture,",
-          "mais un étrange gaz sortant de l'intérieur.",
-          "",
-          "Une femme sort pressement et s'arrête avec surprise devant vous.",
-          "' Oh bonjour ! Je...Excusez-moi j'ar...",
-          "gnn...hmpff......argh... fiou, j'ai réussi à extraire son essence.",
-          "Entrez, entrez ! '"
-        ],
-        "Choice1": {
+          "enunciate": [
+            "Elle est contente que vous lui pausiez la question,",
+            "et bavarde longuement à propos de ces articles.",
+            "Elle finit par vous donner 2 potions,",
+            "et vous n'en demandez pas plus."
+          ],
+          "reward1": {
 
-          "access": {
-            "APOTHICAIRE KNOWLEDGE": false
+            "func": "GiveItem",
+            "item1": "Super heal",
+            "item2": "Super strenght",
+            "item3": "Strong armor",
+            "item4": "Spray"
           },
-          "enunciate": "Demander à propos d'elle.",
-          "event1": {
+          "reward2": {
 
-            "enunciate": [
-              "'Et bien et bien. Je...",
-              "Attendez mettez-vous là, voilà...Donc je suis une",
-              "apothicaire et...euh... j'extrait le pl...plein potentiel",
-              "des plantes pour...*hum*... en faire toute sorte de po...potion !",
-              "",
-              "Oh, je me nomme Eurènie...Quandj'étaispetitejevivaisdanslaforêtetc'estàcemomentquej'aicompris,",
-              "Je comprends parfaitement les...les plantes.'",
-              "...Elle vous fixe avec un regard un peu perturbé,",
-              "elle n'a pas l'habitude de parler d'elle."
-            ],
-            "reward1": {
-
-              "func": "GiveKeyItem",
-              "item1": "APOTHICAIRE KNOWLEDGE"
-            },
-            "reward2": {
-
-              "func": "NextStory",
-              "item1": "L'APOTHICAIRE"
-            }
+            "func": "GiveItem",
+            "item1": "Super heal",
+            "item2": "Super strenght",
+            "item3": "Strong armor",
+            "item4": "Spray",
+            "item5": "Broken container"
           }
         },
-        "Choice2": {
+        "event2": {
 
-          "enunciate": "Questionner l'utilité de ses potions",
-          "event1": {
+          "enunciate": [
+            "...",
+            "Votre question manquait de tact,",
+            "elle ne vous écoute déjà plus.",
+            "Vous partez, véxé."
+          ]
+        }
+      },
+      "Choice3": {
 
-            "enunciate": [
-              "Elle est contente que vous lui pausiez la question,",
-              "et bavarde longuement à propos de ces articles.",
-              "Elle finit par vous donner 2 potions,",
-              "et vous n'en demandez pas plus."
-            ],
-            "reward1": {
+        "enunciate": "Prier pour un de ses articles",
+        "event1": {
 
-              "func": "GiveItem",
-              "item1": "Super heal",
-              "item2": "Super strenght",
-              "item3": "Strong armor",
-              "item4": "Spray"
-            },
-            "reward2": {
+          "enunciate": [
+            "Elle est surprise par votre demande,",
+            "et part à toute vitesse au fond de la boutique",
+            "avant de disparaître derrière un rideau de liane.",
+            "",
+            "Elle revient avec un grand sourire et vous prépare une potion.",
+            "Elle beggaye qu'elle est ravie de servir des aventuriers.",
+            "Vous recevez avec enthousiasme son produit."
+          ],
 
-              "func": "GiveItem",
-              "item1": "Super heal",
-              "item2": "Super strenght",
-              "item3": "Strong armor",
-              "item4": "Spray",
-              "item5": "Broken container"
-            }
-          },
-          "event2": {
+          "reward1": {
 
-            "enunciate": [
-              "...",
-              "Votre question manquait de tact,",
-              "elle ne vous écoute déjà plus.",
-              "Vous partez, véxé."
-            ]
+            "func": "GiveItem",
+            "item1": "Super heal",
+            "item2": "Super strenght",
+            "item3": "Strong armor",
+            "item4": "Spray"
           }
         },
-        "Choice3": {
+        "event2": {
 
-          "enunciate": "Prier pour un de ses articles",
-          "event1": {
+          "enunciate": [
+            "Elle est surprise par votre demande,",
+            "et part à toute vitesse au fond de la boutique",
+            "avant de disparaître derrière un rideau de liane.",
+            "",
+            "Elle revient les bras chargées de potions.",
+            "Elle paraît soulagé de pouvoir vider un peu son stock.",
+            "Vous vous servez dans ses bras tremblants,",
+            "et quittez la boutique en lui adressant un sourire."
+          ],
+          "reward1": {
 
-            "enunciate": [
-              "Elle est surprise par votre demande,",
-              "et part à toute vitesse au fond de la boutique",
-              "avant de disparaître derrière un rideau de liane.",
-              "",
-              "Elle revient avec un grand sourire et vous prépare une potion.",
-              "Elle beggaye qu'elle est ravie de servir des aventuriers.",
-              "Vous recevez avec enthousiasme son produit."
-            ],
-
-            "reward1": {
-
-              "func": "GiveItem",
-              "item1": "Super heal",
-              "item2": "Super strenght",
-              "item3": "Strong armor",
-              "item4": "Spray"
-            }
+            "func": "GiveItem",
+            "item1": "Super heal",
+            "item2": "Super strenght",
+            "item3": "Strong armor",
+            "item4": "Spray"
           },
-          "event2": {
+          "reward2": {
 
-            "enunciate": [
-              "Elle est surprise par votre demande,",
-              "et part à toute vitesse au fond de la boutique",
-              "avant de disparaître derrière un rideau de liane.",
-              "",
-              "Elle revient les bras chargées de potions.",
-              "Elle paraît soulagé de pouvoir vider un peu son stock.",
-              "Vous vous servez dans ses bras tremblants,",
-              "et quittez la boutique en lui adressant un sourire."
-            ],
-            "reward1": {
-
-              "func": "GiveItem",
-              "item1": "Super heal",
-              "item2": "Super strenght",
-              "item3": "Strong armor",
-              "item4": "Spray"
-            },
-            "reward2": {
-
-              "func": "GiveItem",
-              "item1": "Super heal",
-              "item2": "Super strenght",
-              "item3": "Strong armor",
-              "item4": "Spray",
-              "item5": "Broken container"
-            },
-            "reward3": {
-
-              "func": "GiveItem",
-              "item1": "Super heal",
-              "item2": "Super strenght",
-              "item3": "Strong armor",
-              "item4": "Spray"
-            }
-
+            "func": "GiveItem",
+            "item1": "Super heal",
+            "item2": "Super strenght",
+            "item3": "Strong armor",
+            "item4": "Spray",
+            "item5": "Broken container"
           },
-          "event3": {
+          "reward3": {
 
-            "enunciate": [
-              "Elle est surprise par votre demande,",
-              "et part à toute vitesse au fond de la boutique",
-              "avant de disparaître derrière un rideau de liane.",
-              "",
-              "Après plusieurs minutes, elle ne revient pas.",
-              "Vous vous approchez des lianes et entendez une petite voix gémir.",
-              "Ils sembleraient que les affaires sont dures ces temps-ci..."
-            ]
+            "func": "GiveItem",
+            "item1": "Super heal",
+            "item2": "Super strenght",
+            "item3": "Strong armor",
+            "item4": "Spray"
+          }
+
+        },
+        "event3": {
+
+          "enunciate": [
+            "Elle est surprise par votre demande,",
+            "et part à toute vitesse au fond de la boutique",
+            "avant de disparaître derrière un rideau de liane.",
+            "",
+            "Après plusieurs minutes, elle ne revient pas.",
+            "Vous vous approchez des lianes et entendez une petite voix gémir.",
+            "Ils sembleraient que les affaires sont dures ces temps-ci..."
+          ]
+        }
+      },
+      "Choice4": {
+
+        "access": {
+          "APOTHICAIRE KNOWLEDGE": true
+        },
+        "enunciate": "Lui faire un clin d'oeil",
+        "event1": {
+
+          "prob": 3,
+          "enunciate": [
+            "'Oh !.. Rebonjour !",
+            "Je vois que vous ne vous passez pas de mes superbes...",
+            "potions... Oubliez le super ^^'",
+            "",
+            "Vous devez être épuisés, laissez moi me charger de vous !'",
+            "Elle farfouille dans ses étagères et vous offre une potion !"
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Super heal",
+            "item2": "Super strenght",
+            "item3": "Strong armor",
+            "item4": "Spray",
+            "item5": "Broken container"
           }
         },
-        "Choice4": {
-
-          "access": {
-            "APOTHICAIRE KNOWLEDGE": true
+        "event2": {
+          "enunciate": [
+            "Eurénie vous fixe du regard, l'air embarassée.",
+            "Elle fait alors tombé une fiole et se blesse la main.",
+            "Les choses s'accélèrent, des bandits sautent sur l'occasion !",
+            "",
+            "Eurénie se fait attaqué,",
+            "votre instinct héroïque vous lance sur le conflit."
+          ],
+          "reward1": {
+            "func": "ForceBattle",
+            "item": true
           },
-          "enunciate": "Lui faire un clin d'oeil",
-          "event1": {
+          "reward2": {
+            "func": "GiveQuest",
+            "cast": "QuestCast",
+            "item": {
 
-            "prob": 3,
-            "enunciate": [
-              "'Oh !.. Rebonjour !",
-              "Je vois que vous ne vous passez pas de mes superbes...",
-              "potions... Oubliez le super ^^'",
-              "",
-              "Vous devez être épuisés, laissez moi me charger de vous !'",
-              "Elle farfouille dans ses étagères et vous offre une potion !"
-            ],
-            "reward1": {
+              "enunciate": "Save Eurénie !",
+              "condition": "BattleHorde",
+              "value": 1,
+              "event": {
 
-              "func": "GiveItem",
-              "item1": "Super heal",
-              "item2": "Super strenght",
-              "item3": "Strong armor",
-              "item4": "Spray",
-              "item5": "Broken container"
-            }
-          },
-          "event2": {
-            "enunciate": [
-              "Eurénie vous fixe du regard, l'air embarassée.",
-              "Elle fait alors tombé une fiole et se blesse la main.",
-              "Les choses s'accélèrent, des bandits sautent sur l'occasion !",
-              "",
-              "Eurénie se fait attaqué,",
-              "votre instinct héroïque vous lance sur le conflit."
-            ],
-            "reward1": {
-              "func": "ForceBattle",
-              "item": true
-            },
-            "reward2": {
-              "func": "GiveQuest",
-              "cast": "QuestCast",
-              "item": {
+                "enunciate": [
+                  "Les bandits ont tous battu en retraite !",
+                  "Vous remarquez qu'Eurénie ne cesse de pleurer.",
+                  "Elle sent votre regard l'interroger, et elle vous répond :",
+                  "'J'ai mal à la main ='( !'",
+                  "...",
+                  "Elle finit par soigner tout le monde et vous offrir une potion."
+                ],
+                "reward1": {
 
-                "enunciate": "Save Eurénie !",
-                "condition": "BattleHorde",
-                "value": 1,
-                "event": {
-
-                  "enunciate": [
-                    "Les bandits ont tous battu en retraite !",
-                    "Vous remarquez qu'Eurénie ne cesse de pleurer.",
-                    "Elle sent votre regard l'interroger, et elle vous répond :",
-                    "'J'ai mal à la main ='( !'",
-                    "...",
-                    "Elle finit par soigner tout le monde et vous offrir une potion."
-                  ],
-                  "reward1": {
-
-                    "func": "TeamHeal",
-                    "item": 30
-                  },
-                  "reward2": {
+                  "func": "TeamHeal",
+                  "item": 30
+                },
+                "reward2": {
 
 
-                    "func": "GiveItem",
-                    "item1": "Super heal",
-                    "item3": "Strong armor",
-                    "item4": "Spray"
-                  }
+                  "func": "GiveItem",
+                  "item1": "Super heal",
+                  "item3": "Strong armor",
+                  "item4": "Spray"
                 }
               }
             }
           }
         }
-      },
-
-      "LA BIBLIOTHECAIRE": {
-
-      },
-
-      "LE MANIAQUE": {
-
-      },
-
-      "LA TAVERNE": {
-
-      },
-
-      "LA TAVERNE EN FOLIE": {
-
-      },
-
-      "LA TAVERNE MALADE": {
-
-      },
-
-      "L'AUBERGE": {
-
-      },
-
-      "UNE CURIEUSE PANCARTE": {
-
       }
     },
-  }
+
+    "LA BIBLIOTHECAIRE": {
+
+    },
+
+    "LE MANIAQUE": {
+
+    },
+
+    "LA TAVERNE": {
+
+    },
+
+    "LA TAVERNE EN FOLIE": {
+
+    },
+
+    "LA TAVERNE MALADE": {
+
+    },
+
+    "NUIT DU DRAGON": {
+
+    },
+
+    "ECLATS DU DONJON": {
+
+    },
+
+    "UNE CURIEUSE PANCARTE": {
+
+    }
+  },
   "PrivateStoryBook": {
 
     "LA GUIDE DE DONGON": {
@@ -935,5 +939,19 @@
       0,
       0
     ]
+  },
+  "Mercen'angry": {
+    "adventurer": false
+  },
+  "Treiish": {
+    "adventurer": false,
+    "common": false
+  },
+
+  "Homeless": {
+    "adventurer": true
+  },
+  "Mercenary": {
+    "adventurer": true
   }
 }
