@@ -1,0 +1,73 @@
+{
+  "StoryBook": {
+
+    "EXEMPLE": {
+      "acces": {
+        "KeyItem": false
+      },
+      "enunciate": [
+        ""
+      ],
+      "Choice1": {
+
+        "enunciate": "",
+        "access": {
+          "KeyItem": false
+        },
+        "event1": {
+
+          "enunciate": [
+            ""
+          ],
+          "prob": 1,
+          "reward1": {
+
+            "func": "",
+            "cast": "ValueCast",
+            "item1": [
+              "Potion",
+              {
+                "type": "HEAL",
+                "value": 10,
+                "lifeTime": 2
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "Mage": {
+    "adventurer": true,
+    "armor": 14,
+    "weapon": {
+      "name": "Simple wand",
+      "damage": [
+        1,
+        10
+      ],
+      "effect": [
+        5,
+        "FIRE"
+      ]
+    },
+    "life": 30,
+    "special": [
+      4,
+      10
+    ]
+  },
+  "Keys": [
+    "GOLD",
+    "APOTHICAIRE KNOWLEDGE",
+    "BANISHED",
+    "DONGON MEFIANCE",
+    "GUIDE KNOWLEDGE",
+    "17 ANGELICS LAUGH",
+    "TEIISH DONGEON",
+
+    "LAST KEY"
+
+  ]
+
+}

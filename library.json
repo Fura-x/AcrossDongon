@@ -1,0 +1,326 @@
+{
+  "bookcase": {
+
+    "book1": "TerraHill"
+  },
+
+  "reserve": {
+    "Hidden knife": [
+      "Weapon",
+      {
+        "name": "Hidden knife",
+        "damage": [
+          3,
+          2
+        ],
+        "effect": [
+          4,
+          "SCARY"
+        ]
+      }
+    ],
+
+    "Simple wand": [
+      "Weapon",
+      {
+        "name": "Simple wand",
+        "damage": [
+          1,
+          10
+        ],
+        "effect": [
+          5,
+          "FIRE"
+        ]
+      }
+    ],
+
+    "Tiny dagger": [
+      "Weapon",
+      {
+        "name": "Tiny dagger",
+        "damage": [
+          1,
+          4
+        ]
+      }
+    ],
+
+    "Heavy axe": [
+      "Weapon",
+      {
+        "name": "Heavy axe",
+        "damage": [
+          2,
+          6
+        ]
+      }
+    ],
+
+    "Wood bow": [
+      "Weapon",
+      {
+        "name": "Wood bow",
+        "damage": [
+          4,
+          4
+        ]
+      }
+    ],
+
+    "Clay club": [
+      "Weapon",
+      {
+        "name": "Clay club",
+        "damage": [
+          3,
+          6
+        ]
+      }
+    ],
+
+    "Dirty jaw": [
+      "Weapon",
+      {
+        "name": "Dirty jaw",
+        "damage": [
+          2,
+          6
+        ]
+      }
+    ],
+
+    "Sharp claws": [
+      "Weapon",
+      {
+        "name": "Sharp claws",
+        "damage": [
+          2,
+          4
+        ]
+      }
+    ],
+
+    "Spiky nails": [
+      "Weapon",
+      {
+        "name": "Spiky nails",
+        "damage": [
+          5,
+          5
+        ]
+      }
+    ],
+
+    "Golden aura": [
+      "Weapon",
+      {
+        "name": "Golden aura",
+        "damage": [
+          1,
+          15
+        ],
+        "effect": [
+          2,
+          "DISTRACT"
+        ]
+      }
+    ],
+
+    "Rotten wood sword": [
+      "Weapon",
+      {
+
+        "name": "Rotten wood sword",
+        "damage": [
+          1,
+          6
+        ]
+      }
+    ],
+
+    "Broken spoon": [
+      "Weapon",
+      {
+
+        "name": "Broken spoon",
+        "damage": [
+          3,
+          3
+        ]
+      }
+    ],
+
+    "Classic iron sword": [
+      "Weapon",
+      {
+        "name": "Classic iron sword",
+        "damage": [
+          3,
+          8
+        ]
+      }
+    ],
+
+    "Basic steel dagger": [
+      "Weapon",
+      {
+        "name": "Basic steel dagger",
+        "damage": [
+          5,
+          4
+        ]
+      }
+    ],
+
+    "Mysterious sword": [
+      "Weapon",
+      {
+        "name": "Mysterious sword",
+        "damage": [
+          2,
+          6
+        ],
+        "effect": [
+          2,
+          "DISTRACT"
+        ]
+      }
+    ],
+
+    "Blue stone spear": [
+      "Weapon",
+      {
+        "name": "Blue stone spear",
+        "damage": [
+          1,
+          20
+        ],
+        "effect": [
+          4,
+          "FREEZE"
+        ]
+      }
+    ],
+
+    "Craftsman master piece": [
+      "Weapon",
+      {
+        "name": "Craftsman master piece",
+        "damage": [
+          3,
+          10
+        ],
+        "effect": [
+          2,
+          "DISTRACT"
+        ]
+      }
+    ],
+
+    "Broken container": [
+      "Weapon",
+      {
+        "name": "Broken container",
+        "damage": [
+          4,
+          4
+        ]
+      }
+    ],
+
+
+
+
+    "Heal": [
+      "Potion",
+      {
+        "type": "HEAL",
+        "value": 15,
+        "lifeTime": 1
+      }
+    ],
+
+    "Good heal": [
+      "Potion",
+      {
+
+        "type": "HEAL",
+        "value": 10,
+        "lifeTime": 2
+      }
+    ],
+
+    "Super heal": [
+      "Potion",
+      {
+        "type": "HEAL",
+        "value": 20,
+        "lifeTime": 2
+      }
+    ],
+
+    "Little armor": [
+      "Potion",
+      {
+
+        "type": "ARMOR",
+        "value": 3,
+        "lifeTime": 5
+      }
+    ],
+
+    "Strong armor": [
+      "Potion",
+      {
+        "type": "ARMOR",
+        "value": 5,
+        "lifeTime": 7
+      }
+    ],
+
+    "Spray": [
+      "Potion",
+      {
+        "type": "SPRAY",
+        "value": 0,
+        "lifeTime": 1
+      }
+    ],
+
+    "Good strenght": [
+      "Potion",
+      {
+        "type": "STRENGHT",
+        "value": 10,
+        "lifeTime": 3
+      }
+    ],
+
+    "Super strenght": [
+      "Potion",
+      {
+        "type": "STRENGHT",
+        "value": 20,
+        "lifeTime": 3
+      }
+    ],
+
+
+    "End of knowledge": [
+      "Weapon",
+      {
+        "name": "End of knowledge",
+        "damage": [
+          1,
+          99
+        ],
+        "effect": [
+          8,
+          "DESTROY"
+        ]
+      }
+    ]
+
+  }
+}
