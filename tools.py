@@ -1,5 +1,5 @@
 import random, collections, operator, json, copy
-import speaker
+import speaker, logbook
 
 ## Dungeon and Dragon
 def RollDice(number, value):
@@ -32,6 +32,16 @@ def CopyEntities(listToCopy):
     for en in listToCopy:
         copyList.append(CopyEntity(en))
     return copyList
+
+def IsAccessable(access):
+        if Empty(access):
+                return True
+        else:
+            for key, val in access.items():
+                if val is not logbook.IsKeyItem(key): # return false if the access is wrong
+                    return False
+
+        return True
 
 ## Dictionary && List
 

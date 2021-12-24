@@ -51,7 +51,7 @@ class StoryBook:
     def SortEvents(self):
         events = {}
         for name, evt in self.events.items():
-            if evt.IsAccessable():
+            if tools.IsAccessable(evt.access):
                 events[name] = evt
 
         return events
@@ -67,37 +67,35 @@ class StoryBook:
 
 class StoryEvent:
 
-    def __init__(self, gameMaster, enunciate, choices, access):
+    def __init__(self, gameMaster, enunciate, backEnunciate, choices, access):
         self.gameMaster = gameMaster
         self.enunciate = enunciate
+        self.backEnunciate = backEnunciate
         self.choices = choices
         self.access = access
-
-    def IsAccessable(self):
-        if tools.Empty(self.access):
-                return True
-        else:
-            for key, val in self.access.items():
-                if val is not logbook.IsKeyItem(key): # return false if the access is wrong
-                    return False
-
-        return True
+        self.happened = False
 
     def Happens(self, gameMaster):
         # WRITE ENUNCIATE
         speaker.Speak("_____________________\n")
-        speaker.ListWrite(self.enunciate)
+        if self.happened:
+            speaker.ListWrite(self.backEnunciate)
+        else:
+            speaker.ListWrite(self.enunciate)
+
         speaker.Input()
 
         tools.EnumerateAndSelect(self.SortChoices(gameMaster))[1].Happens(gameMaster)
         logbook.storyListened += 1
+
+        self.happened = True
 
         return
 
     def SortChoices(self, gameMaster):
         chs = []
         for choice in self.choices:
-            if choice.IsAccessable():
+            if tools.IsAccessable(choice.access):
                 chs.append(choice)
 
         return chs
@@ -105,6 +103,7 @@ class StoryEvent:
     def FromJson(gameMaster, input):
 
         enunciate = input.pop("enunciate")
+        backEnunciate = input.pop("back", enunciate)
         access = input.pop("access", {})
 
         choices = []
@@ -112,7 +111,7 @@ class StoryEvent:
         for choice in input.values():
             choices.append(StoryChoice.FromJson(choice))
 
-        return StoryEvent(gameMaster, enunciate, choices, access)
+        return StoryEvent(gameMaster, enunciate, backEnunciate, choices, access)
 
 class StoryChoice:
 
@@ -128,16 +127,6 @@ class StoryChoice:
                 key += "[" + k + "] "
 
         return  key + self.enunciate
-
-    def IsAccessable(self):
-        if tools.Empty(self.access):
-                return True
-        else:
-            for key, val in self.access.items():
-                if val is not logbook.IsKeyItem(key): # return false if the access is wrong
-                    return False
-
-        return True
 
     def Happens(self, gameMaster):
         tools.RandomElement(self.events).Happens(gameMaster)
@@ -247,6 +236,10 @@ class StoryReward:
 
     def GiveQuest(self, gameMaster):
         gameMaster.questSystem.AddQuest(self.reward)
+
+    def Text(self, gameMaster):
+        speaker.ListWrite(self.reward)
+        speaker.Input()
 
     def TeamHurt(self, gameMaster):
         dmg = self.reward

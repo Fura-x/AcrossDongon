@@ -5,6 +5,7 @@
     "UN CROISEMENT": {
 
       "enunciate": [ "Vous arrivez à un croisement avec 2 chemins possibles. Aucun indice sur leur direction..." ],
+      "back": ["Vous arrivez encore à un croisement ! Votre choix :"],
       "Choice1": {
 
         "enunciate": "Vous choisissez de partir à droite.",
@@ -106,8 +107,12 @@
           "reward1": {
 
             "func": "NextStory",
-            "cast": "ValueCast",
             "item1": "LE PERSONNAGE DU TROU"
+          },
+          "reward2": {
+
+            "func": "Text",
+            "item": [ "Vous longez le chemin sinueux..." ]
           }
         }
 
@@ -343,6 +348,7 @@
     "adventurer": true,
     "armor": 17,
     "weapon": "Tiny dagger",
+    "potion": "Spray",
     "life": 35,
     "special": [
       4,
@@ -353,7 +359,7 @@
     "adventurer": true,
     "armor": 15,
     "weapon": "Heavy axe",
-    "life": 1,
+    "life": 40,
     "special": [
       1,
       10

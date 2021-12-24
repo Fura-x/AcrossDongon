@@ -44,7 +44,7 @@ class Potion(Item):
 		elif self.type is PotionType.ARMOR:
 			return entity.life <= entity.maxLife*0.5
 		elif self.type is PotionType.SPRAY:
-			return antity.effect is not Effect.NEUTRAL and entity.life <= entity.maxLife*0.5
+			return entity.effect is not Effect.NEUTRAL and entity.life <= entity.maxLife*0.5
 
 	def Use(self, entity):
 		if self.type is PotionType.HEAL:

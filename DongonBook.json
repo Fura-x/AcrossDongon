@@ -557,12 +557,46 @@
         "Faire du bruit, c'est déranger ma famille, Capish ?",
         "Que voulez-vous ?'"
       ],
+      "back": [
+        "Vous êtes à nouveau devant la bibliothécaire.",
+        "Celle-ci vous rappelle de garder le silence,",
+        "et vous respectez son ordre.",
+        "Vous pouvez malgré tout demander ce que vous voulez."
+      ],
 
       "choice1": {
 
         "enunciate": "Chercher un livre intéressant.",
         "event1": {
 
+          "enunciate": [
+            "Vous décidez de vagabonder entre les étagères.",
+            "",
+            "La bilbiothèque est très grande, vous n'êtes pas sûr",
+            "de trouver ce qu'il vous faut.",
+            "",
+            "Vous tombez sur un livre de science des matériaux.",
+            "Un marque-page oublié vous ouvre le livre",
+            "sur une page très intéressante.",
+            "",
+            "Vous retenez une méthode de forge",
+            "qui serais utile de partager à un forgeron.",
+          ],
+          "reward1": {
+
+            "func": "GiveKeyItem",
+            "item": "SMART IRON"
+          },
+          "reward2": {
+
+            "func": "Text",
+            "item": [ "Vous retournez auprès de la libraire." ]
+          },
+          "reward3": {
+
+            "func": "NextStory",
+            "item": "LA BIBLIOTHECAIRE"
+          }
         }
       },
       "choice2": {
@@ -601,6 +635,7 @@
         "access": {
           "TREIISH DONGEON": true
         },
+        "enunciate": "Demander un livre à propos du donjon de Treiish",
         "event1": {
 
         }
@@ -846,7 +881,7 @@
 
             "func": "GiveKeyItem",
             "item1": "TEIISH DONGEON"
-          }
+          },
           "reward1": {
 
             "func": "NextStory",
@@ -906,7 +941,7 @@
             "'A Dongon, vous pouvez rencontrer de puissants mercenaires,",
             "ou bien les plus pauvres sans-abri,",
             "mais nous avons tous un point commun",
-            "Treiish et chacun de nous assure le bonheur des autres.'",
+            "Treiish et chacun de nous assure le bonheur des autres.'"
           ],
 
           "reward1": {
@@ -967,7 +1002,6 @@
 
             "func": "NextStory",
             "item1": "LA GUIDE DE DONGON - HISTOIRE"
-            s
           }
         }
       },
@@ -1026,6 +1060,8 @@
     "common": false,
     "armor": 18,
     "weapon": "Strong arm",
+    "potion": "Heal",
+    "potion1": "Strenght",
     "life": 52,
     "special": [
       5,

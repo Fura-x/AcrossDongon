@@ -26,7 +26,7 @@ class Role:
     effect = Effect.NEUTRAL
 
 
-    def __init__(self, gameMaster, armor, weapons, life, special, adventurer, common, name):
+    def __init__(self, gameMaster, armor, inventory, life, special, adventurer, common, name):
         self.gameMaster = gameMaster
         self.armor = self.baseArmor = armor[0]
         self.armorBreaker = self.baseArmorBreaker = armor[1]
@@ -36,10 +36,7 @@ class Role:
         self.adventurer = adventurer
         self.common = common
         self.name = name
-        self.inventory = item.Inventory()
-
-        for weapon in weapons:
-            self.inventory.AddItem(weapon)
+        self.inventory = inventory
 
     def __str__(self):
         if self.Alive():
@@ -230,14 +227,12 @@ class Role:
         armor, life, special = (input.pop("armor"), input.pop("armorBreaker", 20)), input.pop("life"), input.pop("special")
         adventurer, common = input.pop("adventurer", True), input.pop("common", True)
 
-        weapons, index = [], 0
-        for weapon in input.values():
-            index += 1
-            weapons.append(gameMaster.GetItem(weapon))
-            if index >= 3: 
-                break
+        inventory = item.Inventory()
 
-        return _class_(gameMaster, armor, weapons, life, special, adventurer, common, name)
+        for itm in input.values():
+            inventory.AddItem(gameMaster.GetItem(itm))
+
+        return _class_(gameMaster, armor, inventory, life, special, adventurer, common, name)
 
 
 class Mage(Role):
@@ -280,9 +275,10 @@ class Warrior(Role):
         
     def Dying(self):
         #Second Win
-        speaker.Speak("SPECIAL\t- Warrior doesn't want to give up, he drinks a good coffee and heals 10 HP !")
-        self.Heal(self.special[1])
-        self.processedHeal = True
+        if (not self.processedHeal):
+            speaker.Speak("SPECIAL\t- Warrior doesn't want to give up, he drinks a good coffee and heals 10 HP !")
+            self.Heal(self.special[1])
+            self.processedHeal = True
         
 
     def Special(self):

@@ -314,6 +314,15 @@
       }
     ],
 
+    "Strenght": [
+      "Potion",
+      {
+        "type": "STRENGHT",
+        "value": 15,
+        "lifeTime": 2
+      }
+    ],
+
     "Good strenght": [
       "Potion",
       {
