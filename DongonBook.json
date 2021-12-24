@@ -542,6 +542,69 @@
 
     "LA BIBLIOTHECAIRE": {
 
+      "enunciate": [
+        "Votre groupe s'arrête devant un grand bâtiment",
+        "en pierre soutenu par du bois. Un grand écriteau",
+        "encadré par un cadre de roche sculpté indique qu'il s'agit",
+        "de la bibliothèque. Vous entrez.",
+        "",
+        "'Chuuuut', prononce une femme mature à votre entrée.",
+        "Elle se mit à vous parler avec un accent particulier (nordique):",
+        "",
+        "'Ici, vous êtes chez ma famille. Tous ces amoureux des écrits",
+        "sont tout pour moi. Je ne cherche que leur bonheur.",
+        "Vous êtes des aventuriers, alors je vous répète encore une fois...",
+        "Faire du bruit, c'est déranger ma famille, Capish ?",
+        "Que voulez-vous ?'"
+      ],
+
+      "choice1": {
+
+        "enunciate": "Chercher un livre intéressant.",
+        "event1": {
+
+        }
+      },
+      "choice2": {
+
+        "enunciate": "Quel livre peut-elle conseiller ?",
+        "event1": {
+
+        }
+      },
+      "choice3": {
+
+        "enunciate": "Crier très fort, à vos risques et périls.",
+        "event1": {
+
+        }
+      },
+      "choice4": {
+
+        "enunciate": "Partir.",
+        "event1": {
+
+        }
+      },
+      "choice5": {
+
+        "access": {
+          "17 ANGELICS LAUGH": true
+        },
+        "enuciate": "Demander le livre 'Les 17 rires angéliques'.",
+        "event1": {
+
+        }
+      },
+      "choice6": {
+
+        "access": {
+          "TREIISH DONGEON": true
+        },
+        "event1": {
+
+        }
+      }
     },
 
     "LE MANIAQUE": {
@@ -946,6 +1009,28 @@
   "Treiish": {
     "adventurer": false,
     "common": false
+  },
+  "Reader": {
+    "adventurer": false,
+    "common": false,
+    "armor": 5,
+    "weapon": "Heavy book",
+    "life": 16,
+    "special": [
+      0,
+      0
+    ]
+  },
+  "Librarian": {
+    "adventurer": false,
+    "common": false,
+    "armor": 18,
+    "weapon": "Strong arm",
+    "life": 52,
+    "special": [
+      5,
+      4
+    ]
   },
 
   "Homeless": {

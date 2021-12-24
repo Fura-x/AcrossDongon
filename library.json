@@ -218,6 +218,32 @@
       }
     ],
 
+    "Strong arm": [
+      "Weapon",
+      {
+        "name": "Strong arm",
+        "damage": [
+          2,
+          20
+        ],
+        "effect": [
+          3,
+          "TIRED"
+        ]
+      }
+    ],
+
+    "Heavy book": [
+      "Weapon",
+      {
+        "name": "Heavy book",
+        "damage": [
+          3,
+          3
+        ]
+      }
+    ],
+
     "Broken container": [
       "Weapon",
       {
