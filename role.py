@@ -14,24 +14,32 @@ class Target(Enum):
 class Role:
     # GAMEMASTER INFO
     turn = 0
+
     # ENTITY STAT
-    baseDamage, specialDamage = 0, 0
-    baseArmor, baseArmorBreaker = 0, 0
+    turnDamage , baseDamage = 0, 0
+    turnCritChance, baseCritChance = 0, 0
+
+    turnArmor, baseArmor = 0, 0
+    turnArmorBreaker, baseArmorBreaker = 0, 20
+
+    life, maxLife = 0, 0
+
     specialDice = 0
+
     # ACTION BOOLEAN
     specialAttack, battling = False, True
     processSpecial, processAttack = True, True
+
     # EFFECT
-    effectTurn = 3
+    effectTurn = 0
     effect = Effect.NEUTRAL
 
 
     def __init__(self, gameMaster, armor, inventory, life, special, adventurer, common, name):
         self.gameMaster = gameMaster
-        self.armor = self.baseArmor = armor[0]
-        self.armorBreaker = self.baseArmorBreaker = armor[1]
-        self.life = life
-        self.maxLife = life
+        self.turnArmor = self.baseArmor = armor[0]
+        self.turnArmorBreaker = self.baseArmorBreaker = armor[1]
+        self.life = self.maxLife = life
         self.special = special
         self.adventurer = adventurer
         self.common = common
@@ -42,11 +50,11 @@ class Role:
         if self.Alive():
             effect = ": " + self.effect.name + "\n"
 
-            bonusDamage = self.specialDamage + self.baseDamage
+            bonusDamage = self.turnDamage + self.baseDamage
             if bonusDamage > 0: strenght = "\t Strenght+: " + str(bonusDamage)
             else: strenght = ""
 
-            armor = "\t Armor: " + str(self.armor) + "/" + str(self.baseArmor)
+            armor = "\t Armor: " + str(self.turnArmor) + "/" + str(self.baseArmor)
 
             if self.inventory.Empty(): inventory = ""
             else: inventory = "\n" + str(self.inventory)
@@ -71,7 +79,7 @@ class Role:
 
     def Play(self):
 
-        self.armor = self.baseArmor
+        self.turnArmor = self.baseArmor
 
         # POTION
         self.UsePotion()
@@ -113,9 +121,11 @@ class Role:
         return
 
     def ArmorBreak(self, target):
-        armorBreak = tools.RollDice(1, self.armorBreaker)
-        if (armorBreak > target.armor):
-            return True, (armorBreak == 20)
+        armorBreaker = self.turnArmorBreaker
+        breakResult = tools.RollDice(1, armorBreaker)
+        crit = self.turnCritChance + self.baseCritChance
+        if (breakResult > target.turnArmor):
+            return True, (breakResult >= self.turnArmorBreaker - crit)
 
         return False, False
 
@@ -132,7 +142,7 @@ class Role:
             # Compute damage
             weapon = self.SelectWeapon()
             damage, effect = weapon.Use(self.specialDice)
-            damage += self.baseDamage + self.specialDamage
+            damage += self.baseDamage + self.turnDamage
 
             if critical:
                 damage *= 2
@@ -176,8 +186,9 @@ class Role:
 
     def EndTurn(self):
         self.battling = self.processAttack = self.processSpecial = True
-        self.specialDice, self.specialDamage = 0, 0
-        self.armorBreaker = self.baseArmorBreaker
+        self.specialDice = 0
+        self.turnDamage = self.baseDamage
+        self.turnArmorBreaker = self.baseArmorBreaker
 
         self.effectTurn -= 1
         if self.effectTurn <= 0:
@@ -301,7 +312,7 @@ class Hunter(Role):
             armor = tools.RollDice(self.special[0], self.special[1])
             speaker.Speak("SPECIAL\t- Hunter hides in the battle field ! Enemy can't dodge next attack, and he earns " + str(armor) + " armor !")
             self.ignoreDef = True
-            self.armor += armor
+            self.turnArmor += armor
 
     def ArmorBreak(self, target):
         armorBreak = tools.RollDice(1, 20)
@@ -357,6 +368,6 @@ class RareNiffleur(Role):
         if tools.RollDice(1, 20) >= 12:
             bonusArmor = tools.RollDice(self.special[0], self.special[1])
             speaker.Speak("SPECIAL\t- RareNiffleur reinforce its golden aura, and won " + str(bonusArmor) + " bonus armor !")
-            self.armor += bonusArmor
+            self.turnArmor += bonusArmor
                     
 

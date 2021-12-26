@@ -71,7 +71,7 @@ class Effect(Enum):
         elif effect is Effect.DISTRACT:
             speaker.Speak("DISTR.\t- " + entity.getName() + " is distracted, they lost precision...")
             # Lose 25% of armor breaker
-            entity.armorBreaker -= round(entity.armorBreaker * 25 / 100)
+            entity.turnArmorBreaker -= round(entity.turnArmorBreaker * 25 / 100)
 
         elif effect is Effect.POISON:
             # Hit 20% of entity current life
@@ -80,7 +80,7 @@ class Effect(Enum):
             entity.Hurt(dmg)
 
         elif effect is Effect.FIRE:
-            entity.specialDamage += 6
+            entity.turnDamage += 6
 
         elif effect is Effect.FREEZE:
             speaker.Speak("FREEZE\- " + entity.getName() + " is froze. They can't attack --o--")
