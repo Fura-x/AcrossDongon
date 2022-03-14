@@ -189,7 +189,8 @@ class GameMaster():
         prevTurn = 0
 
         while(self.Fighting()):
-            key, entity = self.combattants.items()[0]
+            key = list(self.combattants.keys())[0]
+            entity = list(self.combattants.values())[0]
             # Check entity life
             if self.AssertEntityDead(key, entity):
                 break

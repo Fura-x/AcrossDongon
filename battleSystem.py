@@ -93,6 +93,7 @@ class Effect(Enum):
 class BattleContext:
 
     battle = False
+    horde = []
 
     def __init__(self):
         return
@@ -100,7 +101,7 @@ class BattleContext:
     def DefineHordeGroup(self, gameMaster):
 
         adventurerPods = 0
-        for adventurer in gameMaster.advGroup:
+        for adventurer in gameMaster.advGroup.values():
             adventurerPods += adventurer.pods
 
         hordePods = 0
@@ -114,3 +115,4 @@ class BattleContext:
 
     def ToDefault(self):
         self.battle = False
+        self.horde.clear()

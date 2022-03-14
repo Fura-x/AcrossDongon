@@ -23,7 +23,7 @@ class BookCase:
         for key, itm in inputReserve.items():
             reserve[key] = item.Item.FromJson(itm[0], itm[1])
             
-        return BookCase(books, privateBooks, reserve)
+        return BookCase(books, reserve)
 
     def SetCurrentBook(self, book):
         self.current = book

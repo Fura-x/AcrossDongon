@@ -74,7 +74,7 @@ def RandomElement(l):
     if not Empty(l):
         return random.choice(l)
 
-def RandomizeList(list)
+def RandomizeList(list):
     if not Empty(list):
         return random.shuffle(list)
 

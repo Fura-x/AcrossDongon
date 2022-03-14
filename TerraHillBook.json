@@ -5,7 +5,7 @@
     "UN CROISEMENT": {
 
       "enunciate": [ "Vous arrivez à un croisement avec 2 chemins possibles. Aucun indice sur leur direction..." ],
-      "back": ["Vous arrivez encore à un croisement ! Votre choix :"],
+      "back": [ "Vous arrivez encore à un croisement ! Votre choix :" ],
       "Choice1": {
 
         "enunciate": "Vous choisissez de partir à droite.",
@@ -33,301 +33,27 @@
           }
         }
       },
-
       "Choice2": {
 
         "enunciate": "Vous choisissez de partir à gauche.",
-        "event": {
+        "event1": {
 
-          "enunciate": [ "Rien n'entrave votre route, vous continuez votre aventure sans aucun soucis !" ]
+          "enunciate": [ "La route vous fait passer par de beaux paysages, vous êtes ravis !" ]
         },
         "event2": {
 
           "enunciate": [
-            "Vous tournez à gauche, marchez sereinement pendant quelques minutes,",
-            "quand soudain une horde de monstres vous prend par surprise !"
-          ],
-          "reward1": {
-
-            "func": "ForceBattle",
-            "cast": "ValueCast",
-            "item1": true
-          }
-        },
-        "event3": {
-
-          "enunciate": [
-            "La route que vous avez choisis vous guide au travers d'une forêt mystique.",
-            "Elle semble très paisible, et vous entendez les oiseaux gazouiller harmonieusement.",
-            "Cela vous repose, votre équipe se sent mieux !"
-          ],
-          "reward1": {
-
-            "func": "TeamHeal",
-            "cast": "ValueCast",
-            "item1": 5,
-            "item2": 10,
-            "item3": 15
-          }
-        }
-      },
-
-      "Choice3": {
-
-        "enunciate": "Vous choisissez de faire demi-tour.",
-        "event1": {
-
-          "enunciate": [
-            "Vous repartez le long d'une route que vous connaissez déjà,",
-            "c'est alors qu'une horde de monstres vous attaque !",
-            "Vos ennemis semblent vouloir venger ceux que vous avez déjà terrasé..."
-          ],
-          "reward1": {
-
-            "func": "ForceBattle",
-            "cast": "ValueCast",
-            "item1": true
-          },
-          "reward2": {
-
-            "func": "HordeStrenght",
-            "cast": "ValueCast",
-            "item1": 3,
-            "item2": 6
-          }
-        },
-        "event2": {
-
-          "enunciate": [
-            "Vous faites demi-tour.",
-            "Vous remarquez alors un petit chemin caché derrière un arbe",
-            "que vous n'aviez pas vu.",
-            "vous l'empruntez par curiosité"
-          ],
-          "reward1": {
-
-            "func": "NextStory",
-            "item1": "LE PERSONNAGE DU TROU"
-          },
-          "reward2": {
-
-            "func": "Text",
-            "item": [ "Vous longez le chemin sinueux..." ]
-          }
-        }
-
-      },
-
-      "Choice4": {
-
-        "enunciate": "Vous choisissez de vous téléporter à Dongon.",
-        "event1": {
-
-          "enunciate": [
-            "Vous vous téléportez à Dongon.",
-            "C'est un peu bête de faire tant d'effort alors qu'il n'y a aucune",
-            "notion de distance dans votre aventure, la téléportation était inutile."
-          ],
-          "reward1": {
-
-            "func": "NextBook",
-            "cast": "ValueCast",
-            "item1": "Dongon"
-          },
-          "reward2": {
-
-            "func": "NextStory",
-            "cast": "ValueCast",
-            "item1": "BIENVENUE A DONGON"
-          }
-        }
-      },
-
-      "Choice5": {
-
-        "enunciate": "Don't mind the road and just look at this shiny little thing",
-        "access": {
-          "Gold": false
-        },
-        "event1": {
-
-          "enunciate": [
-            "Vous vous approchez de ce shiny little thing, quand soudain,",
-            "les herbes présentent devant vous se mettent à frémir...",
-            "Un monstre en sort et se jette sur vous !",
-            "Vous vous débattez, et l'étudiez. Il ressemble à une taupe,",
-            "de petite taille, mais est recouvert d'or et semble très dynamique.",
-            "Il veut clairement votre peau. Place au combat !"
-          ],
-          "reward1": {
-
-            "func": "GiveQuest",
-            "cast": "QuestCast",
-            "item1": {
-
-              "enunciate": "Beat the boss !",
-              "condition": "BattleHorde",
-              "value": 1,
-              "event": {
-
-                "enunciate": [
-                  "Vous avez battu le Niffleur rare !",
-                  "vous obtenez un minerai d'or, espérons qu'il ne s'agisse pas de son foie..."
-                ],
-                "reward1": {
-
-                  "func": "GiveKeyItem",
-                  "item1":  "Gold"
-                }
-              }
-            }
-          },
-          "reward2": {
-            "func": "DefineHorde",
-            "item1": [
-              "RareNiffleur",
-              "Mage"
-            ]
-          },
-          "reward3": {
-            "func": "ForceBattle"
-          }
-        }
-      }
-    },
-
-    "A LA RECHERCHE D'UNE NOUVELLE ARME": {
-      "access": {
-        "Gold": true
-      },
-      "enunciate": [
-        "Vos armes, ne vous satisfaites plus, vous décidez d'aller voir un Forgeron.",
-        "Vous en rencontrez un mais ce-dernier vous demande de l'argent que vous n'avez pas."
-      ],
-      "Choice1": {
-
-        "enunciate": "Vous priez le forgeron de vous offrir une arme.",
-        "event": {
-
-          "enunciate": [ "Le forgeron éclate de rire, et vous tend une arme, pour le coup désarmante. Vous êtes obligé de la récupérer." ],
-          "reward1": {
-
-            "func": "GiveItem",
-            "item1": "Rotten wood sword",
-            "item2": "Broken spoon"
-          }
-        }
-      },
-
-      "Choice2": {
-
-        "enunciate": "Vous accomplissez une tâche pour lui en guise de paiement.",
-        "access": {
-          "Exclusion": false
-        },
-        "event1": {
-
-          "enunciate": [
-            "Le forgeron avait justement une pièce à ré-aménager, suite à une dispute qu'il a eu.",
-            "Vous prenez le temps de refaire son salon.",
-            "En guise de remerciement, il vous offre une bonne arme."
+            "Vous vous retrouvez dans des ruines d'un ancien village.",
+            "L'ambiance est lugubre, mais vous trouvez des ressources intéressantes"
           ],
           "reward1": {
 
             "func": "GiveItem",
             "item1": "Classic iron sword",
-            "item2": "Basic steel dagger"
-          }
-        },
-        "event2": {
-
-          "enunciate": [
-            "Le forgeron décide de vous prendre comme stagiaire pour 1 jour.",
-            "Vous êtes chargés de transporter des plaques de métaux et des bacs de pierres,",
-            "tout va tellement vite que vous en prenez même une sur le pied !",
-            "...",
-            "Le forgeron vous offre une bonne arme comme convenue,",
-            "mais un membre de votre groupe a souffert."
-          ],
-          "reward1": {
-
-            "func": "GiveItem",
-            "item1": "Classic iron sword",
-            "item2": "Basic steel dagger"
-          },
-          "reward2": {
-
-            "func": "MemberHurt",
-            "cast": "ValueCast",
-            "item1": 10
-          }
-        }
-      },
-
-      "Choice3": {
-
-        "enunciate": "Vous essayez de lui voler une arme exposé devant vous.",
-        "event": {
-
-          "enunciate": [ "Votre tentative est vaine, et le Forgeron vous expulse sévèremment de son atelier." ],
-          "reward1": {
-
-            "func": "GiveKeyItem",
-            "item1": "Exclusion"
-          }
-        }
-      },
-
-      "Choice4": {
-
-        "enunciate": "Vous acheter une arme",
-        "access": {
-            "Gold": true
-          },
-         
-          "event1"
-          :
-          {
-
-            "enunciate": [
-              ""
-            ],
-            "prob": 1,
-            "reward1": {
-
-              "func": "GiveItem",
-              "item1": "Good potion"
-            }
-          }
-      }
-
-    }
-    
-  },
-
-  "PrivateStoryBook": {
-
-    "LE PERSONNAGE DU TROU": {
-
-      "enunciate": [
-        "Vous arrivez au bord d'un trou,",
-        "dans lequel un personnage appelle à l'aide"
-      ],
-      "Choice1": {
-
-        "enunciate": "Vous lui tandez la main pour l'aider.",
-        "event1": {
-
-          "enunciate": [
-            "Le personnage prend votre main et réussis à sortir du trou.",
-            "Vous découvrez qu'il s'agit d'un aventurier, comme vous.",
-            "Comme il est très reconnaissant, il rejoint votre équipe !"
-          ],
-          "reward1": {
-
-            "func": "NewMember",
-            "cast": "ValueCast",
-            "item1": true
+            "item2": "Good heal",
+            "item3": "Blue stone spear",
+            "item4": "Spray",
+            "item5": "Little armor"
           }
         }
       }
@@ -378,6 +104,7 @@
 
   "Orc": {
     "adventurer": false,
+    "pods":  2,
     "armor": 12,
     "weapon": "Clay club",
     "life": 45,
@@ -408,7 +135,7 @@
   },
   "RareNiffleur": {
     "adventurer": false,
-    "common": false,
+    "pods": 9,
     "armor": 12,
     "armorBreaker": 40,
     "life": 100,
