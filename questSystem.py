@@ -15,7 +15,7 @@ class QuestSytem:
         return
 
     def Check(self, gameMaster):
-
+        # Check if quests have been completed
         index, indexes = 0, []
         for quest in self.quests:
             if quest.Check(gameMaster):

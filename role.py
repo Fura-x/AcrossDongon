@@ -26,6 +26,8 @@ class Role:
 
     specialDice = 0
 
+    pods = 0
+
     # ACTION BOOLEAN
     specialAttack, battling = False, True
     processSpecial, processAttack = True, True
@@ -35,14 +37,14 @@ class Role:
     effect = Effect.NEUTRAL
 
 
-    def __init__(self, gameMaster, armor, inventory, life, special, adventurer, common, name):
+    def __init__(self, gameMaster, armor, inventory, life, special, adventurer, pods, name):
         self.gameMaster = gameMaster
         self.turnArmor = self.baseArmor = armor[0]
         self.turnArmorBreaker = self.baseArmorBreaker = armor[1]
         self.life = self.maxLife = life
         self.special = special
         self.adventurer = adventurer
-        self.common = common
+        self.pods = pods
         self.name = name
         self.inventory = inventory
 
@@ -236,20 +238,21 @@ class Role:
         module = __import__("role")
         _class_ = getattr(module, name, Role)
         armor, life, special = (input.pop("armor"), input.pop("armorBreaker", 20)), input.pop("life"), input.pop("special")
-        adventurer, common = input.pop("adventurer", True), input.pop("common", True)
+        adventurer = input.pop("adventurer", True)
+        pods = input.pop("pods", 3)
 
         inventory = item.Inventory()
 
         for itm in input.values():
             inventory.AddItem(gameMaster.GetItem(itm))
 
-        return _class_(gameMaster, armor, inventory, life, special, adventurer, common, name)
+        return _class_(gameMaster, armor, inventory, life, special, adventurer, pods, name)
 
 
 class Mage(Role):
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name = ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Mage")
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name = ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Mage")
 
     def Special(self):
         # Fireball
@@ -262,8 +265,8 @@ class Mage(Role):
 
 class Rogue(Role):
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Rogue")
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Rogue")
 
     def Special(self):
         #Sneak attack
@@ -274,8 +277,8 @@ class Rogue(Role):
 class Warrior(Role):
     processedHeal = False
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Warrior")
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Warrior")
 
     def __str__(self):
         return super().__str__() + "\n    Healed: " + str(self.processedHeal)
@@ -299,9 +302,9 @@ class Hunter(Role):
 
     ignoreDef = False
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
         self.baseArmor = armor
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Hunter")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Hunter")
 
     def __str__(self):
         return super().__str__() + "\n    Camouflage: " + str(self.ignoreDef)
@@ -323,13 +326,13 @@ class Hunter(Role):
 
 class Orc(Role):
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Orc")
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Orc")
 
 class Grick(Role):
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
         self.specialAttack = True
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Grick")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Grick")
 
     def SpecialAttack(self, target):
         damage = tools.RollDice(self.special[0], self.special[1])
@@ -338,8 +341,8 @@ class Grick(Role):
 
 class Banshee(Role):
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Banshee")
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Banshee")
 
     def Special(self):
         if (tools.RollDice(1, 20) >= 15):
@@ -349,8 +352,8 @@ class Banshee(Role):
 
 class Bandit(Role):
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "Bandit")
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Bandit")
 
     def Special(self):
         '''Steal an enemies item'''
@@ -361,8 +364,8 @@ class Bandit(Role):
 
 class RareNiffleur(Role):
 
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, common, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, common, "RareNiffleur")
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "RareNiffleur")
 
     def Special(self):
         if tools.RollDice(1, 20) >= 12:

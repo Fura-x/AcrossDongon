@@ -5,22 +5,19 @@ from questSystem import Quest
 
 class BookCase:
 
-    def __init__(self, books, privateBooks, reserve):
+    def __init__(self, books, reserve):
         self.books = books
-        self.privateBooks = privateBooks
         self.reserve = reserve
         self.current = ""
 
     def FromJson(gameMaster, input):
         books = {}
-        privateBooks = {}
         reserve = {}
 
         bookcase = input.pop("bookcase")
         for book in bookcase.values():
             bookInput = tools.ParseJson(book + "Book")
             books[book] = StoryBook.FromJson(gameMaster, bookInput.pop("StoryBook"))
-            privateBooks[book] = StoryBook.FromJson(gameMaster, bookInput.pop("PrivateStoryBook"))
 
         inputReserve = input.pop("reserve")
         for key, itm in inputReserve.items():
@@ -29,11 +26,9 @@ class BookCase:
         return BookCase(books, privateBooks, reserve)
 
     def SetCurrentBook(self, book):
-        self.previous = self.current
         self.current = book
 
         self.book = self.books[book]
-        self.privateBook = self.privateBooks[book]
 
 
 class StoryBook:
@@ -70,9 +65,10 @@ class StoryEvent:
     def __init__(self, gameMaster, enunciate, backEnunciate, choices, access):
         self.gameMaster = gameMaster
         self.enunciate = enunciate
-        self.backEnunciate = backEnunciate
         self.choices = choices
         self.access = access
+        # When story happened twice
+        self.backEnunciate = backEnunciate
         self.happened = False
 
     def Happens(self, gameMaster):
@@ -180,45 +176,14 @@ class StoryReward:
         getattr(StoryReward, self.func)(self, gameMaster)
         
     def NextBook(self, gameMaster):
+        # Change the current story book
         reward = self.reward
         gameMaster.ReadBook(reward)
         speaker.WriteInput("You're now at " + reward + ".")
         return
 
-    def PreviousBook(self, gameMaster):
-        gameMaster.ReadBook(gameMaster.bookCase.previous)
-        speaker.WriteInput("You're now at " + gameMaster.bookCase.previous + ".")
-        return
-
-    def NextStory(self, gameMaster):
-        reward = self.reward
-        gameMaster.ChoseStory(reward)
-        
-        return
-
-    def SetPublic(self, gameMaster):
-        '''Set a private story to public'''
-        reward = self.reward
-        private, public = gameMaster.privateBook, gameMaster.book
-
-        story = private.get(reward, None)
-        if story is not None:
-            public[reward] = story
-
-        return
-
-    def SetPrivate(self, gameMaster):
-        '''Set a public story to private'''
-        reward = self.reward
-        private, public = gameMaster.privateBook, gameMaster.book
-
-        story = public.get(reward, None)
-        if story is not None:
-            private[reward] = story
-
-        return
-
     def NewMember(self, gameMaster):
+        # Return random member not enrolled
         member = gameMaster.NewRandomMember()
 
         if member is None:
@@ -229,52 +194,56 @@ class StoryReward:
         return
 
     def GiveItem(self, gameMaster):
+        # Return weapon or potion
         gameMaster.GiveItem(self.reward)
 
     def GiveKeyItem(self, gameMaster):
+        # Unlock new Key Item
         logbook.AddKeyItem(self.reward)
 
     def GiveQuest(self, gameMaster):
+        # Add a new quest to the journey !
         gameMaster.questSystem.AddQuest(self.reward)
 
     def Text(self, gameMaster):
+        # Just write a text for story
         speaker.ListWrite(self.reward)
         speaker.Input()
 
     def TeamHurt(self, gameMaster):
+        # All members get hurt
         dmg = self.reward
         speaker.WriteInput("Your team gets hurt with " + str(dmg) + " damages.")
         for adv in gameMaster.advGroup.values():
             adv.Hurt(dmg)
 
     def MemberHurt(self, gameMaster):
+        # A random member get hurts
         dmg = self.reward
         victim = tools.RandomItem(gameMaster.advGroup)[1]
         speaker.WriteInput(victim.getName() + " gets hurt with " + str(dmg) + " damages.")
         victim.Hurt(dmg)
 
     def TeamHeal(self, gameMaster):
+        # All members are healed
         heal = self.reward
-        speaker.WriteInput("Your team is healed with " + str(heal) + " HP.")
+        speaker.WriteInput("Your team is healed with " + str(heal) + " HP!")
         for adv in gameMaster.advGroup.values():
             adv.Heal(heal)
 
-    def ForceBattle(self, gameMaster):
-        gameMaster.battleContext.battle = True
-        return
-
-    def DefineHorde(self, gameMaster):
-        gameMaster.battleContext.horde = self.reward
-
-    def HordeStrenght(self, gameMaster):
-        strenght = self.reward
-        speaker.WriteInput("Your next opponents will have " + str(strenght) + " bonus damages.")
-        gameMaster.battleContext.hordeStrenght = strenght
+    def MemberHeal(self, gameMaster):
+        # A random member is healed
+        heal = self.reward
+        victim = tools.RandomItem(gameMaster.advGroup)[1]
+        speaker.WriteInput(victime.getName() + " is healed with " + str(heal) + " HP!")
+        victim.Heal(heal)
 
     def ValueCast(toCast):
+        # Used for string (Items, Key Items) and units (Heal, Damage)
         return toCast
 
     def QuestCast(toCast):
+        # Used for generate quest from json
         return Quest.FromJson(toCast)
 
     def FromJson(input):

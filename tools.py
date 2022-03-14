@@ -74,6 +74,10 @@ def RandomElement(l):
     if not Empty(l):
         return random.choice(l)
 
+def RandomizeList(list)
+    if not Empty(list):
+        return random.shuffle(list)
+
 def RandomDict(list, value, key_separator = 0.0):
     # create a dictionnary from a list with random index
     dic = {}

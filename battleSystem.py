@@ -92,8 +92,6 @@ class Effect(Enum):
 
 class BattleContext:
 
-    hordeStrenght = 0
-    horde = []
     battle = False
 
     def __init__(self):
@@ -101,28 +99,18 @@ class BattleContext:
 
     def DefineHordeGroup(self, gameMaster):
 
-        if tools.Empty(self.horde):
-            # create an enemy group if not defined previously
-            for i in range(0, tools.RollDice(1, len(gameMaster.advEnroll)) + 1):
-                monster = tools.CopyEntity(tools.random.choice(gameMaster.horde))
-                self.horde.append(monster)
-        else:
-            # Horde defined from story event reward, so we have only strings
-            trueHorde = []
-            for str in self.horde:
-                entity = tools.CopyEntity(tools.Find(gameMaster.entities, str, lambda val, role: val == role.getName())[1])
-                trueHorde.append(entity)
-            self.horde = trueHorde
+        adventurerPods = 0
+        for adventurer in gameMaster.advGroup:
+            adventurerPods += adventurer.pods
+
+        hordePods = 0
+        # create a random enemy group, based on the pods system 
+        while(hordePods < adventurerPods):
+            monster = tools.CopyEntity(tools.random.choice(gameMaster.horde))
+            hordePods += monster.pods
+            self.horde.append(monster)
 
         return self.horde
 
-    def ApplyContext(self, advGroup, hordeGroup, entities):
-
-        for monster in hordeGroup.values():
-            monster.baseDamage = self.hordeStrenght
-
-        return
-
     def ToDefault(self):
-        self.hordeStrenght = 0
         self.battle = False
