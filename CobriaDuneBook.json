@@ -1,0 +1,88 @@
+{
+  "StoryBook": {
+
+    "LE CACTUS": {
+
+      "enunciate": [
+
+        "La chaleur pèse énormément sur vous.",
+        "Un cactus se met sur votre route.",
+
+        "D'après vos connaissances, les cactus",
+        "sont très riches en eau.",
+        "Peut-être une solution à votre souffrance ?"
+      ],
+      "choice1": {
+
+        "enunciate": "Essayer d'ouvrir le cactus pour récupérer de l'eau",
+        "event1": {
+
+          "enunciate": [
+            "Ouch ! ça pique !"
+          ],
+          "reward1": {
+
+            "func": "MemberHurt",
+            "value": 5
+          }
+        },
+        "event2": {
+
+          "enunciate": [
+            "L'opération cactus est un succès !",
+            "Toute l'équipe obtient de bonnes grosses gorgé d'eau !"
+          ],
+          "reward1": {
+
+            "func": "TeamHeal",
+            "value": 3
+          }
+        }
+      },
+      "choice2": {
+
+        "enunciate": "Ne pas prendre de risque à se piquer",
+        "event1": {
+
+          "enunciate": [
+            "Vous passez votre route en surmontant la chaleur"
+          ]
+        },
+        "event2": {
+
+          "enunciate": [
+            "Vous passez votre route, mais très vite,",
+            "la chaleur vous rattrape et affaiblie votre équipe !"
+          ],
+          "reward": {
+
+            "func": "TeamHurt",
+            "value": 5
+          }
+        }
+      }
+    }
+  },
+
+  "Bandit": {
+    "adventurer": false,
+    "armor": 13,
+    "weapon": "Hidden knife",
+    "life": 25,
+    "special": [
+      0,
+      0
+    ]
+  },
+  "Rogue": {
+    "adventurer": true,
+    "armor": 17,
+    "weapon": "Tiny dagger",
+    "potion": "Spray",
+    "life": 35,
+    "special": [
+      4,
+      6
+    ]
+  }
+}

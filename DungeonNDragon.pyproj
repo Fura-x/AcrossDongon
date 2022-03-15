@@ -52,12 +52,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CobriaDuneBook.json" />
     <Content Include="DongonBook.json">
       <SubType>Code</SubType>
     </Content>
     <Content Include="exemple.json">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="GobioRiverBook.json" />
     <Content Include="library.json">
       <SubType>Code</SubType>
     </Content>

@@ -15,8 +15,11 @@ class GameMaster():
 
     def __init__(self):
 
+        speaker.InitTimer()
+        speaker.Write()
+
         self.bookCase = story.BookCase.FromJson(self, tools.ParseJson("library"))
-        self.ReadBook("TerraHill")
+        self.ReadSelectedBook()
 
         self.advEnroll = tools.CopyEntities(self.adventurers[:1])
         self.advGroup = tools.RandomDict(self.advEnroll, 20)
@@ -24,7 +27,6 @@ class GameMaster():
         self.battleContext = BattleContext()
         self.questSystem = questSystem.QuestSytem()
 
-        speaker.InitTimer()
         speaker.Write(str(self))
 
         return
@@ -50,6 +52,8 @@ class GameMaster():
 
     def ReadBook(self, book):
 
+        speaker.WriteInput("=-= New Area : You are at " + book + ". =-=")
+
         self.bookCase.SetCurrentBook(book)
 
         bookInput = tools.ParseJson(book + "Book")
@@ -67,6 +71,15 @@ class GameMaster():
                 self.horde.append(entity)
 
         self.entities = self.horde + self.adventurers
+
+    def ReadRandomBook(self):
+        book = tools.RandomElement(list(self.bookCase.books.keys()))
+        self.ReadBook(book)
+
+    def ReadSelectedBook(self):
+        speaker.Write("Chose a place to be:")
+        book = tools.EnumerateAndSelect(list(self.bookCase.books.keys()))[1]
+        self.ReadBook(book)
 
     def AdventurersAlive(self):
         return len(self.advGroup) > 0
@@ -124,12 +137,8 @@ class GameMaster():
             self.combattants.move_to_end(key)
 
     def GameLoop(self):
-        journey = True
+        journey, final = True, False
         while journey and self.AdventurersAlive() :
-
-            # REWARD
-            speaker.WriteInput("Vous avez remporté le combat ! Par chance, vous obtenez une récompense.")
-            self.GetRandomReward()
 
             # QUEST
             self.questSystem.Check(self)
@@ -144,6 +153,22 @@ class GameMaster():
             
             self.Battle() # battle event
             self.EndBattle() # a party won
+
+            # CHECK ADVENTURER STATES
+            if (not self.AdventurersAlive()):
+                break
+
+            # REWARD
+            speaker.WriteInput("Vous avez remporté le combat ! Par chance, vous obtenez une récompense.")
+            self.GetRandomReward()
+
+            # CHECK FOR BATTLE COUNT
+            if logbook.battleWon == 13:
+                self.BossBattle()
+                final = True
+                break
+
+
 
 
         # END
@@ -222,6 +247,10 @@ class GameMaster():
 
     def EndBattle(self):
         self.battleContext.ToDefault()
+        return
+
+    def BossBattle(self):
+
         return
 
     def NewRandomMember(self):

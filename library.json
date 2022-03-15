@@ -1,7 +1,9 @@
 {
   "bookcase": {
 
-    "book1": "TerraHill"
+    "book1": "TerraHill",
+    "book2": "CobriaDune",
+    "book3": "GobioRiver"
   },
 
   "reserve": {
@@ -42,6 +44,10 @@
         "damage": [
           1,
           4
+        ],
+        "effect": [
+          3,
+          "STEAL"
         ]
       }
     ],

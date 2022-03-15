@@ -1,0 +1,71 @@
+{
+  "StoryBook": {
+
+    "AU BORD DU COURANT": {
+
+      "enunciate": [
+        "La rivière que vous longez semble faire plus de bruit.",
+        "Vous vous rendez au bord de cette dernière,",
+        "et remarquez à quel point le courrant est puissant.",
+        "Cependant vous remarquez aussi les nombreux saumons qui sautent.",
+        "Cela vous ouvre l'appétit ! Que faîtes-vous ?"
+      ],
+      "choice1": {
+
+        "enunciate": "Vous essayez d'attraper un saumon",
+        "event1": {
+
+          "enunciate": [
+            "Votre tentative n'est pas vaine !",
+            "Vous attrapez un beau saumon, et le dévorez sans plus tarder."
+          ],
+          "reward1": {
+
+            "func": "TeamHeal",
+            "value1": 10,
+            "value2": 15
+          }
+        },
+        "event2": {
+
+          "enunciate": [
+            "Votre tentative est vaine, aucun saumon ne reste entre vos pattes !"
+          ],
+          "prob": 2
+        }
+      },
+      "choice2": {
+
+        "enunciate": "Vous fermez les yeux sur ces richesses et passez votre route",
+        "event1": {
+
+          "enunciate": [
+            "Vous poursuivez votre route"
+          ]
+        }
+      }
+    }
+  },
+
+  "Hunter": {
+    "adventurer": true,
+    "armor": 10,
+    "weapon": "Wood bow",
+    "life": 40,
+    "special": [
+      1,
+      10
+    ]
+  },
+  "Banshee": {
+    "adventurer": false,
+    "armor": 8,
+    "weapon": "Sharp claws",
+    "life": 60,
+    "special": [
+      0,
+      0
+    ]
+  }
+
+}
