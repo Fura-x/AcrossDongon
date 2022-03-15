@@ -18,6 +18,7 @@ class Effect(Enum):
     # only on hit
     DRAIN = 30          # get heals of 50% of the damages dealed to the ennemy
     DESTROY = 31        # one-shot
+    STEAL = 32          # steal 10 coins from the victim
     ENBARTHELEMY = 777
 
     def GetTurn(effect):
@@ -28,6 +29,17 @@ class Effect(Enum):
         else:
             return tools.RollDice(2, 5)
 
+    def Steal(predator, prey):
+        coins = 0
+        if(prey.coins < 10):
+            coins = prey.coins
+        else:
+            coins = 10
+
+        prey.coins -= coins
+        predator.coins += coins
+        return coins
+
     def Apply(predator, prey, enemies, allies, damage, effect):
         if effect is Effect.NEUTRAL:
             return
@@ -36,8 +48,16 @@ class Effect(Enum):
         weakeness = round(damage * 20 / 100)
 
         if effect is Effect.DRAIN:
-            speaker.Speak("DRAIN\t- " + predator.getName() + "drains enemy HP ! " + str(recurse) + " healing recieved.")
+            speaker.Speak("DRAIN\t- " + predator.getName() + " drains enemy HP ! " + str(recurse) + " healing recieved.")
             predator.Heal(recurse)
+
+        if effect is Effect.STEAL:
+            speaker.Speak("STEAL\t- " + predator.getName() + " stole " + prey.getName() + "!")
+            coins = Effect.Steal(predator, prey)
+            if(coins > 0 and predator.adventurer):
+                speaker.Speak("MONEY\t- You earn " + str(coins) + " coins !")
+            elif(coins > 0 and not predator.adventurer):
+                speaker.Speak("MONEY\t- You lose " + str(coins) + " coins...")
 
         if predator.effect is Effect.FIRE:
             speaker.Speak("FIRE\t- " + predator.getName() + " hit themself with fire ! " + str(recurse) + " damages recieved.")

@@ -26,6 +26,7 @@ class Role:
 
     specialDice = 0
 
+    coins = 10
     pods = 0
 
     # ACTION BOOLEAN

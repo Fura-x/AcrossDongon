@@ -286,17 +286,27 @@
       }
     ],
 
-    "Little armor": [
+    "Armor": [
       "Potion",
       {
 
         "type": "ARMOR",
-        "value": 3,
+        "value": 5,
+        "lifeTime": 3
+      }
+    ],
+
+    "Good armor": [
+      "Potion",
+      {
+
+        "type": "ARMOR",
+        "value": 4,
         "lifeTime": 5
       }
     ],
 
-    "Strong armor": [
+    "Super armor": [
       "Potion",
       {
         "type": "ARMOR",
@@ -357,5 +367,39 @@
       }
     ]
 
+  },
+
+  "chest": {
+    "reward1": {
+
+      "func": "GiveItem",
+      "item1": "Heal",
+      "item2": "Armor",
+      "item3": "Strenght",
+      "item4": "Spray"
+    },
+    "reward2": {
+
+      "func": "GiveMoney",
+      "item1": 5,
+      "item2": 10,
+      "item3": 20,
+      "item4": 30,
+      "item5": 50
+    },
+    "reward3": {
+
+      "func": "TeamHeal",
+      "item1": 5,
+      "item2": 10,
+      "item3": 15
+    },
+    "reward4": {
+
+      "func": "MemberHeal",
+      "item1": 10,
+      "item2": 20,
+      "item3": 30
+    }
   }
 }

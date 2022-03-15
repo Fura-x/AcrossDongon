@@ -18,7 +18,7 @@ class GameMaster():
         self.bookCase = story.BookCase.FromJson(self, tools.ParseJson("library"))
         self.ReadBook("TerraHill")
 
-        self.advEnroll = tools.CopyEntities(self.adventurers[:3])
+        self.advEnroll = tools.CopyEntities(self.adventurers[:1])
         self.advGroup = tools.RandomDict(self.advEnroll, 20)
 
         self.battleContext = BattleContext()
@@ -127,6 +127,10 @@ class GameMaster():
         journey = True
         while journey and self.AdventurersAlive() :
 
+            # REWARD
+            speaker.WriteInput("Vous avez remporté le combat ! Par chance, vous obtenez une récompense.")
+            self.GetRandomReward()
+
             # QUEST
             self.questSystem.Check(self)
 
@@ -140,6 +144,7 @@ class GameMaster():
             
             self.Battle() # battle event
             self.EndBattle() # a party won
+
 
         # END
         speaker.Write(".")
@@ -281,6 +286,20 @@ class GameMaster():
         speaker.WriteInput(item.object + " gave to " + adv.getName() + " ! Tap ENTER to continue\n")
 
         return
+
+    def GiveMoney(self, coins):
+        '''Give money to the adventurer player will chose'''
+        speaker.Write(" =-= " + str(coins) + " coins earned =-=")
+
+        adv = self.SelectAdventurer()
+        adv.coins += coins
+        speaker.WriteInput("Money gave to " + adv.getName() + " ! Tap ENTER to continue\n")
+
+        return
+
+    def GetRandomReward(self):
+        '''Apply random reward from bookCase's chest'''
+        tools.RandomElement(self.bookCase.chest).Happens(self)
 
     def GodGift(self):
         '''Give a lucky reward '''

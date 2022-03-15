@@ -5,14 +5,16 @@ from questSystem import Quest
 
 class BookCase:
 
-    def __init__(self, books, reserve):
+    def __init__(self, books, reserve, chest):
         self.books = books
         self.reserve = reserve
+        self.chest = chest
         self.current = ""
 
     def FromJson(gameMaster, input):
         books = {}
         reserve = {}
+        chest = []
 
         bookcase = input.pop("bookcase")
         for book in bookcase.values():
@@ -23,7 +25,11 @@ class BookCase:
         for key, itm in inputReserve.items():
             reserve[key] = item.Item.FromJson(itm[0], itm[1])
             
-        return BookCase(books, reserve)
+        inputChest = input.pop("chest")
+        for key, itm in inputChest.items():
+            chest.append(StoryReward.FromJson(itm))
+
+        return BookCase(books, reserve, chest)
 
     def SetCurrentBook(self, book):
         self.current = book
@@ -205,6 +211,10 @@ class StoryReward:
         # Add a new quest to the journey !
         gameMaster.questSystem.AddQuest(self.reward)
 
+    def GiveMoney(self, gameMaster):
+        # Earn money money money !
+        gameMaster.GiveMoney(self.reward)
+
     def Text(self, gameMaster):
         # Just write a text for story
         speaker.ListWrite(self.reward)
@@ -235,7 +245,7 @@ class StoryReward:
         # A random member is healed
         heal = self.reward
         victim = tools.RandomItem(gameMaster.advGroup)[1]
-        speaker.WriteInput(victime.getName() + " is healed with " + str(heal) + " HP!")
+        speaker.WriteInput(victim.getName() + " is healed with " + str(heal) + " HP!")
         victim.Heal(heal)
 
     def ValueCast(toCast):
@@ -249,9 +259,6 @@ class StoryReward:
     def FromJson(input):
         func = input.pop("func", None)
         cast = input.pop("cast", "ValueCast")
-
-        if func is None:
-            return StoryChoiceEvent(enunciate, None, None)
 
         rewards = []
         # Call the cast function to cast reward in correct type
