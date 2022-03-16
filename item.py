@@ -4,9 +4,9 @@ from battleSystem import Effect
 
 class PotionType(Enum):
 	NONE = 0
-	HEAL = 1		# Give HP to the owner
-	STRENGHT = 2	# Increase owner's damages
-	ARMOR = 3		# Increase owner's defense
+	SOIN = 1		# Give HP to the owner
+	FORCE = 2	# Increase owner's damages
+	ARMURE = 3		# Increase owner's defense
 	SPRAY = 4		# Purify owner's effect, set it to NEUTRAL
 
 class Item:
@@ -37,40 +37,40 @@ class Potion(Item):
 		return cursor + self.type.name + "[" + str(self.value) + "|" + str(self.lifeTime) + "]"
 
 	def UseCondition(self, entity):
-		if self.type is PotionType.HEAL: # HEAL
+		if self.type is PotionType.SOIN: # HEAL
 			return entity.life <= entity.maxLife*0.4
 
-		elif self.type is PotionType.STRENGHT: # STRENGHT
+		elif self.type is PotionType.FORCE: # STRENGHT
 			return tools.RollDice(1, 5) == 1
 
-		elif self.type is PotionType.ARMOR: # ARMOR
+		elif self.type is PotionType.ARMURE: # ARMOR
 			return entity.life <= entity.maxLife*0.5
 
 		elif self.type is PotionType.SPRAY: # SPRAY
-			return entity.effect is not Effect.NEUTRAL and entity.life <= entity.maxLife*0.5
+			return entity.effect is not Effect.NEUTRE and entity.life <= entity.maxLife*0.5
 
 	def Use(self, entity):
-		if self.type is PotionType.HEAL: # HEAL
+		if self.type is PotionType.SOIN: # HEAL
 			if not self.used:
-			   speaker.Speak("POTION\t- " + entity.getName() + " heals with a potion ! " + str(self.value) + "HP healed for " + str(self.lifeTime) + " turns.")
+			   speaker.Speak("POTION\t- " + entity.getName() + " se soigne avec une potion ! " + str(self.value) + "PV soigné pendant " + str(self.lifeTime) + " tours.")
 			else:
-				speaker.Speak("POTION\t- " + entity.getName() + " heals " + str(self.value) + "HP from used potion.")
+				speaker.Speak("POTION\t- " + entity.getName() + " se soigne " + str(self.value) + "PV grâce à sa potion.")
 			entity.Hurt(-self.value)
 
-		elif self.type is PotionType.STRENGHT: # STRENGHT
+		elif self.type is PotionType.FORCE: # STRENGHT
 			if not self.used: 
-				speaker.Speak("POTION\t- " + entity.getName() + " uses a strenght potion ! " + str(self.value) + "DMG increased for " + str(self.lifeTime) + " turns.")
+				speaker.Speak("POTION\t- " + entity.getName() + " utilise une potion de force ! Les dégâts sont augmentés de " + str(self.value) + " pendant " + str(self.lifeTime) + " tours.")
 			entity.specialDamage += self.value
 
-		elif self.type is PotionType.ARMOR: # ARMOR
+		elif self.type is PotionType.ARMURE: # ARMOR
 			if not self.used: 
-				speaker.Speak("POTION\t- " + entity.getName() + " needs protection ! " + str(self.value) + "ARMOR added for " + str(self.lifeTime) + " turns.")
+				speaker.Speak("POTION\t- " + entity.getName() + " a besoin de protection ! " + str(self.value) + " d'arumre ajouté pour " + str(self.lifeTime) + " tours.")
 			entity.armor += self.value
 
 		elif self.type is PotionType.SPRAY: # SPRAY
-			if entity.effect is not Effect.NEUTRAL:
-				speaker.Speak("POTION\t- " + entity.getName() + " use a spray to heal from effect ! " + entity.effect.name + " canceled.")
-				entity.effect = Effect.NEUTRAL
+			if entity.effect is not Effect.NEUTRE:
+				speaker.Speak("POTION\t- " + entity.getName() + " utilise un spray pour se purifier ! " + entity.effect.name + " oublié.")
+				entity.effect = Effect.NEUTRE
 				entity.effectTurn = 0
 
 		self.used = True
@@ -95,14 +95,14 @@ class Weapon(Item):
 		dmg = tools.RollDice(self.damage[0] + specialDice, self.damage[1])
 
 		# Get a chance to apply special effect
-		effect = Effect.NEUTRAL
+		effect = Effect.NEUTRE
 		if tools.RollDice(1, self.effect[0]) == 1:
 			effect = self.effect[1]
 
 		return dmg, effect
 
 	def FromJson(input):
-		proba, effect = input.pop("effect", (1, "NEUTRAL"))
+		proba, effect = input.pop("effect", (1, "NEUTRE"))
 		effect = Effect[effect]
 		return Weapon(input["name"], input["damage"], (proba, effect))
 
@@ -113,7 +113,7 @@ class Inventory:
 		self.Weapons = []
 
 	def __str__(self):
-		p = "    Inventory:"
+		p = "    Inventaire:"
 
 		if not tools.Empty(self.Weapons): p += "\n"
 
@@ -133,7 +133,7 @@ class Inventory:
 
 		# 3 item max per object type
 		if len(items) >= 3:
-			speaker.Speak("Too many " + item.object + "s in their inventory !")
+			speaker.Speak("Trop de " + item.object + "s dans votre inventaire!")
 			self.RemoveItem()
 		
 		items.append(item)
@@ -144,12 +144,12 @@ class Inventory:
 		items = self.GetItems(item.object)
 
 		speaker.Speak()
-		speaker.Speak("Chose a " + item.object + " to remove from inventory : ")
+		speaker.Speak("Choisissez une " + item.object + " a retiré de votre inventaire : ")
 
 		index, popItem = tools.EnumerateAndSelect(items)
 		items.pop(index)
 
-		speaker.Input("You removed " + str(popItem) + ".")
+		speaker.Input("Vous avez retiré " + str(popItem) + ".")
 
 	def PopItem(self, index, object):
 		# Remove a specific item from inventory

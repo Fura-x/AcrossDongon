@@ -67,7 +67,7 @@
   "Bandit": {
     "adventurer": false,
     "armor": 13,
-    "weapon": "Hidden knife",
+    "weapon": "Lame secrète",
     "life": 25,
     "special": [
       0,
@@ -77,7 +77,7 @@
   "Rogue": {
     "adventurer": true,
     "armor": 17,
-    "weapon": "Tiny dagger",
+    "weapon": "Petite dague",
     "potion": "Spray",
     "life": 35,
     "special": [

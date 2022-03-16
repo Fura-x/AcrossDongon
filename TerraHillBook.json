@@ -49,9 +49,9 @@
           "reward1": {
 
             "func": "GiveItem",
-            "item1": "Classic iron sword",
+            "item1": "Epée en métal",
             "item2": "Good heal",
-            "item3": "Blue stone spear",
+            "item3": "Lance opale",
             "item4": "Spray",
             "item5": "Little armor"
           }
@@ -63,7 +63,7 @@
   "Mage": {
     "adventurer": true,
     "armor": 14,
-    "weapon": "Simple wand",
+    "weapon": "Baguette simple",
     "life": 30,
     "special": [
       4,
@@ -73,7 +73,7 @@
   "Rogue": {
     "adventurer": true,
     "armor": 17,
-    "weapon": "Tiny dagger",
+    "weapon": "Petite dague",
     "potion": "Spray",
     "life": 35,
     "special": [
@@ -84,7 +84,7 @@
   "Warrior": {
     "adventurer": true,
     "armor": 15,
-    "weapon": "Heavy axe",
+    "weapon": "Hache lourde",
     "life": 40,
     "special": [
       1,
@@ -94,7 +94,7 @@
   "Hunter": {
     "adventurer": true,
     "armor": 10,
-    "weapon": "Wood bow",
+    "weapon": "Arc en bois",
     "life": 40,
     "special": [
       1,
@@ -104,9 +104,9 @@
 
   "Orc": {
     "adventurer": false,
-    "pods":  2,
+    "pods": 2,
     "armor": 12,
-    "weapon": "Clay club",
+    "weapon": "Massue d'argile",
     "life": 45,
     "special": [
       0,
@@ -116,7 +116,7 @@
   "Grick": {
     "adventurer": false,
     "armor": 14,
-    "weapon": "Dirty jaw",
+    "weapon": "Machoire monstre",
     "life": 27,
     "special": [
       1,
@@ -126,7 +126,7 @@
   "Banshee": {
     "adventurer": false,
     "armor": 8,
-    "weapon": "Sharp claws",
+    "weapon": "Griffes aiguisées",
     "life": 60,
     "special": [
       0,
@@ -143,8 +143,8 @@
       2,
       5
     ],
-    "weapon": "Spiky nails",
-    "weapon1": "Golden aura"
+    "weapon": "Griffes rasoires",
+    "weapon1": "Aura royale"
   }
 }
 

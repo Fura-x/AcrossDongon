@@ -4,21 +4,21 @@ import speaker, tools
 
 class Effect(Enum):
     # 1 turn
-    NEUTRAL = 0         # nothing
-    SCARY = 1           # can't battle
+    NEUTRE = 0          # nothing
+    EFFROI = 1          # can't battle
     # 1-3 turns
     PARA = 10           # can't battle
-    DISTRACT = 11       # 25% less chance to break armor
-    FREEZE = 12         # can't attack       
+    CURIEUX = 11        # 25% less chance to break armor
+    GEL = 12            # can't attack       
     # 2 - 5 turns
     POISON = 20         # lost 20% of current life each turn
-    FIRE = 21           # get hurts of 50% of the damages dealed to the ennemy
-    TIRED = 22          # can't special
-    WEAKEN = 23         # lost 20% of attack
+    FEU = 21            # get hurts of 50% of the damages dealed to the ennemy
+    FATIGUE = 22        # can't special
+    FAIBLE = 23         # lost 20% of attack
     # only on hit
     DRAIN = 30          # get heals of 50% of the damages dealed to the ennemy
     DESTROY = 31        # one-shot
-    STEAL = 32          # steal 10 coins from the victim
+    VOL = 32            # steal 10 coins from the victim
     ENBARTHELEMY = 777
 
     def GetTurn(effect):
@@ -41,34 +41,34 @@ class Effect(Enum):
         return coins
 
     def Apply(predator, prey, enemies, allies, damage, effect):
-        if effect is Effect.NEUTRAL:
+        if effect is Effect.NEUTRE:
             return
 
         recurse = round(damage * 50 / 100)
         weakeness = round(damage * 20 / 100)
 
         if effect is Effect.DRAIN:
-            speaker.Speak("DRAIN\t- " + predator.getName() + " drains enemy HP ! " + str(recurse) + " healing recieved.")
+            speaker.Speak("DRAIN\t- " + predator.getName() + " a volé la vie de son ennemie ! Il est soigné de" + str(recurse) + "PV.")
             predator.Heal(recurse)
 
-        if effect is Effect.STEAL:
-            speaker.Speak("STEAL\t- " + predator.getName() + " stole " + prey.getName() + "!")
+        if effect is Effect.VOL:
+            speaker.Speak("VOL\t- " + predator.getName() + " vole " + prey.getName() + "!")
             coins = Effect.Steal(predator, prey)
             if(coins > 0 and predator.adventurer):
-                speaker.Speak("MONEY\t- You earn " + str(coins) + " coins !")
+                speaker.Speak("MONEY\t- Vous gagnez " + str(coins) + " pièces !")
             elif(coins > 0 and not predator.adventurer):
-                speaker.Speak("MONEY\t- You lose " + str(coins) + " coins...")
+                speaker.Speak("MONEY\t- Vous perdez " + str(coins) + " pièces...")
 
-        if predator.effect is Effect.FIRE:
-            speaker.Speak("FIRE\t- " + predator.getName() + " hit themself with fire ! " + str(recurse) + " damages recieved.")
+        if predator.effect is Effect.FEU:
+            speaker.Speak("BRULURE\t- " + predator.getName() + " s'est blessé lui-même par brûlure ! Il reçoit " + str(recurse) + " de dommages.")
             predator.Hurt(recurse)
 
-        if predator.effect is Effect.WEAKEN:
-            speaker.Speak("WEAKEN\t- " + predator.getName() + " is really weakened. Their attacks deal " + str(weakeness) + " less damages.")
+        if predator.effect is Effect.FAIBLE:
+            speaker.Speak("FAIBLE\t- " + predator.getName() + " est vraiment affaiblie. Ses attaques vont faire " + str(weakeness) + " de dégâts en moins.")
             damage -= weakeness
 
         if effect is Effect.DESTROY:
-            speaker.Speak("DESTROY\t- " + predator.getName() + " just destroyed " + prey.getName() + ". Their victim no longer exists.")
+            speaker.Speak("DESTROY\t- " + predator.getName() + " a désintégré " + prey.getName() + ". Sa victime n'existe plus.")
             prey.Hurt(prey.life)
 
         if effect.value < 30:
@@ -77,37 +77,37 @@ class Effect(Enum):
         return
 
     def Undergo(entity, effect):
-        if effect is Effect.NEUTRAL:
+        if effect is Effect.NEUTRE:
             return
 
-        elif effect is Effect.SCARY:
-            speaker.Speak("SCARY\t- " + entity.getName() + " is too afraid to fight")
+        elif effect is Effect.EFFROI:
+            speaker.Speak("EFFROI\t- " + entity.getName() + " est trop effrayé pour se battre.")
             entity.battling = False
             
         elif effect is Effect.PARA:
-            speaker.Speak("PARA\t- " + entity.getName() + " is paralysed, impossible to fight")
+            speaker.Speak("PARA\t- " + entity.getName() + " est paralysé, impossible d'agir.")
             entity.battling = False
 
-        elif effect is Effect.DISTRACT:
-            speaker.Speak("DISTR.\t- " + entity.getName() + " is distracted, they lost precision...")
+        elif effect is Effect.CURIEUX:
+            speaker.Speak("DISTR.\t- " + entity.getName() + " est distrait, il perd en précision.")
             # Lose 25% of armor breaker
             entity.turnArmorBreaker -= round(entity.turnArmorBreaker * 25 / 100)
 
         elif effect is Effect.POISON:
             # Hit 20% of entity current life
             dmg = round(entity.life * 20 / 100)
-            speaker.Speak("POISON\t- " + entity.getName() + " is poisoned. They lost " + str(dmg) + "HP o.O")
+            speaker.Speak("POISON\t- " + entity.getName() + " est empoisonné. Il perd " + str(dmg) + "PV =O")
             entity.Hurt(dmg)
 
-        elif effect is Effect.FIRE:
+        elif effect is Effect.FEU:
             entity.turnDamage += 6
 
-        elif effect is Effect.FREEZE:
-            speaker.Speak("FREEZE\- " + entity.getName() + " is froze. They can't attack --o--")
+        elif effect is Effect.GEL:
+            speaker.Speak("GEL\- " + entity.getName() + " est gelé. Il ne peut plus attaquer --o--")
             entity.processAttack = False
 
-        elif effect is Effect.TIRED:
-            speaker.Speak("TIRED\- " + entity.getName() + " is tired. They doesn't feel enough good to use their special.")
+        elif effect is Effect.FATIGUE:
+            speaker.Speak("FATIGUE\- " + entity.getName() + " est fatigué. Il n'est pas prêt d'utiliser son spécial.")
             entity.processSpecial = False
 
 class BattleContext:

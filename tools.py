@@ -119,9 +119,9 @@ def EnumerateAndSelect(list):
 		index += 1
 
     # SELECT
-	element = speaker.WriteInput("Your choice : ")
+	element = speaker.WriteInput("Votre choix : ")
 	while element ==  "" or not CheckStringIndex(element, list):
-		element = speaker.WriteInput("Try again : ")
+		element = speaker.WriteInput("Tapez un numéro : ")
             
 	return int(element), list[int(element)]
 

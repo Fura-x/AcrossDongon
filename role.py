@@ -35,7 +35,7 @@ class Role:
 
     # EFFECT
     effectTurn = 0
-    effect = Effect.NEUTRAL
+    effect = Effect.NEUTRE
 
 
     def __init__(self, gameMaster, armor, inventory, life, special, adventurer, pods, name):
@@ -54,17 +54,17 @@ class Role:
             effect = ": " + self.effect.name + "\n"
 
             bonusDamage = self.turnDamage + self.baseDamage
-            if bonusDamage > 0: strenght = "\t Strenght+: " + str(bonusDamage)
+            if bonusDamage > 0: strenght = "\t Force+: " + str(bonusDamage)
             else: strenght = ""
 
-            armor = "\t Armor: " + str(self.turnArmor) + "/" + str(self.baseArmor)
+            armor = "\t Armure: " + str(self.turnArmor) + "/" + str(self.baseArmor)
 
             if self.inventory.Empty(): inventory = ""
             else: inventory = "\n" + str(self.inventory)
 
-            return self.getName() + effect + "    Life: " + str(self.life) + "/" + str(self.maxLife) + armor + strenght + inventory
+            return self.getName() + effect + "    PV: " + str(self.life) + "/" + str(self.maxLife) + armor + strenght + inventory
 
-        return self.getName() + ": Dead"
+        return self.getName() + ": mort"
 
     def OnBattleBegins(self):
 
@@ -149,9 +149,9 @@ class Role:
 
             if critical:
                 damage *= 2
-                speaker.Speak("CRIT.\t- " + self.getName() + " critical strikes " + target.getName() + " with their " + weapon.name + ". " + str(damage) + " damages dealed.")
+                speaker.Speak("CRIT.\t- " + self.getName() + " fait une attaque critique " + target.getName() + " avec son/sa " + weapon.name + ". " + str(damage) + " dégâts causés.")
             else:
-                speaker.Speak("ATTACK\t- " + self.getName() + " attacks " + target.getName() + " with their " + weapon.name + ". " + str(damage) + " damages dealed.")
+                speaker.Speak("ATTAQUE\t- " + self.getName() + " attque " + target.getName() + " avec son/sa " + weapon.name + ". " + str(damage) + " dégâts causés.")
 
             # EFFECT
             Effect.Apply(self, target, self.enemies, self.allies, damage, effect)
@@ -162,7 +162,7 @@ class Role:
 
             return True, target
         else:
-            speaker.Speak("FAIL\t- " + self.getName() + "'s attack fail on " + target.getName())
+            speaker.Speak("ECHEC\t- L'attaque de " + self.getName() + " échoue sur " + target.getName())
             return False, None
 
     def SpecialAttack(self, target):
@@ -173,7 +173,7 @@ class Role:
         self.life = max(self.life, 0)
 
         if (not self.Alive()):
-            speaker.Speak("DEATH\t- " + self.getName() + " is dead...")
+            speaker.Speak("MORT\t- " + self.getName() + " est mort...")
             self.Dying()
 
     def Heal(self, heal):
@@ -181,9 +181,9 @@ class Role:
         self.life = min(self.life, self.maxLife)
 
     def GetEffected(self, effect, origin = None):
-        if effect is not Effect.NEUTRAL and self.effect is Effect.NEUTRAL:
+        if effect is not Effect.NEUTRE and self.effect is Effect.NEUTRE:
             if origin is not None: 
-                speaker.Speak("EFFECT\t- " + self.getName() + " is effected by " + effect.name + " from " + origin + " !")
+                speaker.Speak("EFFET\t- " + self.getName() + " est affecté par l'effet " + effect.name + " de " + origin + "!")
             self.effect = effect
             self.effectTurn = Effect.GetTurn(effect)
 
@@ -195,7 +195,7 @@ class Role:
 
         self.effectTurn -= 1
         if self.effectTurn <= 0:
-            self.effect = Effect.NEUTRAL
+            self.effect = Effect.NEUTRE
 
     def Alive(self):
         return self.life > 0
@@ -272,7 +272,7 @@ class Rogue(Role):
     def Special(self):
         #Sneak attack
         if (tools.RollDice(1, 20) >= 16):
-            speaker.Speak("SPECIAL\t- Rogue prepare a sneak attack, it will be painful for his target !")
+            speaker.Speak("SPECIAL\t- Rogue prépare une attaque surprise, ça va être douloureux pour la cible !")
             self.specialDamage = tools.RollDice(self.special[0], self.special[1])
 
 class Warrior(Role):
@@ -282,7 +282,7 @@ class Warrior(Role):
         super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Warrior")
 
     def __str__(self):
-        return super().__str__() + "\n    Healed: " + str(self.processedHeal)
+        return super().__str__() + "\n    Soin utilisé: " + str(self.processedHeal)
 
     def OnBattleBegins(self):
         super().OnBattleBegins()
@@ -291,7 +291,7 @@ class Warrior(Role):
     def Dying(self):
         #Second Win
         if (not self.processedHeal):
-            speaker.Speak("SPECIAL\t- Warrior doesn't want to give up, he drinks a good coffee and heals 10 HP !")
+            speaker.Speak("SPECIAL\t- Warrior ne se sent pas bien, il puisse de la force dans son mental et récupère 10PV!")
             self.Heal(self.special[1])
             self.processedHeal = True
         
@@ -314,7 +314,7 @@ class Hunter(Role):
         # Camouflage
         if (tools.RollDice(1, 20) >= 13):
             armor = tools.RollDice(self.special[0], self.special[1])
-            speaker.Speak("SPECIAL\t- Hunter hides in the battle field ! Enemy can't dodge next attack, and he earns " + str(armor) + " armor !")
+            speaker.Speak("SPECIAL\t- Hunter se cache dans le champ de bataille ! Les ennemies ne peuvent l'éviter, et il gagne " + str(armor) + " d'armure!")
             self.ignoreDef = True
             self.turnArmor += armor
 
@@ -337,7 +337,7 @@ class Grick(Role):
 
     def SpecialAttack(self, target):
         damage = tools.RollDice(self.special[0], self.special[1])
-        speaker.Speak("SPECIAL\t- Grick attacks again with " + str(damage) + " damages.")
+        speaker.Speak("SPECIAL\t- Grick attaque encore en causant " + str(damage) + " de dégâts supplémentaires.")
         target.Hurt(damage)
 
 class Banshee(Role):
@@ -348,8 +348,8 @@ class Banshee(Role):
     def Special(self):
         if (tools.RollDice(1, 20) >= 15):
             target = tools.RandomItem(self.enemies)[1]
-            speaker.Speak("SPECIAL\t- Banshee scares " + target.getName())
-            target.GetEffected(Effect.SCARY)
+            speaker.Speak("SPECIAL\t- Banshee terrifie " + target.getName())
+            target.GetEffected(Effect.EFFROI)
 
 class Bandit(Role):
 
@@ -371,7 +371,16 @@ class RareNiffleur(Role):
     def Special(self):
         if tools.RollDice(1, 20) >= 12:
             bonusArmor = tools.RollDice(self.special[0], self.special[1])
-            speaker.Speak("SPECIAL\t- RareNiffleur reinforce its golden aura, and won " + str(bonusArmor) + " bonus armor !")
+            speaker.Speak("SPECIAL\t- RareNiffleur améliore son aura royale, et gagne " + str(bonusArmor) + " d'armure!")
             self.turnArmor += bonusArmor
                     
 
+
+
+
+### class NewHero(Role):
+###     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+###         super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "NewHero")
+### 
+###     def Special(self):
+### 

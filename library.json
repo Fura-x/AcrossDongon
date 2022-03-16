@@ -7,55 +7,55 @@
   },
 
   "reserve": {
-    "Hidden knife": [
+    "Lame secrète": [
       "Weapon",
       {
-        "name": "Hidden knife",
+        "name": "Lame secrète",
         "damage": [
           3,
           2
         ],
         "effect": [
           4,
-          "SCARY"
+          "EFFROI"
         ]
       }
     ],
 
-    "Simple wand": [
+    "Baguette simple": [
       "Weapon",
       {
-        "name": "Simple wand",
+        "name": "Baguette simple",
         "damage": [
           1,
           10
         ],
         "effect": [
           5,
-          "FIRE"
+          "FEU"
         ]
       }
     ],
 
-    "Tiny dagger": [
+    "Petite dague": [
       "Weapon",
       {
-        "name": "Tiny dagger",
+        "name": "Petite dague",
         "damage": [
           1,
           4
         ],
         "effect": [
           3,
-          "STEAL"
+          "VOL"
         ]
       }
     ],
 
-    "Heavy axe": [
+    "Hache lourde": [
       "Weapon",
       {
-        "name": "Heavy axe",
+        "name": "Hache lourde",
         "damage": [
           2,
           6
@@ -63,10 +63,10 @@
       }
     ],
 
-    "Wood bow": [
+    "Arc en bois": [
       "Weapon",
       {
-        "name": "Wood bow",
+        "name": "Arc en bois",
         "damage": [
           4,
           4
@@ -74,10 +74,10 @@
       }
     ],
 
-    "Clay club": [
+    "Massue d'argile": [
       "Weapon",
       {
-        "name": "Clay club",
+        "name": "Massue d'argile",
         "damage": [
           3,
           6
@@ -85,10 +85,10 @@
       }
     ],
 
-    "Dirty jaw": [
+    "Machoire monstre": [
       "Weapon",
       {
-        "name": "Dirty jaw",
+        "name": "Machoire monstre",
         "damage": [
           2,
           6
@@ -96,10 +96,10 @@
       }
     ],
 
-    "Sharp claws": [
+    "Griffes aiguisées": [
       "Weapon",
       {
-        "name": "Sharp claws",
+        "name": "Griffes aiguisées",
         "damage": [
           2,
           4
@@ -107,10 +107,10 @@
       }
     ],
 
-    "Spiky nails": [
+    "Griffes rasoires": [
       "Weapon",
       {
-        "name": "Spiky nails",
+        "name": "Griffes rasoires",
         "damage": [
           5,
           5
@@ -118,26 +118,26 @@
       }
     ],
 
-    "Golden aura": [
+    "Aura royale": [
       "Weapon",
       {
-        "name": "Golden aura",
+        "name": "Aura royale",
         "damage": [
           1,
           15
         ],
         "effect": [
           2,
-          "DISTRACT"
+          "CURIEUX"
         ]
       }
     ],
 
-    "Rotten wood sword": [
+    "Epée en bois pourrie": [
       "Weapon",
       {
 
-        "name": "Rotten wood sword",
+        "name": "Epée en bois pourrie",
         "damage": [
           1,
           6
@@ -145,11 +145,11 @@
       }
     ],
 
-    "Broken spoon": [
+    "Cuillère tordue": [
       "Weapon",
       {
 
-        "name": "Broken spoon",
+        "name": "Cuillère tordue",
         "damage": [
           3,
           3
@@ -157,10 +157,10 @@
       }
     ],
 
-    "Classic iron sword": [
+    "Epée en métal": [
       "Weapon",
       {
-        "name": "Classic iron sword",
+        "name": "Epée en métal",
         "damage": [
           3,
           8
@@ -168,10 +168,10 @@
       }
     ],
 
-    "Basic steel dagger": [
+    "Dague d'acier": [
       "Weapon",
       {
-        "name": "Basic steel dagger",
+        "name": "Dague d'acier",
         "damage": [
           5,
           4
@@ -179,70 +179,70 @@
       }
     ],
 
-    "Mysterious sword": [
+    "Epée mystérieuse": [
       "Weapon",
       {
-        "name": "Mysterious sword",
+        "name": "Epée mystérieuse",
         "damage": [
           2,
           6
         ],
         "effect": [
           2,
-          "DISTRACT"
+          "CURIEUX"
         ]
       }
     ],
 
-    "Blue stone spear": [
+    "Lance opale": [
       "Weapon",
       {
-        "name": "Blue stone spear",
+        "name": "Lance opale",
         "damage": [
           1,
           20
         ],
         "effect": [
           4,
-          "FREEZE"
+          "GEL"
         ]
       }
     ],
 
-    "Craftsman master piece": [
+    "Trésor du forgeron": [
       "Weapon",
       {
-        "name": "Craftsman master piece",
+        "name": "Trésor du forgeron",
         "damage": [
           3,
           10
         ],
         "effect": [
           2,
-          "DISTRACT"
+          "CURIEUX"
         ]
       }
     ],
 
-    "Strong arm": [
+    "Bras d'envergure": [
       "Weapon",
       {
-        "name": "Strong arm",
+        "name": "Bras d'envergure",
         "damage": [
           2,
           20
         ],
         "effect": [
           3,
-          "TIRED"
+          "FATIGUE"
         ]
       }
     ],
 
-    "Heavy book": [
+    "Livre épais": [
       "Weapon",
       {
-        "name": "Heavy book",
+        "name": "Livre épais",
         "damage": [
           3,
           3
@@ -250,10 +250,10 @@
       }
     ],
 
-    "Broken container": [
+    "Fiole brisée": [
       "Weapon",
       {
-        "name": "Broken container",
+        "name": "Fiole brisée",
         "damage": [
           4,
           4
@@ -267,7 +267,7 @@
     "Heal": [
       "Potion",
       {
-        "type": "HEAL",
+        "type": "SOIN",
         "value": 15,
         "lifeTime": 1
       }
@@ -277,7 +277,7 @@
       "Potion",
       {
 
-        "type": "HEAL",
+        "type": "SOIN",
         "value": 10,
         "lifeTime": 2
       }
@@ -286,7 +286,7 @@
     "Super heal": [
       "Potion",
       {
-        "type": "HEAL",
+        "type": "SOIN",
         "value": 20,
         "lifeTime": 2
       }
@@ -296,7 +296,7 @@
       "Potion",
       {
 
-        "type": "ARMOR",
+        "type": "ARMURE",
         "value": 5,
         "lifeTime": 3
       }
@@ -306,7 +306,7 @@
       "Potion",
       {
 
-        "type": "ARMOR",
+        "type": "ARMURE",
         "value": 4,
         "lifeTime": 5
       }
@@ -315,7 +315,7 @@
     "Super armor": [
       "Potion",
       {
-        "type": "ARMOR",
+        "type": "ARMURE",
         "value": 5,
         "lifeTime": 7
       }
@@ -333,7 +333,7 @@
     "Strenght": [
       "Potion",
       {
-        "type": "STRENGHT",
+        "type": "FORCE",
         "value": 15,
         "lifeTime": 2
       }
@@ -342,7 +342,7 @@
     "Good strenght": [
       "Potion",
       {
-        "type": "STRENGHT",
+        "type": "FORCE",
         "value": 10,
         "lifeTime": 3
       }
@@ -351,7 +351,7 @@
     "Super strenght": [
       "Potion",
       {
-        "type": "STRENGHT",
+        "type": "FORCE",
         "value": 20,
         "lifeTime": 3
       }

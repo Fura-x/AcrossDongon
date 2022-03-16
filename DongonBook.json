@@ -6,7 +6,7 @@
   "Bandit": {
     "adventurer": false,
     "armor": 13,
-    "weapon": "Hidden knife",
+    "weapon": "Lame secrète",
     "life": 25,
     "special": [
       0,
@@ -23,7 +23,7 @@
     "adventurer": false,
     "pods": 2,
     "armor": 5,
-    "weapon": "Heavy book",
+    "weapon": "Livre épais",
     "life": 16,
     "special": [
       0,
@@ -34,7 +34,7 @@
     "adventurer": false,
     "pods": 9,
     "armor": 18,
-    "weapon": "Strong arm",
+    "weapon": "Bras d'envergure",
     "potion": "Heal",
     "potion1": "Strenght",
     "life": 52,
@@ -48,7 +48,9 @@
     "adventurer": true
   },
   "Mercenary": {
-    "adventurer": true
+    "adventurer": true,
+    "amor": 17,
+    "weapon": 
   },
   "Merchant": {
     "adventurer": true

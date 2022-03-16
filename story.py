@@ -185,7 +185,7 @@ class StoryReward:
         # Change the current story book
         reward = self.reward
         gameMaster.ReadBook(reward)
-        speaker.WriteInput("You're now at " + reward + ".")
+        speaker.WriteInput("Vous êtes désormais à " + reward + ".")
         return
 
     def NewMember(self, gameMaster):
@@ -193,9 +193,9 @@ class StoryReward:
         member = gameMaster.NewRandomMember()
 
         if member is None:
-            speaker.WriteInput("You can't enroll a new adventurer...")
+            speaker.WriteInput("Vous ne pouvez pas avoir de nouveaux membres...")
         else:
-            speaker.WriteInput(member.getName() + " is now part of your team !")
+            speaker.WriteInput(member.getName() + " fait maintenant parti de votre équipe!")
 
         return
 
@@ -223,7 +223,7 @@ class StoryReward:
     def TeamHurt(self, gameMaster):
         # All members get hurt
         dmg = self.reward
-        speaker.WriteInput("Your team gets hurt with " + str(dmg) + " damages.")
+        speaker.WriteInput("Votre équipe subit " + str(dmg) + " de dégâts.")
         for adv in gameMaster.advGroup.values():
             adv.Hurt(dmg)
 
@@ -231,13 +231,13 @@ class StoryReward:
         # A random member get hurts
         dmg = self.reward
         victim = tools.RandomItem(gameMaster.advGroup)[1]
-        speaker.WriteInput(victim.getName() + " gets hurt with " + str(dmg) + " damages.")
+        speaker.WriteInput(victim.getName() + " subit " + str(dmg) + " de dégâts.")
         victim.Hurt(dmg)
 
     def TeamHeal(self, gameMaster):
         # All members are healed
         heal = self.reward
-        speaker.WriteInput("Your team is healed with " + str(heal) + " HP!")
+        speaker.WriteInput("Votre équipe est soignée de " + str(heal) + "PV!")
         for adv in gameMaster.advGroup.values():
             adv.Heal(heal)
 
@@ -245,7 +245,7 @@ class StoryReward:
         # A random member is healed
         heal = self.reward
         victim = tools.RandomItem(gameMaster.advGroup)[1]
-        speaker.WriteInput(victim.getName() + " is healed with " + str(heal) + " HP!")
+        speaker.WriteInput(victim.getName() + " estt soigné(e) de " + str(heal) + "PV!")
         victim.Heal(heal)
 
     def ValueCast(toCast):

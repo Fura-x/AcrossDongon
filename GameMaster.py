@@ -32,7 +32,7 @@ class GameMaster():
         return
 
     def __str__(self):
-        return "\nBattle state:\n" + "Adventurers:\n" + self.AdventurersToString() + "Horde:\n" + self.HordeToString()
+        return "\Informations:\n" + "Aventuriers:\n" + self.AdventurersToString() + "Horde:\n" + self.HordeToString()
 
     def AdventurersToString(self):
         adventurers = ""
@@ -52,7 +52,7 @@ class GameMaster():
 
     def ReadBook(self, book):
 
-        speaker.WriteInput("=-= New Area : You are at " + book + ". =-=")
+        speaker.WriteInput("=-= Nouveau lieu: Vous êtes à " + book + " =-=")
 
         self.bookCase.SetCurrentBook(book)
 
@@ -77,7 +77,7 @@ class GameMaster():
         self.ReadBook(book)
 
     def ReadSelectedBook(self):
-        speaker.Write("Chose a place to be:")
+        speaker.Write("Choisissez un lieu où aller:")
         book = tools.EnumerateAndSelect(list(self.bookCase.books.keys()))[1]
         self.ReadBook(book)
 
@@ -105,7 +105,7 @@ class GameMaster():
             return True
 
     def Pause(self, turn):
-        speaker.Speak("\n=== Turn " + str(turn) + " finished. \n  - Tap 'info' to see state, else tap anything \n  - Tap 'help' to seek lucky Help\n  - ENTER to continue\n ")
+        speaker.Speak("\n=== tour n°" + str(turn) + " terminé. \n  - 'info' \n  - 'help' pour provoquer la chance\n  - ENTREE pour continuer\n ")
         self.PauseInput()
 
     def PauseInput(self, help=True):
@@ -114,19 +114,19 @@ class GameMaster():
         if (entry == 'info'): # Battle info (entity stats)
             speaker.Write(str(self))
             if help:
-                speaker.Speak("Tap 'help' or ENTER:")
+                speaker.Speak("Tapez 'help' ou ENTREE:")
             else:
-                speaker.Speak("Tap ENTER:")
+                speaker.Speak("Tapez ENTREE:")
             self.PauseInput(help)
 
         elif (help and entry == 'help'): # Get a chance to have a special rewards, cost is patience
-            speaker.Write("You ask for help...")
+            speaker.Write("Vous avez demandé de l'aide...")
             speaker.time.sleep(3)
             if self.GodGift():
-                speaker.Write("A god hears you, and gives 10HP for all your adventurers.")
+                speaker.Write("Un dieu vous a entendu, et vous a récompensé.")
             else:
-                speaker.Write("Sorry but, you wait for nothing.")
-            speaker.Speak("Tap 'info' or ENTER:")
+                speaker.Write("Désolé mais, vous avez attendu pour rien.")
+            speaker.Speak("Tapez 'info' ou ENTREE:")
             self.PauseInput(False)
 
         print()
@@ -175,7 +175,7 @@ class GameMaster():
         speaker.Write(".")
         speaker.Write(".")
         speaker.Write(".")
-        speaker.Write("Your adventure stop here, you successed " + str(logbook.battleWon) + " battles !\n")
+        speaker.Write("Votre aventure se termine ici, vous avez remporté " + str(logbook.battleWon) + " batailles !\n")
 
     def StoryHappens(self, storyTuple):
         speaker.Speak()
@@ -209,10 +209,10 @@ class GameMaster():
         self.SetBattleContext()
 
         #Introduction sentences
-        speaker.Write("A horde appears !")
+        speaker.Write("Une horde de monstre apparaît !")
         speaker.Input()
         speaker.Write(str(self))
-        speaker.WriteInput("\n ... Tap ENTER to begin battle")
+        speaker.WriteInput("\n ... Tapez ENTREE pour commencer la confrontation.")
         speaker.Speak("\n")
 
         # Battle loop
@@ -236,9 +236,9 @@ class GameMaster():
 
         # WINNER
         if self.AdventurersAlive():
-            speaker.Speak("\n===== YOU WON THE FIGHT ! =====")
+            speaker.Speak("\n===== VOUS AVEZ GAGNE ! =====")
         else:
-            speaker.Speak("\n===== HORDE WON THE FIGHT ! YOU LOSE... =====")
+            speaker.Speak("\n===== LA HORDE L'EMPORTE ! VOUS ETES VAINCUE... =====")
 
         self.battleContext.horde.clear() # Clear battleContext horde group
         speaker.Input("")
@@ -288,9 +288,9 @@ class GameMaster():
     def SelectAdventurer(self, recall = False):
         '''Ask player to chose an adventurer'''
         if not recall:
-            entry = speaker.WriteInput("Chose an adventurer to give the item, tap 'info' to see team state : ")
+            entry = speaker.WriteInput("Choisissez un aventurier pour donner l'item, tapez 'info' pour voir l'équipe : ")
         else:
-            entry = speaker.WriteInput("Tap the adventurer's name : ")
+            entry = speaker.WriteInput("Tapez le nom de l'aventurier: ")
 
         if entry == "info":
             speaker.Speak(self.AdventurersToString())
@@ -312,17 +312,17 @@ class GameMaster():
 
         adv = self.SelectAdventurer()
         adv.GiveItem(item)
-        speaker.WriteInput(item.object + " gave to " + adv.getName() + " ! Tap ENTER to continue\n")
+        speaker.WriteInput(item.object + " donné à " + adv.getName() + " ! Tapez ENTREE pour continuer\n")
 
         return
 
     def GiveMoney(self, coins):
         '''Give money to the adventurer player will chose'''
-        speaker.Write(" =-= " + str(coins) + " coins earned =-=")
+        speaker.Write(" =-= " + str(coins) + " pièces récupérées =-=")
 
         adv = self.SelectAdventurer()
         adv.coins += coins
-        speaker.WriteInput("Money gave to " + adv.getName() + " ! Tap ENTER to continue\n")
+        speaker.WriteInput("L'argent est donné à " + adv.getName() + " ! Tapez ENTREE pour continuer\n")
 
         return
 
@@ -334,9 +334,7 @@ class GameMaster():
         '''Give a lucky reward '''
         if self.godGift or tools.RollDice(1, 8) == 1:
 
-            for adv in self.advGroup.values():
-                adv.Heal(10)
-
+            self.GetRandomReward()
             self.godGift = False
 
             return True

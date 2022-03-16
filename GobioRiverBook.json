@@ -50,7 +50,7 @@
   "Hunter": {
     "adventurer": true,
     "armor": 10,
-    "weapon": "Wood bow",
+    "weapon": "Arc en bois",
     "life": 40,
     "special": [
       1,
@@ -60,7 +60,7 @@
   "Banshee": {
     "adventurer": false,
     "armor": 8,
-    "weapon": "Sharp claws",
+    "weapon": "Griffes aiguisées",
     "life": 60,
     "special": [
       0,

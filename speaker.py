@@ -75,9 +75,10 @@ def WriteInput(str = ""):
 def InitTimer():
     global writeTimer, writeTimerReset, speakTimer, speakTimerReset, enterSymbol
 
-    str1 = Input("Story messager speed (" + str(writeTimer) + " by default): ")
-    str2 = Input("Battle messager speed (" + str(speakTimer) + " by default): ")
-    str3 = Input("Symbol written when you have to press ENTER ( " + enterSymbol + " by default): ")
+    Write("Appuyez sur ENTREE si vous souhaitez garder les paramètres par défaut (recommandé):")
+    str1 = Input("Vitesse d'écriture de l'histoire (" + str(writeTimer) + " par défaut): ")
+    str2 = Input("Vitesse d'écriture des combats (" + str(speakTimer) + " par défaut): ")
+    str3 = Input("Symbole qui apparaît quand vous devez agir ( '" + enterSymbol + "' par défaut): ")
     if (str1 != ""):
         writeTimer = writeTimerReset = float(str1)
     if (str2 != ""):
