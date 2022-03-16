@@ -47,7 +47,7 @@
     }
   },
 
-  "Hunter": {
+  "Chasseur": {
     "adventurer": true,
     "armor": 10,
     "weapon": "Arc en bois",

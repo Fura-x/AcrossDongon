@@ -3,7 +3,8 @@
 
     "book1": "TerraHill",
     "book2": "CobriaDune",
-    "book3": "GobioRiver"
+    "book3": "GobioRiver",
+    "book4": "Dongon"
   },
 
   "reserve": {
@@ -59,6 +60,32 @@
         "damage": [
           2,
           6
+        ]
+      }
+    ],
+
+    "Longue épée": [
+      "Weapon",
+      {
+        "name": "Longue épée",
+        "damage": [
+          3,
+          5
+        ],
+        "effect": [
+          5,
+          "FAIBLE"
+        ]
+      }
+    ],
+
+    "Lance-pierre": [
+      "Weapon",
+      {
+        "name": "Lance-pierre",
+        "damage": [
+          10,
+          2
         ]
       }
     ],
@@ -246,6 +273,36 @@
         "damage": [
           3,
           3
+        ]
+      }
+    ],
+
+    "Baguette Dondon": [
+      "Weapon",
+      {
+        "name": "Baguette Dondon",
+        "damage": [
+          1,
+          25
+        ],
+        "effect": [
+          3,
+          "GEL"
+        ]
+      }
+    ],
+
+    "Baguette Gongon": [
+      "Weapon",
+      {
+        "name": "Baguette Dondon",
+        "damage": [
+          1,
+          25
+        ],
+        "effect": [
+          3,
+          "PARA"
         ]
       }
     ],

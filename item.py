@@ -60,12 +60,12 @@ class Potion(Item):
 		elif self.type is PotionType.FORCE: # STRENGHT
 			if not self.used: 
 				speaker.Speak("POTION\t- " + entity.getName() + " utilise une potion de force ! Les dégâts sont augmentés de " + str(self.value) + " pendant " + str(self.lifeTime) + " tours.")
-			entity.specialDamage += self.value
+			entity.turnDamage += self.value
 
 		elif self.type is PotionType.ARMURE: # ARMOR
 			if not self.used: 
 				speaker.Speak("POTION\t- " + entity.getName() + " a besoin de protection ! " + str(self.value) + " d'arumre ajouté pour " + str(self.lifeTime) + " tours.")
-			entity.armor += self.value
+			entity.turnArmor += self.value
 
 		elif self.type is PotionType.SPRAY: # SPRAY
 			if entity.effect is not Effect.NEUTRE:
@@ -160,7 +160,7 @@ class Inventory:
 		return items(index)
 
 	def PopRandom(self):
-		# Remove an random item from inventory
+		# Remove a random item from inventory
 		lists = []
 		if len(self.Weapons) > 0:
 			lists.append(self.Weapons)
@@ -168,7 +168,14 @@ class Inventory:
 			lists.append(self.Potions)
 
 		items = tools.RandomElement(lists)
-		return items.pop(tools.randomElement(items))
+		return items.pop(tools.RandomElement(items))
+
+	def PopRandomSpec(self, object):
+		# Remove a random item according to its type
+		items = self.GetItems(object)
+
+		if len(items) > 0:
+			return items.pop(tools.RandomElement(items))
 
 	def GetItems(self, object):
 		return getattr(self, object + "s")

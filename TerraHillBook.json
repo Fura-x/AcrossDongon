@@ -70,7 +70,7 @@
       10
     ]
   },
-  "Rogue": {
+  "Voleur": {
     "adventurer": true,
     "armor": 17,
     "weapon": "Petite dague",
@@ -81,7 +81,7 @@
       6
     ]
   },
-  "Warrior": {
+  "Guerrier": {
     "adventurer": true,
     "armor": 15,
     "weapon": "Hache lourde",
@@ -91,7 +91,7 @@
       10
     ]
   },
-  "Hunter": {
+  "Chasseur": {
     "adventurer": true,
     "armor": 10,
     "weapon": "Arc en bois",
@@ -133,7 +133,7 @@
       0
     ]
   },
-  "RareNiffleur": {
+  "Niffleur": {
     "adventurer": false,
     "pods": 9,
     "armor": 12,

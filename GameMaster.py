@@ -259,7 +259,7 @@ class GameMaster():
         for adventurer in self.advEnroll:
             name.append(adventurer.getName())
 
-        self.adventurers = tools.RandomizeList(self.adventurers)
+        tools.RandomizeList(self.adventurers)
         for adventurer in self.adventurers:
             if adventurer.getName() in name:
                 continue
@@ -267,6 +267,19 @@ class GameMaster():
             return adventurer
 
         return None
+
+    def NewMember(self, memberName):
+        '''Try to enroll a new member with a given name'''
+        name = []
+        for adventurer in self.advEnroll:
+            name.append(adventurer.getName())
+
+        for adventurer in self.adventurers:
+            if adventurer.getName() in name:
+                continue
+            if adventurer.getName() is memberName:
+                self.advEnroll.append(tools.CopyEntity(adventurer))
+                return adventurer
 
     def GiveItemRandom(self, item, groupIndex = 0):
         '''groupIndex : 0 -adventurers 1- horde 2- all'''

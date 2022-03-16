@@ -128,6 +128,11 @@ class BattleContext:
         # create a random enemy group, based on the pods system 
         while(hordePods < adventurerPods):
             monster = tools.CopyEntity(tools.random.choice(gameMaster.horde))
+
+            # Don't accept enemy which are too strong
+            if hordePods + monster.pods > adventurerPods + 3:
+                continue
+
             hordePods += monster.pods
             self.horde.append(monster)
 

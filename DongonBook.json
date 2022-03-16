@@ -1,11 +1,82 @@
 {
   "StoryBook": {
 
+    "PROMENADE EN VILLE": {
+
+      "enunciate": [
+        "Vous marchez calmement dans Dongon.",
+        "Vous décidez de vous rendre à un point d'intérêt.",
+        "Quel sens voulez-vous suivre ?"
+      ],
+      "choice1": {
+
+        "enunciate": "Aller à la grande tour que vous voyez non loin de là.",
+        "event1": {
+
+          "enunciate": [
+            "Vous vous dirigez jusqu'à la tour.",
+            "",
+            "Vous croisez beaucoup de monde sur votre route,",
+            "tout simplement car cette tour, la tour de Treiish,",
+            "est au centre ville.",
+            "",
+            "Vous attirez l'attention d'un personnage",
+            "qui souhaite intégrer votre équipe !"
+          ],
+          "reward1": {
+
+            "func": "NewRandomMember"
+          }
+        }
+      },
+      "choice2": {
+
+        "enunciate": "Se rapprocher du bruit de foule que vous entendez à quelques rues d'ici",
+        "event1": {
+
+          "enunciate": [
+            "Vous vous dirigez jusqu'à la source du bruit",
+            "",
+            "Vous voilà dans une rue marchande.",
+            "Vous avez aussi la chance de bénéficier d'un produit gratuit !"
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Heal",
+            "item2": "Spray",
+            "item3": "Good strenght"
+          }
+        }
+      },
+      "choice3": {
+
+        "enunciate": "Suivre la bonne odeur qui sort d'une petite ruelle près de vous",
+        "event1": {
+
+          "enunciate": [
+            "Vous marchez à travers plusieurs chemins étroits de la ville.",
+            "",
+            "Vous entendez les habitants dans leur quotidien,",
+            "l'odeur est de plus en plus forte.",
+            "",
+            "Soundain, vous êtes encerclé par des brigants,",
+            "vos resources sont dérobés,",
+            "et ils disparaissent."
+          ],
+          "reward1": {
+
+            "func": "LosePotion"
+          }
+        }
+      }
+    }
   },
 
   "Bandit": {
     "adventurer": false,
     "armor": 13,
+    "pods": 3,
     "weapon": "Lame secrète",
     "life": 25,
     "special": [
@@ -13,13 +84,33 @@
       0
     ]
   },
-  "BadMercenary": {
-    "adventurer": false
+  "Mechancenaire": {
+    "adventurer": false,
+    "pods": 4,
+    "armor": 16,
+    "weapon": "Longue épée",
+    "life": 30,
+    "special": [
+      0,
+      0
+    ]
   },
   "Treiish": {
-    "adventurer": false
+    "adventurer": false,
+    "pods": 12,
+    "armor": 20,
+    "weapon": "Baguette Dondon",
+    "weapon2": "Baguette Gongon",
+    "potion": "Strenght",
+    "potion2": "Strenght",
+    "potion3": "Good heal",
+    "life": 70,
+    "special": [
+      0,
+      0
+    ]
   },
-  "DarkDevoted": {
+  "Croyant": {
     "adventurer": false,
     "pods": 2,
     "armor": 5,
@@ -30,7 +121,7 @@
       0
     ]
   },
-  "Librarian": {
+  "Libraire": {
     "adventurer": false,
     "pods": 9,
     "armor": 18,
@@ -44,15 +135,37 @@
     ]
   },
 
-  "Homeless": {
-    "adventurer": true
-  },
-  "Mercenary": {
+  "SansAbri": {
     "adventurer": true,
-    "amor": 17,
-    "weapon": 
+    "armor": 0,
+    "weapon": "Lance-pierre",
+    "life": 27,
+    "special": [
+      5,
+      5
+    ]
   },
-  "Merchant": {
-    "adventurer": true
+  "Mercenaire": {
+    "adventurer": true,
+    "armor": 17,
+    "weapon": "Longue épée",
+    "life": 40,
+    "special": [
+      0,
+      0
+    ]
+  },
+  "Marchant": {
+    "adventurer": true,
+    "armor": 14,
+    "weapon": "Fiole brisée",
+    "potion": "Super heal",
+    "potion1": "Super armor",
+    "potion2": "Super strenght",
+    "life": 15,
+    "special": [
+      6,
+      1
+    ]
   }
 }

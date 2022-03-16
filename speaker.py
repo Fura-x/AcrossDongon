@@ -50,7 +50,7 @@ def SplitSpeak(str, sep):
 def Write(str = "", toBlock = True):
     if str == "":
         Speak(str)
-        time.sleep(100 * writeTimer)
+        time.sleep(50 * writeTimer)
     else:
         for char in str:
             print(char, end='')

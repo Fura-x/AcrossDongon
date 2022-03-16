@@ -188,7 +188,7 @@ class StoryReward:
         speaker.WriteInput("Vous êtes désormais à " + reward + ".")
         return
 
-    def NewMember(self, gameMaster):
+    def NewRandomMember(self, gameMaster):
         # Return random member not enrolled
         member = gameMaster.NewRandomMember()
 
@@ -198,6 +198,18 @@ class StoryReward:
             speaker.WriteInput(member.getName() + " fait maintenant parti de votre équipe!")
 
         return
+
+    def NewMember(self, gameMaster):
+        # Return member not enrolled according to reward name
+        member = gameMaster.NewMember(self.reward)
+
+        if member is None:
+            speaker.WriteInput("Vous ne pouvez pas avoir de nouveaux membres...")
+        else:
+            speaker.WriteInput(member.getName() + " fait maintenant parti de votre équipe!")
+
+        return
+
 
     def GiveItem(self, gameMaster):
         # Return weapon or potion
@@ -247,6 +259,15 @@ class StoryReward:
         victim = tools.RandomItem(gameMaster.advGroup)[1]
         speaker.WriteInput(victim.getName() + " estt soigné(e) de " + str(heal) + "PV!")
         victim.Heal(heal)
+
+    def LosePotion(self, gameMaster):
+        # Lose a random potion from random adventurer
+        victim = tools.RandomItem(gameMaster.advGroup)[1]
+        potion = victim.inventory.PopRandomSpec("Potion")
+        if potion is None:
+            speaker.Write("En fait, les bandits ne vous ont rien volés...")
+        else:
+            speaker.Write(victim.getName() + " s'est fait prendre " + potion.str())
 
     def ValueCast(toCast):
         # Used for string (Items, Key Items) and units (Heal, Damage)

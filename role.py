@@ -1,4 +1,5 @@
 from enum import Enum
+from GameMaster import GameMaster
 import item
 import tools, time, speaker
 
@@ -151,7 +152,7 @@ class Role:
                 damage *= 2
                 speaker.Speak("CRIT.\t- " + self.getName() + " fait une attaque critique " + target.getName() + " avec son/sa " + weapon.name + ". " + str(damage) + " dégâts causés.")
             else:
-                speaker.Speak("ATTAQUE\t- " + self.getName() + " attque " + target.getName() + " avec son/sa " + weapon.name + ". " + str(damage) + " dégâts causés.")
+                speaker.Speak("ATTAQUE\t- " + self.getName() + " attaque " + target.getName() + " avec son/sa " + weapon.name + ". " + str(damage) + " dégâts causés.")
 
             # EFFECT
             Effect.Apply(self, target, self.enemies, self.allies, damage, effect)
@@ -264,10 +265,10 @@ class Mage(Role):
 
         return Target.NONE, 0
 
-class Rogue(Role):
+class Voleur(Role):
 
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Rogue")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Voleur")
 
     def Special(self):
         #Sneak attack
@@ -275,11 +276,11 @@ class Rogue(Role):
             speaker.Speak("SPECIAL\t- Rogue prépare une attaque surprise, ça va être douloureux pour la cible !")
             self.specialDamage = tools.RollDice(self.special[0], self.special[1])
 
-class Warrior(Role):
+class Guerrier(Role):
     processedHeal = False
 
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Warrior")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Guerrier")
 
     def __str__(self):
         return super().__str__() + "\n    Soin utilisé: " + str(self.processedHeal)
@@ -299,13 +300,13 @@ class Warrior(Role):
     def Special(self):
         return
 
-class Hunter(Role):
+class Chasseur(Role):
 
     ignoreDef = False
 
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
         self.baseArmor = armor
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Hunter")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Chasseur")
 
     def __str__(self):
         return super().__str__() + "\n    Camouflage: " + str(self.ignoreDef)
@@ -324,6 +325,39 @@ class Hunter(Role):
             return True, armorBreak == 20
 
         return False, False
+
+class Mercenaire(Role):
+     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Mercenaire")
+ 
+     def Special(self):
+         # Second hit
+         if (tools.RollDice(1, 20) >= 15):
+            targetKey, target = tools.RandomItem(self.enemies)
+            speaker.Speak("SPECIAL\t - Le Mercenaire ne fait pas son travail à moitié ! Il prépare une double attaque !")
+            if self.processAttack:
+                self.Attack(target)
+
+class Marchant(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Marchant")
+
+    def Special(self):
+        if(tools.RollDice(1, 20) >= 10):
+            money = tools.RollDice(self.special[0], self.special[1])
+            speaker.Speak("SPECIAL\t - Le marchand gère un petit commerce. Vous gagné " + str(money) + " pièces ! Mais comment fait-il ?")
+            self.coins += money
+ 
+class SansAbri(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "SansAbri")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 5):
+            heal = tools.RollDice(self.special[0], self.special[1])
+            speaker.Speak("SPECIAL\t - Le sans-abri est très débrouillard, il se remet d'aplomb avec ce qui l'entoure ! Il regagne " + str(heal) + "PV!")
+            self.Heal(heal)
+
 
 class Orc(Role):
 
@@ -358,15 +392,35 @@ class Bandit(Role):
 
     def Special(self):
         '''Steal an enemies item'''
-        if tools.RollDice(1, 20) >= 16:
+        if tools.RollDice(1, 20) >= 20:
             enemy = tools.RandomItem(self.enemies)[1]
             if not enemy.inventory.Empty():
                 self.inventory.AddItem(enemy.inventory.PopRandom())
 
-class RareNiffleur(Role):
+class Croyant(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Croyant")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 10):
+            speaker.Speak("SPECIAL\t - Le croyant commence à réciter une incantation. Cependant il ne se produit rien.")
+
+class Mechancenaire(Role):
+     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Mechancenaire")
+ 
+     def Special(self):
+         # Second hit
+         if (tools.RollDice(1, 20) >= 15):
+            targetKey, target = tools.RandomItem(self.enemies)
+            speaker.Speak("SPECIAL\t - Le méchant mercenaire a la rogne ! Il prépare une double attaque !")
+            if self.processAttack:
+                self.Attack(target)
+
+class Niffleur(Role):
 
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "RareNiffleur")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Niffleur")
 
     def Special(self):
         if tools.RollDice(1, 20) >= 12:
@@ -374,13 +428,30 @@ class RareNiffleur(Role):
             speaker.Speak("SPECIAL\t- RareNiffleur améliore son aura royale, et gagne " + str(bonusArmor) + " d'armure!")
             self.turnArmor += bonusArmor
                     
+class Libraire(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Libraire")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 17):
+            speaker.Speak("SPECIAL\t - Le libraire appelle à l'aide. Un être malvaillant le rejoint.")
+
+class Treiish(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Treiish")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 12):
+            if self.effect is not Effect.NEUTRE:
+                speaker.Speak("SPECIAL\t - La sorcière Treiish est insensible aux malédictions. L'effet " + self.effect.name + " est supprimé.")
+                self.effect = Effect.NEUTRE
+				self.effectTurn = 0
 
 
-
-
-### class NewHero(Role):
-###     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-###         super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "NewHero")
-### 
-###     def Special(self):
-### 
+####class NewHero(Role):
+####    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+####        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "NewHero")
+####
+####    def Special(self):
+####        if(tools.RollDice(1,20) > 15):
+####            speaker.Speak("SPECIAL\t -")
