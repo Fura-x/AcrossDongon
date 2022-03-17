@@ -49,6 +49,7 @@ class Role:
         self.pods = pods
         self.name = name
         self.inventory = inventory
+        self.inventory.selectEnable = self.adventurer
 
     def __str__(self):
         if self.Alive():
@@ -368,7 +369,21 @@ class Lithologue(Role):
             speaker.Speak("SPECIAL\t- Le lithologue concentre l'énergie des pierres, et la redirige vers " + victim.getName() + ".")
             victim.GetEffected(Effect.PARA, self.getName())
 
+class Amphibien(Role):
 
+    charge = 0
+
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Amphibien")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 6):
+            speaker.Speak("SPECIAL\t- L'homme poisson absorbe l'humidité de l'air.")
+            self.charge += 1
+            if self.charge == 3:
+                speaker.Speak("SPECIAL\t- Il a absorbé suffisamment d'humidité, il fait déferler un énorme torrent sur les ennemies.")
+                tools.GlobalAttack(self.enemies, 30)
+                self.charge = 0
 
 class Orc(Role):
 
@@ -427,6 +442,29 @@ class Mechancenaire(Role):
             speaker.Speak("SPECIAL\t- Le méchant mercenaire a la rogne ! Il prépare une double attaque !")
             if self.processAttack:
                 self.Attack(target)
+
+class Pyrahna(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        self.specialAttack = True
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Pyrahna")
+    
+    def SpecialAttack(self, target):
+        if(tools.RollDice(1,20) >= 5):
+            count = tools.RollDice(self.special[0], self.special[1])
+            speaker.Speak("SPECIAL\t- Le pyrahna s'est accroché à " + target.getName() + ". Il le mâchouille encore " + str(count) + " fois.")
+            weapon = self.SelectWeapon()
+            for i in range(count):
+                target.Hurt(tools.RollDice(weapon.Use(self.sepcialDice)[0]))
+
+class Gobelin(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Gobelin")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 15):
+            itm = self.gameMaster.GetRandomItem()
+            speaker.Speak("SPECIAL\t- Le gobelin a fouiné le champs de bataille et a trouvé un objet : " + str(itm))
+            self.inventory.AddItem(itm)
 
 class Niffleur(Role):
 

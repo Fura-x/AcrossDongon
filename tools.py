@@ -113,15 +113,25 @@ def ParseJson(jsonName):
 
 def EnumerateAndSelect(list):
     # ENUMERATE
-	index = 0
-	for element in list:
-		speaker.Write(str(index) + " - " + str(element))
-		index += 1
-
+    index = 0
+    for element in list:
+        speaker.Write(str(index) + " - " + str(element))
+        index += 1
+    
+        
+    if index == 1:
+        speaker.WriteInput("Cette fois-ci, vous n'avez pas le choix.")
+        return 0, list[0]
+    
+    
     # SELECT
-	element = speaker.WriteInput("Votre choix : ")
-	while element ==  "" or not CheckStringIndex(element, list):
-		element = speaker.WriteInput("Tapez un numéro : ")
-            
-	return int(element), list[int(element)]
+    element = speaker.WriteInput("Votre choix : ")
+    while element ==  "" or not CheckStringIndex(element, list):
+        element = speaker.WriteInput("Tapez un numéro : ")
+                
+    return int(element), list[int(element)]
 
+
+####if (index is 1):
+####    speaker.Write("Cette fois-ci, vous n'avez pas le choix.")
+####    return 0, list[0]

@@ -108,6 +108,8 @@ class Weapon(Item):
 
 class Inventory:
 
+	selectEnable = True
+
 	def __init__(self):
 		self.Potions = []
 		self.Weapons = []
@@ -134,17 +136,20 @@ class Inventory:
 		# 3 item max per object type
 		if len(items) >= 3:
 			speaker.Speak("Trop de " + item.object + "s dans votre inventaire!")
-			self.RemoveItem()
+			if self.selectEnable:
+			    self.SelectAndRemoveItem(item.object)
+			else:
+				self.PopRandomSpec(item.object)
 		
 		items.append(item)
 		return
 
-	def RemoveItem(self, item):
+	def SelectAndRemoveItem(self, object):
 		# Remove an item from inventory, player will chose
-		items = self.GetItems(item.object)
+		items = self.GetItems(object)
 
 		speaker.Speak()
-		speaker.Speak("Choisissez une " + item.object + " a retiré de votre inventaire : ")
+		speaker.Speak("Choisissez une " + object + " a retirer de votre inventaire : ")
 
 		index, popItem = tools.EnumerateAndSelect(items)
 		items.pop(index)
@@ -157,7 +162,7 @@ class Inventory:
 
 		if index >= len(items) :
 			return None
-		return items(index)
+		return items.pop(index)
 
 	def PopRandom(self):
 		# Remove a random item from inventory

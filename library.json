@@ -177,6 +177,21 @@
       }
     ],
 
+    "Trident monstre": [
+      "Weapon",
+      {
+        "name": "Trident monstre",
+        "damage": [
+          3,
+          8
+        ],
+        "effect": [
+          5,
+          "EFFROI"
+        ]
+      }
+    ],
+
     "Massue d'argile": [
       "Weapon",
       {
@@ -236,29 +251,6 @@
       }
     ],
 
-    "Epée en bois pourrie": [
-      "Weapon",
-      {
-
-        "name": "Epée en bois pourrie",
-        "damage": [
-          1,
-          6
-        ]
-      }
-    ],
-
-    "Cuillère tordue": [
-      "Weapon",
-      {
-
-        "name": "Cuillère tordue",
-        "damage": [
-          3,
-          3
-        ]
-      }
-    ],
 
     "Epée en métal": [
       "Weapon",
@@ -383,6 +375,29 @@
       }
     ],
 
+    "Epée en bois pourri": [
+      "Weapon",
+      {
+
+        "name": "Epée en bois pourrie",
+        "damage": [
+          1,
+          6
+        ]
+      }
+    ],
+
+    "Cuillère tordue": [
+      "Weapon",
+      {
+
+        "name": "Cuillère tordue",
+        "damage": [
+          3,
+          3
+        ]
+      }
+    ],
     "Fiole brisée": [
       "Weapon",
       {
@@ -422,6 +437,15 @@
         "type": "SOIN",
         "value": 20,
         "lifeTime": 2
+      }
+    ],
+
+    "Fish heal": [
+      "Potion",
+      {
+        "type": "SOIN",
+        "value": 5,
+        "lifeTime": 10
       }
     ],
 
@@ -487,6 +511,15 @@
         "type": "FORCE",
         "value": 20,
         "lifeTime": 3
+      }
+    ],
+
+    "Fish strength": [
+      "Potion",
+      {
+        "type": "FORCE",
+        "value": 50,
+        "lifeTime": 1
       }
     ],
 

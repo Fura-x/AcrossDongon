@@ -69,6 +69,18 @@
       0
     ]
   },
+  "Amphibien": {
+    "adventurer": true,
+    "armor": 16,
+    "weapon1": "Trident monstre",
+    "potion1": "Fish heal",
+    "potion2": "Fish strength",
+    "life": 28,
+    "special": [
+      0,
+      0
+    ]
+  },
 
 
   "Banshee": {
@@ -76,6 +88,34 @@
     "armor": 8,
     "weapon": "Griffes aiguisées",
     "life": 60,
+    "special": [
+      0,
+      0
+    ]
+  },
+  "Pyrahna": {
+    "adventurer": false,
+    "pods": 1,
+    "armor": 5,
+    "armorBreaker": 18,
+    "weapon": "Machoire monstre",
+    "life": 10,
+    "special": [
+      1,
+      4
+    ]
+  },
+  "Gobelin": {
+    "adventurer": false,
+    "pods": 3,
+    "armor": 10,
+    "weapon1": "Epée en bois pourri",
+    "weapon2": "Cuillère tordue",
+    "weapon3": "Fiole brisée",
+    "potion1": "Good heal",
+    "potion2": "Good armor",
+    "potion3": "Spray",
+    "life": 20,
     "special": [
       0,
       0

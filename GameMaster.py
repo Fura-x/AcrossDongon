@@ -21,8 +21,12 @@ class GameMaster():
         self.bookCase = story.BookCase.FromJson(self, tools.ParseJson("library"))
         self.ReadSelectedBook()
 
-        self.advEnroll = tools.CopyEntities(self.adventurers[:1])
+        speaker.Write("\nChoisissez votre premier aventurier :")
+        self.advEnroll = []
+        self.advEnroll.append(tools.CopyEntity(tools.EnumerateAndSelect(self.adventurers)[1]))
         self.advGroup = tools.RandomDict(self.advEnroll, 20)
+
+        speaker.Write("Vous avez enrollé " + self.advEnroll[0].getName() + " !")
 
         self.battleContext = BattleContext()
         self.questSystem = questSystem.QuestSytem()
@@ -354,6 +358,9 @@ class GameMaster():
 
     def GetItem(self, itemName):
         return self.bookCase.reserve[itemName]
+
+    def GetRandomItem(self):
+        return self.GetItem(tools.RandomElement(list(self.bookCase.reserve.keys())))
 
     def GiveItem(self, itemName):
         '''give the item to the adventurer whom player will chose'''
