@@ -32,7 +32,7 @@ class GameMaster():
         return
 
     def __str__(self):
-        return "\Informations:\n" + "Aventuriers:\n" + self.AdventurersToString() + "Horde:\n" + self.HordeToString()
+        return "\nInformations:\n" + "Aventuriers:\n" + self.AdventurersToString() + "Horde:\n" + self.HordeToString()
 
     def AdventurersToString(self):
         adventurers = ""
@@ -202,6 +202,8 @@ class GameMaster():
         for entity in self.combattants.values():
             entity.OnBattleBegins()
 
+        self.enemyJoin = None
+
         return
 
     def Battle(self):
@@ -209,14 +211,14 @@ class GameMaster():
         self.SetBattleContext()
 
         #Introduction sentences
-        speaker.Write("Une horde de monstre apparaît !")
+        speaker.Write("Une horde d'ennemis apparaît !")
         speaker.Input()
         speaker.Write(str(self))
         speaker.WriteInput("\n ... Tapez ENTREE pour commencer la confrontation.")
         speaker.Speak("\n")
 
         # Battle loop
-        prevTurn = 0
+        self.prevTurn = 0
 
         while(self.Fighting()):
             key = list(self.combattants.keys())[0]
@@ -225,14 +227,17 @@ class GameMaster():
             if self.AssertEntityDead(key, entity):
                 break
             # Check new turn condition
-            elif (entity.turn is not prevTurn):
-                self.Pause(prevTurn)
-                prevTurn += 1
+            elif (entity.turn is not self.prevTurn):
+                self.Pause(self.prevTurn)
+                self.prevTurn += 1
 
             # ENTITY TURN
             entity.Play()
 
-            self.EndTurn(key) 
+            self.EndTurn(key)
+
+            if self.enemyJoin is not None:
+                self.EnemyJoin()
 
         # WINNER
         if self.AdventurersAlive():
@@ -250,6 +255,39 @@ class GameMaster():
         return
 
     def BossBattle(self):
+
+        return
+
+    def EnemyJoin(self):
+
+        # Find the enemy
+        newEnemy = None
+        for enemy in self.horde:
+            if enemy.getName() is self.enemyJoin:
+                newEnemy = tools.CopyEntity(enemy)
+
+        self.enemyJoin = None
+
+        if newEnemy is None:
+            return
+
+        speaker.Speak("\nJOIN\t- " + newEnemy.getName() + " rejoint le combat ! --- Le tour recommence. \n")
+
+        # Add to the current horde group
+        hordeGroup = list(self.hordeGroup.values())
+        hordeGroup.append(newEnemy)
+
+        # Reorder entities in battle
+        self.advGroup = tools.RandomDict(self.advEnroll, 20)
+        self.hordeGroup = tools.RandomDict(hordeGroup, 20, 0.1)
+        merge = tools.MergeDict(self.advGroup, self.hordeGroup)
+        
+        self.combattants = tools.Reorder(merge)
+
+        # Send a signal for battle re-beginning
+        for entity in self.combattants.values():
+            entity.OnBattleBegins()
+            entity.turn = self.prevTurn
 
         return
 

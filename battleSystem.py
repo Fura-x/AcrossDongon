@@ -89,25 +89,25 @@ class Effect(Enum):
             entity.battling = False
 
         elif effect is Effect.CURIEUX:
-            speaker.Speak("DISTR.\t- " + entity.getName() + " est distrait, il perd en précision.")
+            speaker.Speak("DISTR.\t- " + entity.getName() + " est distrait, perd en précision.")
             # Lose 25% of armor breaker
             entity.turnArmorBreaker -= round(entity.turnArmorBreaker * 25 / 100)
 
         elif effect is Effect.POISON:
             # Hit 20% of entity current life
             dmg = round(entity.life * 20 / 100)
-            speaker.Speak("POISON\t- " + entity.getName() + " est empoisonné. Il perd " + str(dmg) + "PV =O")
+            speaker.Speak("POISON\t- " + entity.getName() + " est empoisonné. Perd " + str(dmg) + "PV =O")
             entity.Hurt(dmg)
 
         elif effect is Effect.FEU:
             entity.turnDamage += 6
 
         elif effect is Effect.GEL:
-            speaker.Speak("GEL\- " + entity.getName() + " est gelé. Il ne peut plus attaquer --o--")
+            speaker.Speak("GEL\t- " + entity.getName() + " est gelé. Ne peut plus attaquer --o--")
             entity.processAttack = False
 
         elif effect is Effect.FATIGUE:
-            speaker.Speak("FATIGUE\- " + entity.getName() + " est fatigué. Il n'est pas prêt d'utiliser son spécial.")
+            speaker.Speak("FATIGUE\t- " + entity.getName() + " est fatigué. N'est pas prêt d'utiliser son spécial.")
             entity.processSpecial = False
 
 class BattleContext:
@@ -125,15 +125,17 @@ class BattleContext:
             adventurerPods += adventurer.pods
 
         hordePods = 0
-        # create a random enemy group, based on the pods system 
-        while(hordePods < adventurerPods):
+        # create a random enemy group, based on the pods system
+        # hordePods in range(advPods - 3, advPods + 3) 
+        while(hordePods < adventurerPods - 2):
             monster = tools.CopyEntity(tools.random.choice(gameMaster.horde))
 
+            newHordePods = hordePods + monster.pods
             # Don't accept enemy which are too strong
-            if hordePods + monster.pods > adventurerPods + 3:
+            if newHordePods > adventurerPods + 3:
                 continue
 
-            hordePods += monster.pods
+            hordePods = newHordePods
             self.horde.append(monster)
 
         return self.horde

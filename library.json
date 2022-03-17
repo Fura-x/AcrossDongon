@@ -4,7 +4,8 @@
     "book1": "TerraHill",
     "book2": "CobriaDune",
     "book3": "GobioRiver",
-    "book4": "Dongon"
+    "book4": "Dongon",
+    "book5": "TessCave"
   },
 
   "reserve": {
@@ -97,6 +98,81 @@
         "damage": [
           4,
           4
+        ]
+      }
+    ],
+
+    "Bracelet rubis": [
+      "Weapon",
+      {
+        "name": "Bracelet rubis",
+        "damage": [
+          3,
+          5
+        ],
+        "effect": [
+          2,
+          "FEU"
+        ]
+      }
+    ],
+
+    "Bracelet topaze": [
+      "Weapon",
+      {
+        "name": "Bracelet topaze",
+        "damage": [
+          3,
+          5
+        ],
+        "effect": [
+          2,
+          "PARA"
+        ]
+      }
+    ],
+
+    "Bracelet emeraude": [
+      "Weapon",
+      {
+        "name": "Bracelet emeraude",
+        "damage": [
+          3,
+          5
+        ],
+        "effect": [
+          2,
+          "POISON"
+        ]
+      }
+    ],
+
+    "Bracelet saphir": [
+      "Weapon",
+      {
+        "name": "Bracelet saphir",
+        "damage": [
+          3,
+          5
+        ],
+        "effect": [
+          2,
+          "GEL"
+        ]
+      }
+    ],
+
+    "Bracelet vampire": [
+      "Weapon",
+      {
+        "name": "Bracelet vampire",
+        "damage": [
+          4,
+          5
+        ],
+        "effect": [
+          2,
+          "DRAIN"
         ]
       }
     ],

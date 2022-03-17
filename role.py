@@ -150,9 +150,9 @@ class Role:
 
             if critical:
                 damage *= 2
-                speaker.Speak("CRIT.\t- " + self.getName() + " fait une attaque critique " + target.getName() + " avec son/sa " + weapon.name + ". " + str(damage) + " dégâts causés.")
+                speaker.Speak("CRIT.\t- " + self.getName() + " fait une attaque critique contre " + target.getName() + " avec son arme " + weapon.name + ". " + str(damage) + " dégâts causés.")
             else:
-                speaker.Speak("ATTAQUE\t- " + self.getName() + " attaque " + target.getName() + " avec son/sa " + weapon.name + ". " + str(damage) + " dégâts causés.")
+                speaker.Speak("ATTAQUE\t- " + self.getName() + " attaque " + target.getName() + " avec son arme " + weapon.name + ". " + str(damage) + " dégâts causés.")
 
             # EFFECT
             Effect.Apply(self, target, self.enemies, self.allies, damage, effect)
@@ -260,7 +260,7 @@ class Mage(Role):
         # Fireball
         if (tools.RollDice(1, 20) >= 18):
             damage = tools.RollDice(self.special[0], self.special[1])
-            speaker.Speak("SPECIAL\t- Mage cast a fire balls spell, the atmoshpere becomes hot ! Enemies will recieve " + str(damage) + " damages !")
+            speaker.Speak("SPECIAL\t- Le mage lance un sort de feu, ça devient chaud ! Tous les ennemies subissent " + str(damage) + " dommages !")
             tools.GlobalAttack(self.enemies, damage)
 
         return Target.NONE, 0
@@ -334,7 +334,7 @@ class Mercenaire(Role):
          # Second hit
          if (tools.RollDice(1, 20) >= 15):
             targetKey, target = tools.RandomItem(self.enemies)
-            speaker.Speak("SPECIAL\t - Le Mercenaire ne fait pas son travail à moitié ! Il prépare une double attaque !")
+            speaker.Speak("SPECIAL\t- Le Mercenaire ne fait pas son travail à moitié ! Il prépare une double attaque !")
             if self.processAttack:
                 self.Attack(target)
 
@@ -345,7 +345,7 @@ class Marchant(Role):
     def Special(self):
         if(tools.RollDice(1, 20) >= 10):
             money = tools.RollDice(self.special[0], self.special[1])
-            speaker.Speak("SPECIAL\t - Le marchand gère un petit commerce. Vous gagné " + str(money) + " pièces ! Mais comment fait-il ?")
+            speaker.Speak("SPECIAL\t- Le marchand gère un petit commerce. Vous gagné " + str(money) + " pièces ! Mais comment fait-il ?")
             self.coins += money
  
 class SansAbri(Role):
@@ -355,8 +355,19 @@ class SansAbri(Role):
     def Special(self):
         if(tools.RollDice(1,20) >= 5):
             heal = tools.RollDice(self.special[0], self.special[1])
-            speaker.Speak("SPECIAL\t - Le sans-abri est très débrouillard, il se remet d'aplomb avec ce qui l'entoure ! Il regagne " + str(heal) + "PV!")
+            speaker.Speak("SPECIAL\t- Le sans-abri est très débrouillard, il se remet d'aplomb avec ce qui l'entoure ! Il regagne " + str(heal) + "PV!")
             self.Heal(heal)
+
+class Lithologue(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Lithologue")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 15):
+            victim = tools.RandomElement(list(self.enemies.values()))
+            speaker.Speak("SPECIAL\t- Le lithologue concentre l'énergie des pierres, et la redirige vers " + victim.getName() + ".")
+            victim.GetEffected(Effect.PARA, self.getName())
+
 
 
 class Orc(Role):
@@ -403,7 +414,7 @@ class Croyant(Role):
 
     def Special(self):
         if(tools.RollDice(1,20) >= 10):
-            speaker.Speak("SPECIAL\t - Le croyant commence à réciter une incantation. Cependant il ne se produit rien.")
+            speaker.Speak("SPECIAL\t- Le croyant commence à réciter une incantation. Cependant il ne se produit rien.")
 
 class Mechancenaire(Role):
      def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
@@ -413,7 +424,7 @@ class Mechancenaire(Role):
          # Second hit
          if (tools.RollDice(1, 20) >= 15):
             targetKey, target = tools.RandomItem(self.enemies)
-            speaker.Speak("SPECIAL\t - Le méchant mercenaire a la rogne ! Il prépare une double attaque !")
+            speaker.Speak("SPECIAL\t- Le méchant mercenaire a la rogne ! Il prépare une double attaque !")
             if self.processAttack:
                 self.Attack(target)
 
@@ -425,27 +436,81 @@ class Niffleur(Role):
     def Special(self):
         if tools.RollDice(1, 20) >= 12:
             bonusArmor = tools.RollDice(self.special[0], self.special[1])
-            speaker.Speak("SPECIAL\t- RareNiffleur améliore son aura royale, et gagne " + str(bonusArmor) + " d'armure!")
+            speaker.Speak("SPECIAL\t- Niffleur améliore son aura royale, et gagne " + str(bonusArmor) + " d'armure!")
             self.turnArmor += bonusArmor
                     
+class Treiish(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Treiish")
+    
+    def Play(self):
+
+        self.turnArmor = self.baseArmor
+
+        # POTION
+        self.UsePotion()
+
+        # EFFECT 
+        Effect.Undergo(self, self.effect)
+
+        if self.life <= 0:
+            self.turn += 1
+            self.EndTurn()
+            return
+
+        # SPECIAL
+        if self.processSpecial:
+
+            if not self.specialAttack:
+                self.Special()
+
+            if (not self.gameMaster.Fighting()): # Special could end the fight
+                return
+
+        # ASSERT BATTLE STATE
+        if not self.battling:
+            self.turn += 1
+            self.EndTurn()
+            return
+
+        # TARGET
+        targetKey, target = tools.RandomItem(self.enemies)
+
+        # ATTACK
+        if self.processAttack:
+
+            hit = self.Attack(target)
+            # SPECIAL bis
+            if hit[0] and self.specialAttack:
+                self.SpecialAttack(hit[1])
+
+        # TURN END
+        self.gameMaster.AssertEntityDead(targetKey, target)
+
+        self.turn += 1
+        self.EndTurn()
+
+        return
+
+    def Special(self):
+        if tools.RollDice(1, 20) >= 12:
+            if self.effect is not Effect.NEUTRE:
+                speaker.Speak("SPECIAL\t- La sorcière Treiish est insensible aux malédictions. L'effet " + self.effect.name + " est supprimé.")
+                self.effect = Effect.NEUTRE
+                self.battling = self.processAttack = self.processSpecial = True
+
+
 class Libraire(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
         super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Libraire")
 
     def Special(self):
         if(tools.RollDice(1,20) >= 17):
-            speaker.Speak("SPECIAL\t - Le libraire appelle à l'aide. Un être malvaillant le rejoint.")
+            speaker.Speak("SPECIAL\t- Le libraire appelle à l'aide. Un être malvaillant le rejoint.")
+            self.gameMaster.enemyJoin = "Croyant"
 
-class Treiish(Role):
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Treiish")
 
-    def Special(self):
-        if(tools.RollDice(1,20) >= 12):
-            if self.effect is not Effect.NEUTRE:
-                speaker.Speak("SPECIAL\t - La sorcière Treiish est insensible aux malédictions. L'effet " + self.effect.name + " est supprimé.")
-                self.effect = Effect.NEUTRE
-				self.effectTurn = 0
+
 
 
 ####class NewHero(Role):
@@ -454,4 +519,4 @@ class Treiish(Role):
 ####
 ####    def Special(self):
 ####        if(tools.RollDice(1,20) > 15):
-####            speaker.Speak("SPECIAL\t -")
+####            speaker.Speak("SPECIAL\t-")

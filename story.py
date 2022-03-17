@@ -257,7 +257,7 @@ class StoryReward:
         # A random member is healed
         heal = self.reward
         victim = tools.RandomItem(gameMaster.advGroup)[1]
-        speaker.WriteInput(victim.getName() + " estt soigné(e) de " + str(heal) + "PV!")
+        speaker.WriteInput(victim.getName() + " est soigné(e) de " + str(heal) + "PV!")
         victim.Heal(heal)
 
     def LosePotion(self, gameMaster):

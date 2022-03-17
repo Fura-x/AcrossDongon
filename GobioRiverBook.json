@@ -57,6 +57,20 @@
       10
     ]
   },
+  "Lithologue": {
+    "adventurer": true,
+    "armor": 13,
+    "weapon1": "Bracelet rubis",
+    "weapon2": "Bracelet emeraude",
+    "weapon3": "Bracelet saphir",
+    "life": 32,
+    "special": [
+      0,
+      0
+    ]
+  },
+
+
   "Banshee": {
     "adventurer": false,
     "armor": 8,

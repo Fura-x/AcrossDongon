@@ -1,0 +1,59 @@
+{
+
+  "StoryBook": {
+
+    "UN PAS DANS L'OMBRE": {
+
+      "enunciate": [
+        "Dans les profondeurs des souterrains du monde,",
+        "votre vision est très basse.",
+        "Vous ne pouvez faire qu'une seule chose, avancer."
+      ],
+      "choice1": {
+
+        "enunciate": "Avancer.",
+        "event1": {
+
+          "enunciate": [
+            "Vous appliquez la procédure.",
+            "vous avancez le long d'étroit corridor de pierres,",
+            "puis vous arrivez finalement dans une gigantesque salle",
+            "éclairé par des torches.",
+            "",
+            "Un ennemi puissant vous attends."
+          ]
+        }
+      }
+    }
+  },
+
+  "Lithologue": {
+    "adventurer": true,
+    "armor": 13,
+    "weapon1": "Bracelet rubis",
+    "weapon2": "Bracelet emeraude",
+    "weapon3": "Bracelet saphir",
+    "life": 32,
+    "special": [
+      0,
+      0
+    ]
+  },
+
+  "Treiish": {
+    "adventurer": false,
+    "pods": 3,
+    "armor": 10,
+    "weapon": "Baguette Dondon",
+    "weapon2": "Baguette Gongon",
+    "potion": "Strenght",
+    "potion2": "Strenght",
+    "potion3": "Good heal",
+    "life": 70,
+    "special": [
+      0,
+      0
+    ]
+  }
+
+}
