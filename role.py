@@ -322,7 +322,7 @@ class Chasseur(Role):
 
     def ArmorBreak(self, target):
         armorBreak = tools.RollDice(1, 20)
-        if (self.ignoreDef or armorBreak > target.armor):
+        if (self.ignoreDef or armorBreak > target.turnArmor):
             return True, armorBreak == 20
 
         return False, False
@@ -454,7 +454,7 @@ class Pyrahna(Role):
             speaker.Speak("SPECIAL\t- Le pyrahna s'est accroché à " + target.getName() + ". Il le mâchouille encore " + str(count) + " fois.")
             weapon = self.SelectWeapon()
             for i in range(count):
-                target.Hurt(tools.RollDice(weapon.Use(self.sepcialDice)[0]))
+                target.Hurt(weapon.Use()[0])
 
 class Gobelin(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):

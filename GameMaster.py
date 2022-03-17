@@ -342,19 +342,7 @@ class GameMaster():
 
     def SelectAdventurer(self, recall = False):
         '''Ask player to chose an adventurer'''
-        if not recall:
-            entry = speaker.WriteInput("Choisissez un aventurier pour donner l'item, tapez 'info' pour voir l'équipe : ")
-        else:
-            entry = speaker.WriteInput("Tapez le nom de l'aventurier: ")
-
-        if entry == "info":
-            speaker.Speak(self.AdventurersToString())
-            return self.SelectAdventurer(True)
-
-        while(entry ==  "" or self.GetAdventurer(entry) is None):
-            return self.SelectAdventurer(True)
-
-        return self.GetAdventurer(entry)
+        return tools.EnumerateAndSelect(self.advEnroll)[1]
 
     def GetItem(self, itemName):
         return self.bookCase.reserve[itemName]

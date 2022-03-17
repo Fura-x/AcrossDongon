@@ -83,16 +83,7 @@
   },
 
 
-  "Banshee": {
-    "adventurer": false,
-    "armor": 8,
-    "weapon": "Griffes aiguisées",
-    "life": 60,
-    "special": [
-      0,
-      0
-    ]
-  },
+  
   "Pyrahna": {
     "adventurer": false,
     "pods": 1,
@@ -102,7 +93,7 @@
     "life": 10,
     "special": [
       1,
-      4
+      3
     ]
   },
   "Gobelin": {
