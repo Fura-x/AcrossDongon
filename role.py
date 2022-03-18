@@ -454,6 +454,8 @@ class Pyrahna(Role):
             speaker.Speak("SPECIAL\t- Le pyrahna s'est accroché à " + target.getName() + ". Il le mâchouille encore " + str(count) + " fois.")
             weapon = self.SelectWeapon()
             for i in range(count):
+                damage = weapon.Use()[0]
+                speaker.Speak("ATTAQUE\t- Le pyrahna fait subir " + str(damage) + " dégâts à " + target.getName())
                 target.Hurt(weapon.Use()[0])
 
 class Gobelin(Role):
@@ -546,6 +548,21 @@ class Libraire(Role):
         if(tools.RollDice(1,20) >= 17):
             speaker.Speak("SPECIAL\t- Le libraire appelle à l'aide. Un être malvaillant le rejoint.")
             self.gameMaster.enemyJoin = "Croyant"
+
+class Moldrick(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Moldrick")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 17):
+            damage = tools.RollDice(self.special[0], self.special[1])
+            speaker.Speak("SPECIAL\t- Le capitaine Moldrick sort toute artillerie, et mitraille votre équipe ! " + str(damage) + " dégâts infligés.")
+            tools.GlobalAttack(self.enemies, damage)
+
+            if(tools.RollDice(1, 20) >= 10):
+                itm = self.gameMaster.GetRandomItem()
+                speaker.Speak("SPECIAL\t- L'attaque du capitaine a secoué le terrain, il remarque alors un objet qu'il dérobe : " + str(itm))
+                self.inventory.AddItem(itm)
 
 
 

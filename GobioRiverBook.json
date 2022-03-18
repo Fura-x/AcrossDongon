@@ -83,13 +83,22 @@
   },
 
 
-  
+  "Banshee": {
+    "adventurer": false,
+    "armor": 8,
+    "weapon": "Griffes aiguisées",
+    "life": 60,
+    "special": [
+      0,
+      0
+    ]
+  },
   "Pyrahna": {
     "adventurer": false,
-    "pods": 1,
+    "pods": 2,
     "armor": 5,
     "armorBreaker": 18,
-    "weapon": "Machoire monstre",
+    "weapon": "Petite machoire",
     "life": 10,
     "special": [
       1,
@@ -110,6 +119,21 @@
     "special": [
       0,
       0
+    ]
+  },
+
+  "Moldrick": {
+    "adventurer": false,
+    "pods": 9,
+    "armor": 18,
+    "weapon": "Sabre de pirate",
+    "weapon1": "Pistolet à silex",
+    "potion1": "Fish strength",
+    "potion2": "Fish strength",
+    "life": 70,
+    "special": [
+      1,
+      15
     ]
   }
 

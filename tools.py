@@ -74,6 +74,11 @@ def RandomElement(l):
     if not Empty(l):
         return random.choice(l)
 
+def PopRandomItem(l):
+    if not Empty(l):
+        random.shuffle(l)
+        return l.pop(0)
+
 def RandomizeList(list):
     if not Empty(list):
         random.shuffle(list)

@@ -40,19 +40,18 @@
     ]
   },
 
-  "Treiish": {
+  "Moldrick": {
     "adventurer": false,
     "pods": 3,
-    "armor": 10,
-    "weapon": "Baguette Dondon",
-    "weapon2": "Baguette Gongon",
-    "potion": "Strenght",
-    "potion2": "Strenght",
-    "potion3": "Good heal",
+    "armor": 18,
+    "weapon": "Sabre de pirate",
+    "weapon1": "Pistolet à silex",
+    "potion1": "Fish strength",
+    "potion2": "Fish strength",
     "life": 70,
     "special": [
-      0,
-      0
+      1,
+      15
     ]
   }
 

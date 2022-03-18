@@ -135,8 +135,8 @@ class Inventory:
 
 		# 3 item max per object type
 		if len(items) >= 3:
-			speaker.Speak("Trop de " + item.object + "s dans votre inventaire!")
 			if self.selectEnable:
+			    speaker.Speak("Trop de " + item.object + "s dans votre inventaire!")
 			    self.SelectAndRemoveItem(item.object)
 			else:
 				self.PopRandomSpec(item.object)
@@ -173,14 +173,14 @@ class Inventory:
 			lists.append(self.Potions)
 
 		items = tools.RandomElement(lists)
-		return items.pop(tools.RandomElement(items))
+		return tools.PopRandomItem(items)
 
 	def PopRandomSpec(self, object):
 		# Remove a random item according to its type
 		items = self.GetItems(object)
 
 		if len(items) > 0:
-			return items.pop(tools.RandomElement(items))
+			return tools.PopRandomItem(items)
 
 	def GetItems(self, object):
 		return getattr(self, object + "s")

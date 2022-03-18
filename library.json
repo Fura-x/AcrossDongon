@@ -214,6 +214,17 @@
       }
     ],
 
+    "Petite machoire": [
+      "Weapon",
+      {
+        "name": "Petite machoire",
+        "damage": [
+          2,
+          4
+        ]
+      }
+    ],
+
     "Griffes aiguisées": [
       "Weapon",
       {
@@ -371,6 +382,36 @@
         "effect": [
           3,
           "PARA"
+        ]
+      }
+    ],
+
+    "Sabre de pirate": [
+      "Weapon",
+      {
+        "name": "Sabre de pirate",
+        "damage": [
+          4,
+          5
+        ],
+        "effect": [
+          3,
+          "VOL"
+        ]
+      }
+    ],
+
+    "Pistolet à silex": [
+      "Weapon",
+      {
+        "name": "Pistolet à silex",
+        "damage": [
+          2,
+          8
+        ],
+        "effect": [
+          3,
+          "FAIBLE"
         ]
       }
     ],
