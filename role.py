@@ -564,7 +564,9 @@ class Moldrick(Role):
                 speaker.Speak("SPECIAL\t- L'attaque du capitaine a secoué le terrain, il remarque alors un objet qu'il dérobe : " + str(itm))
                 self.inventory.AddItem(itm)
 
-
+class Nessie(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Nessie")
 
 
 

@@ -135,6 +135,18 @@
       1,
       15
     ]
+  },
+
+  "Nessie": {
+    "adventurer": false,
+    "pods": 12,
+    "armor": 5,
+    "weapon": "Pouvoir marin",
+    "life": 200,
+    "special": [
+      0,
+      0
+    ]
   }
 
 }

@@ -247,6 +247,21 @@
       }
     ],
 
+    "Dard empoisonné": [
+      "Weapon",
+      {
+        "name": "Dard empoisonné",
+        "damage": [
+          2,
+          2
+        ],
+        "effect": [
+          2,
+          "POISON"
+        ]
+      }
+    ],
+
     "Aura royale": [
       "Weapon",
       {
@@ -416,6 +431,17 @@
       }
     ],
 
+    "Pouvoir marin": [
+      "Weapon",
+      {
+        "name": "Pouvoir marin",
+        "damage": [
+          1,
+          50
+        ]
+      }
+    ],
+
     "Epée en bois pourri": [
       "Weapon",
       {
@@ -446,6 +472,51 @@
         "damage": [
           4,
           4
+        ]
+      }
+    ],
+
+    "Bras décomposé": [
+      "Weapon",
+      {
+        "name": "Bras décomposé",
+        "damage": [
+          3,
+          1
+        ],
+        "effect": [
+          3,
+          "POISON"
+        ]
+      }
+    ],
+
+    "Jambe décapitée": [
+      "Weapon",
+      {
+        "name": "Jambe décapitée",
+        "damage": [
+          2,
+          5
+        ],
+        "effect": [
+          4,
+          "EFFROI"
+        ]
+      }
+    ],
+
+    "Cervelle écrabouillée": [
+      "Weapon",
+      {
+        "name": "Cervelle écrabouillée",
+        "damage": [
+          5,
+          1
+        ],
+        "effect": [
+          3,
+          "CURIEUX"
         ]
       }
     ],

@@ -40,18 +40,15 @@
     ]
   },
 
-  "Moldrick": {
+  "Nessie": {
     "adventurer": false,
     "pods": 3,
-    "armor": 18,
-    "weapon": "Sabre de pirate",
-    "weapon1": "Pistolet à silex",
-    "potion1": "Fish strength",
-    "potion2": "Fish strength",
-    "life": 70,
+    "armor": 5,
+    "weapon": "Pouvoir marin",
+    "life": 200,
     "special": [
-      1,
-      15
+      0,
+      0
     ]
   }
 

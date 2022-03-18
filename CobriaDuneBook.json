@@ -64,6 +64,38 @@
     }
   },
 
+  "Voleur": {
+    "adventurer": true,
+    "armor": 17,
+    "weapon": "Petite dague",
+    "potion": "Spray",
+    "life": 35,
+    "special": [
+      4,
+      6
+    ]
+  },
+  "Vampire": {
+    "adventurer": true,
+    "armor": 15,
+    "weapon": "Bracelet vampire",
+    "life": 50,
+    "special": [
+      5,
+      4
+    ]
+  },
+  "Nomade": {
+    "adventurer": true,
+    "armor": 11,
+    "weapon": "Sabre de pirate",
+    "life": 24,
+    "special": [
+      0,
+      0
+    ]
+  },
+
   "Bandit": {
     "adventurer": false,
     "armor": 13,
@@ -74,15 +106,27 @@
       0
     ]
   },
-  "Voleur": {
-    "adventurer": true,
+  "Scorpion": {
+    "adventurer": false,
+    "pods": 2,
     "armor": 17,
-    "weapon": "Petite dague",
-    "potion": "Spray",
-    "life": 35,
+    "weapon": "Dard empoisonné",
+    "life": 10,
     "special": [
-      4,
-      6
+      1,
+      5
+    ]
+  },
+  "Mordue": {
+    "adventurer": false,
+    "armor": 0,
+    "weapon": "Bras décomposé",
+    "weapon1": "Jambe décapité",
+    "weapon2": "Cervelle écrabouillé",
+    "life": 1,
+    "special": [
+      0,
+      0
     ]
   }
 }
