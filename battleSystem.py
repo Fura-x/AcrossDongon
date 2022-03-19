@@ -121,7 +121,7 @@ class BattleContext:
     def DefineHordeGroup(self, gameMaster):
 
         adventurerPods = 0
-        for adventurer in gameMaster.advGroup.values():
+        for adventurer in gameMaster.advEnroll:
             adventurerPods += adventurer.pods
 
         hordePods = 0

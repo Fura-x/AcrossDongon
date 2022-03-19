@@ -21,6 +21,10 @@ def GlobalAttack(group, damage):
 
     return
 
+def CopyItem(toCopy):
+    copi = copy.copy(toCopy)
+    return copi
+
 def CopyEntity(toCopy):
     inventory = copy.deepcopy(toCopy.inventory)
     copi = copy.copy(toCopy)

@@ -146,6 +146,11 @@ class Role:
         if armorBreak:
             # Compute damage
             weapon = self.SelectWeapon()
+
+            if weapon is None:
+                speaker.Speak("ECHEC\t- L'attaque de " + self.getName() + " échoue sur " + target.getName())
+                return False, None
+
             damage, effect = weapon.Use(self.specialDice)
             damage += self.baseDamage + self.turnDamage
 
@@ -171,12 +176,16 @@ class Role:
         return
 
     def Hurt(self, damage):
+        if damage > self.life:
+            damage = self.life
+
         self.life -= damage
-        self.life = max(self.life, 0)
 
         if (not self.Alive()):
             speaker.Speak("MORT\t- " + self.getName() + " est mort...")
             self.Dying()
+
+        return damage
 
     def Heal(self, heal):
         self.life += heal
@@ -385,6 +394,35 @@ class Amphibien(Role):
                 tools.GlobalAttack(self.enemies, 30)
                 self.charge = 0
 
+class Vampire(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Vampire")
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 16):
+            damage = tools.RollDice(self.special[0], self.special[1])
+            victim = tools.RandomItem(self.enemies)[1]
+            speaker.Speak("SPECIAL\t- Le vampire est assoifé de sang ! Il se jette sur " + victim.getName() + " !")
+            damage = victim.Hurt(damage)
+            speaker.Speak("DRAIN\t- Le vampire a aspiré " + str(damage) + "PV.")
+            self.Heal(damage)
+            
+class Nomade(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Nomade")
+
+    def Special(self):
+        for ally in self.allies.values():
+            if tools.Empty(ally.inventory.Potions):
+                potion = self.gameMaster.GetRandomItem("Potion")
+                if ally.getName() != "Nomade":
+                    speaker.Speak("SPECIAL\t- Le nomade remarque que " + ally.getName() + " n'a pas de potions. Il lui donne " + str(potion) + " pour le protéger !")
+                else:
+                    speaker.Speak("SPECIAL\t- Le nomade n'a plus de potions. Il sort " + str(potion) + " de son sac pour se protéger !")
+                ally.GiveItem(potion)
+
+
+
 class Orc(Role):
 
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
@@ -421,6 +459,8 @@ class Bandit(Role):
         if tools.RollDice(1, 20) >= 20:
             enemy = tools.RandomItem(self.enemies)[1]
             if not enemy.inventory.Empty():
+                item = enemy.inventory.PopRandom()
+                speaker.Speak("SPECIAL\t- Le bandit dérobe l'item " + str(item) + " à " + enemy.getName() + ".")
                 self.inventory.AddItem(enemy.inventory.PopRandom())
 
 class Croyant(Role):
@@ -539,7 +579,6 @@ class Treiish(Role):
                 self.effect = Effect.NEUTRE
                 self.battling = self.processAttack = self.processSpecial = True
 
-
 class Libraire(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
         super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Libraire")
@@ -568,12 +607,45 @@ class Nessie(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
         super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Nessie")
 
+class Scorpion(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        self.specialAttack = True
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Scorpion")
 
+    def SpecialAttack(self, target):
+        if(tools.RollDice(1,20) >= 12) and target.effect is Effect.POISON:
+            speaker.Speak("SPECIAL\t- Le scorpion est excité par le poison qui se propage en vous. Il attaque encore !")
+            damage = tools.RollDice(self.special[0], self.special[1]) * 2
+            speaker.Speak("CRIT.\t- Scorpion attaque " + target.getName() + " avec son Dard envenimé. " + str(damage) + " dégâts causés.")
+            target.Hurt(damage)
+
+class Mordu(Role):
+
+    hurtCount = 0
+
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Mordu")
+
+    def Hurt(self, damage):
+
+        self.hurtCount += 1
+        revive = tools.RollDice(1, 20) > (20 - self.hurtCount)
+
+        if not revive and self.effect is Effect.NEUTRE:
+            speaker.Speak("ECHEC\t- Le mordu semble immortel.")
+            return 0
+
+        speaker.Speak("ATTAQUE\t- Le mordu n'était plus en état de revivre. Votre attaque lui est fatal !")
+        super().Hurt(damage)
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 15):
+            speaker.Speak("SPECIAL\t- Le mordu change de bras pour se battre.")
 
 ####class NewHero(Role):
 ####    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
 ####        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "NewHero")
 ####
 ####    def Special(self):
-####        if(tools.RollDice(1,20) > 15):
+####        if(tools.RollDice(1,20) >= 15):
 ####            speaker.Speak("SPECIAL\t-")

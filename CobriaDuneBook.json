@@ -60,6 +60,19 @@
             "value": 5
           }
         }
+      },
+      "choice3": {
+
+        "enunciate": "Vous préférez aller voir le personnage au loin",
+        "event1": {
+
+          "enunciate": [
+            "Vous y allez."
+          ],
+          "reward": {
+            "func": "NewRandomMember"
+          }
+        }
       }
     }
   },
@@ -88,8 +101,8 @@
   "Nomade": {
     "adventurer": true,
     "armor": 11,
-    "weapon": "Sabre de pirate",
-    "life": 24,
+    "weapon": "Sac de survie",
+    "life": 32,
     "special": [
       0,
       0
@@ -113,16 +126,16 @@
     "weapon": "Dard empoisonné",
     "life": 10,
     "special": [
-      1,
+      2,
       5
     ]
   },
-  "Mordue": {
+  "Mordu": {
     "adventurer": false,
     "armor": 0,
     "weapon": "Bras décomposé",
-    "weapon1": "Jambe décapité",
-    "weapon2": "Cervelle écrabouillé",
+    "weapon1": "Jambe décapitée",
+    "weapon2": "Cervelle écrabouillée",
     "life": 1,
     "special": [
       0,

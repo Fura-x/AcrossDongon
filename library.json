@@ -192,6 +192,21 @@
       }
     ],
 
+    "Sac de survie": [
+      "Weapon",
+      {
+        "name": "Sac de survie",
+        "damage": [
+          2,
+          12
+        ],
+        "effect": [
+          6,
+          "VOL"
+        ]
+      }
+    ],
+
     "Massue d'argile": [
       "Weapon",
       {

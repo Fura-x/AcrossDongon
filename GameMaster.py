@@ -347,8 +347,16 @@ class GameMaster():
     def GetItem(self, itemName):
         return self.bookCase.reserve[itemName]
 
-    def GetRandomItem(self):
-        return self.GetItem(tools.RandomElement(list(self.bookCase.reserve.keys())))
+    def GetRandomItem(self, object = None):
+        if (object is None):
+            return tools.CopyItem(tools.RandomElement(list(self.bookCase.reserve.values())))
+
+        else:
+            item = tools.CopyItem(tools.RandomElement(list(self.bookCase.reserve.values())))
+            while item.object is not object:
+                item = tools.CopyItem(tools.RandomElement(list(self.bookCase.reserve.values())))
+
+            return item
 
     def GiveItem(self, itemName):
         '''give the item to the adventurer whom player will chose'''
