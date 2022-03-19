@@ -219,24 +219,28 @@ class GameMaster():
         speaker.Input()
         speaker.Write(str(self))
         speaker.WriteInput("\n ... Tapez ENTREE pour commencer la confrontation.")
-        speaker.Speak("\n")
+        speaker.Speak()
 
         # Battle loop
         self.prevTurn = 0
 
+
         while(self.Fighting()):
+
+            speaker.Speak()
+
             key = list(self.combattants.keys())[0]
-            entity = list(self.combattants.values())[0]
-            # Check entity life
-            if self.AssertEntityDead(key, entity):
+            self.currentEntity = list(self.combattants.values())[0]
+            # Check entity's life
+            if self.AssertEntityDead(key, self.currentEntity):
                 break
             # Check new turn condition
-            elif (entity.turn is not self.prevTurn):
+            elif (self.currentEntity.turn is not self.prevTurn):
                 self.Pause(self.prevTurn)
                 self.prevTurn += 1
 
             # ENTITY TURN
-            entity.Play()
+            self.currentEntity.Play()
 
             self.EndTurn(key)
 

@@ -277,21 +277,6 @@
       }
     ],
 
-    "Aura royale": [
-      "Weapon",
-      {
-        "name": "Aura royale",
-        "damage": [
-          1,
-          15
-        ],
-        "effect": [
-          2,
-          "CURIEUX"
-        ]
-      }
-    ],
-
 
     "Epée en métal": [
       "Weapon",
@@ -352,6 +337,21 @@
         "damage": [
           3,
           10
+        ],
+        "effect": [
+          2,
+          "CURIEUX"
+        ]
+      }
+    ],
+
+    "Aura royale": [
+      "Weapon",
+      {
+        "name": "Aura royale",
+        "damage": [
+          1,
+          15
         ],
         "effect": [
           2,
@@ -453,6 +453,43 @@
         "damage": [
           1,
           50
+        ]
+      }
+    ],
+
+    "Pouvoir terrestre": [
+      "Weapon",
+      {
+        "name": "Pouvoir terrestre",
+        "damage": [
+          1,
+          50
+        ]
+      }
+    ],
+
+    "Massue à épine": [
+      "Weapon",
+      {
+        "name": "Massue à épine",
+        "damage": [
+          3,
+          8
+        ]
+      }
+    ],
+
+    "Bombe tactique": [
+      "Weapon",
+      {
+        "name": "Bombe tactique",
+        "damage": [
+          1,
+          12
+        ],
+        "effect": [
+          2,
+          "FAIBLE"
         ]
       }
     ],

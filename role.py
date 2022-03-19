@@ -176,6 +176,9 @@ class Role:
         return
 
     def Hurt(self, damage):
+        if damage is None:
+            damage = 0
+
         if damage > self.life:
             damage = self.life
 
@@ -188,6 +191,9 @@ class Role:
         return damage
 
     def Heal(self, heal):
+        if heal is None:
+            heal = 0
+
         self.life += heal
         self.life = min(self.life, self.maxLife)
 
@@ -508,6 +514,41 @@ class Gobelin(Role):
             speaker.Speak("SPECIAL\t- Le gobelin a fouiné le champs de bataille et a trouvé un objet : " + str(itm))
             self.inventory.AddItem(itm)
 
+class Scorpion(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        self.specialAttack = True
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Scorpion")
+
+    def SpecialAttack(self, target):
+        if(tools.RollDice(1,20) >= 12) and target.effect is Effect.POISON:
+            speaker.Speak("SPECIAL\t- Le scorpion est excité par le poison qui se propage en vous. Il attaque encore !")
+            damage = tools.RollDice(self.special[0], self.special[1]) * 2
+            speaker.Speak("CRIT.\t- Scorpion attaque " + target.getName() + " avec son Dard envenimé. " + str(damage) + " dégâts causés.")
+            target.Hurt(damage)
+
+class Mordu(Role):
+
+    hurtCount = 0
+
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Mordu")
+
+    def Hurt(self, damage):
+
+        self.hurtCount += 1
+        revive = tools.RollDice(1, 20) > (20 - self.hurtCount)
+
+        if not revive and self.effect is Effect.NEUTRE:
+            speaker.Speak("ECHEC\t- Le mordu semble immortel.")
+            return 0
+
+        speaker.Speak("ATTAQUE\t- Le mordu n'était plus en état de revivre. Votre attaque lui est fatal !")
+        super().Hurt(damage)
+
+    def Special(self):
+        if(tools.RollDice(1,20) >= 15):
+            speaker.Speak("SPECIAL\t- Le mordu change de bras pour se battre.")
+
 class Niffleur(Role):
 
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
@@ -607,45 +648,45 @@ class Nessie(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
         super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Nessie")
 
-class Scorpion(Role):
+class Illusos(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-        self.specialAttack = True
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Scorpion")
-
-    def SpecialAttack(self, target):
-        if(tools.RollDice(1,20) >= 12) and target.effect is Effect.POISON:
-            speaker.Speak("SPECIAL\t- Le scorpion est excité par le poison qui se propage en vous. Il attaque encore !")
-            damage = tools.RollDice(self.special[0], self.special[1]) * 2
-            speaker.Speak("CRIT.\t- Scorpion attaque " + target.getName() + " avec son Dard envenimé. " + str(damage) + " dégâts causés.")
-            target.Hurt(damage)
-
-class Mordu(Role):
-
-    hurtCount = 0
-
-    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Mordu")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Illusos")
 
     def Hurt(self, damage):
 
-        self.hurtCount += 1
-        revive = tools.RollDice(1, 20) > (20 - self.hurtCount)
-
-        if not revive and self.effect is Effect.NEUTRE:
-            speaker.Speak("ECHEC\t- Le mordu semble immortel.")
+        enemy = self.gameMaster.currentEntity
+        if self is not enemy and tools.RollDice(1, 20) >= 12:
+            repost = tools.RollDice(self.special[0], self.special[1])
+            speaker.Speak("SPECIAL\t- L'Illusos vous a trompé avec une illusion !")
+            speaker.Speak("ATTAQUE\t- Il contre-attaque et inflige " + str(repost) + " dégâts à " + enemy.getName() + ".")
+            enemy.Hurt(repost)
             return 0
 
-        speaker.Speak("ATTAQUE\t- Le mordu n'était plus en état de revivre. Votre attaque lui est fatal !")
         super().Hurt(damage)
 
+class HommeDesSables(Role):
+
+    invoked = False
+
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Homme des sables")
+
     def Special(self):
-        if(tools.RollDice(1,20) >= 15):
-            speaker.Speak("SPECIAL\t- Le mordu change de bras pour se battre.")
+        if not self.invoked and tools.RollDice(1,20) >= 19:
+            speaker.Speak("SPECIAL\t- L'homme des sables pousse un cri puissant, et frappe le sol à plusieurs reprises...")
+            speaker.Speak("???\t- Le sol tremble, le sable s'envole. Un gigantesque ver sort du sol derrière l'homme des sables !")
+            self.gameMaster.enemyJoin = "Ver des sables"
+            self.invoked = True
+
+class VerDesSables(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Ver des sables")
+
 
 ####class NewHero(Role):
 ####    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
 ####        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "NewHero")
 ####
 ####    def Special(self):
-####        if(tools.RollDice(1,20) >= 15):
+####        if tools.RollDice(1,20) >= 15:
 ####            speaker.Speak("SPECIAL\t-")
