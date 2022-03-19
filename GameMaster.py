@@ -1,4 +1,4 @@
-import copy
+import copy, keyboard
 import role, item, story
 import logbook, questSystem
 import speaker, tools
@@ -144,6 +144,11 @@ class GameMaster():
         journey, final = True, False
         while journey and self.AdventurersAlive() :
 
+            logbook.battleWon += 1 # battleWon = -1 at beginning
+
+            if logbook.battleWon != 0 and logbook.battleWon % 5 == 0:
+                self.ReadSelectedBook()
+
             # QUEST
             self.questSystem.Check(self)
 
@@ -152,8 +157,6 @@ class GameMaster():
             self.StoryHappens(st)
 
             # BATTLE
-
-            logbook.battleWon += 1 # battleWon = -1 at beginning
             
             self.Battle() # battle event
             self.EndBattle() # a party won
@@ -206,7 +209,7 @@ class GameMaster():
         for entity in self.combattants.values():
             entity.OnBattleBegins()
 
-        self.enemyJoin = None
+        self.enemyJoin = []
 
         return
 
@@ -229,6 +232,11 @@ class GameMaster():
 
             speaker.Speak()
 
+            # PAUSE THE GAME
+            if keyboard.is_pressed('p'):
+                speaker.Input()
+                    
+            # PICK AN ENTITY
             key = list(self.combattants.keys())[0]
             self.currentEntity = list(self.combattants.values())[0]
             # Check entity's life
@@ -244,8 +252,11 @@ class GameMaster():
 
             self.EndTurn(key)
 
-            if self.enemyJoin is not None:
-                self.EnemyJoin()
+            # ADD NEW ENEMY TO THE BATTLE
+            if not tools.Empty(self.enemyJoin):
+                for enemyJoin in self.enemyJoin:
+                    self.EnemyJoin(enemyJoin)
+                self.enemyJoin.clear()
 
         # WINNER
         if self.AdventurersAlive():
@@ -266,15 +277,13 @@ class GameMaster():
 
         return
 
-    def EnemyJoin(self):
+    def EnemyJoin(self, name):
 
         # Find the enemy
         newEnemy = None
         for enemy in self.horde:
-            if enemy.getName() is self.enemyJoin:
+            if enemy.getName() is name:
                 newEnemy = tools.CopyEntity(enemy)
-
-        self.enemyJoin = None
 
         if newEnemy is None:
             return

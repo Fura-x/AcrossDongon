@@ -41,7 +41,11 @@
 
           "enunciate": [
             "Vous poursuivez votre route"
-          ]
+          ],
+
+          "reward": {
+            "func": "NewRandomMember"
+          }
         }
       }
     }
@@ -69,7 +73,7 @@
       0
     ]
   },
-  "Amphibien": {
+  "HommePoisson": {
     "adventurer": true,
     "armor": 16,
     "weapon1": "Trident monstre",

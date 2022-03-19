@@ -14,11 +14,6 @@ def GlobalAttack(group, damage):
     for key, entity in group.items():
         entity.Hurt(damage)
 
-        if not entity.Alive(): keys.append(key)
-
-    for key in keys:
-        group.pop(key)
-
     return
 
 def CopyItem(toCopy):

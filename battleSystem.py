@@ -96,7 +96,7 @@ class Effect(Enum):
         elif effect is Effect.POISON:
             # Hit 20% of entity current life
             dmg = round(entity.life * 20 / 100)
-            speaker.Speak("POISON\t- " + entity.getName() + " est empoisonné. Perd " + str(dmg) + "PV =O")
+            speaker.Speak("POISON\t- " + entity.getName() + " est empoisonné, et perd " + str(dmg) + "PV.")
             entity.Hurt(dmg)
 
         elif effect is Effect.FEU:

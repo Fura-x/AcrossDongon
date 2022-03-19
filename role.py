@@ -289,7 +289,7 @@ class Voleur(Role):
     def Special(self):
         #Sneak attack
         if (tools.RollDice(1, 20) >= 16):
-            speaker.Speak("SPECIAL\t- Rogue prépare une attaque surprise, ça va être douloureux pour la cible !")
+            speaker.Speak("SPECIAL\t- Le voleur prépare une attaque surprise, ça va être douloureux pour la cible !")
             self.specialDamage = tools.RollDice(self.special[0], self.special[1])
 
 class Guerrier(Role):
@@ -308,7 +308,7 @@ class Guerrier(Role):
     def Dying(self):
         #Second Win
         if (not self.processedHeal):
-            speaker.Speak("SPECIAL\t- Warrior ne se sent pas bien, il puisse de la force dans son mental et récupère 10PV!")
+            speaker.Speak("SPECIAL\t- Le guerrier est sur le point de mourir, il puise de la force dans son mental et récupère 10PV!")
             self.Heal(self.special[1])
             self.processedHeal = True
         
@@ -384,12 +384,16 @@ class Lithologue(Role):
             speaker.Speak("SPECIAL\t- Le lithologue concentre l'énergie des pierres, et la redirige vers " + victim.getName() + ".")
             victim.GetEffected(Effect.PARA, self.getName())
 
-class Amphibien(Role):
+class HommePoisson(Role):
 
     charge = 0
 
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
-        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Amphibien")
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Homme poisson")
+
+    def OnBattleBegins(self):
+        self.charge = 0
+        return super().OnBattleBegins()
 
     def Special(self):
         if(tools.RollDice(1,20) >= 6):
@@ -464,10 +468,13 @@ class Bandit(Role):
         '''Steal an enemies item'''
         if tools.RollDice(1, 20) >= 20:
             enemy = tools.RandomItem(self.enemies)[1]
+
             if not enemy.inventory.Empty():
                 item = enemy.inventory.PopRandom()
-                speaker.Speak("SPECIAL\t- Le bandit dérobe l'item " + str(item) + " à " + enemy.getName() + ".")
-                self.inventory.AddItem(enemy.inventory.PopRandom())
+
+                if item is not None:
+                    speaker.Speak("SPECIAL\t- Le bandit dérobe l'item " + str(item) + " à " + enemy.getName() + ".")
+                    self.inventory.AddItem(enemy.inventory.PopRandom())
 
 class Croyant(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
@@ -559,6 +566,44 @@ class Niffleur(Role):
             bonusArmor = tools.RollDice(self.special[0], self.special[1])
             speaker.Speak("SPECIAL\t- Niffleur améliore son aura royale, et gagne " + str(bonusArmor) + " d'armure!")
             self.turnArmor += bonusArmor
+
+class Scientist(Role):
+
+    invoked = False
+
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Dr.Octavia Puzz")
+
+
+    def Play(self):
+        if not self.invoked:
+            speaker.Speak("SPECIAL\t- La scientifique Ocatavia Puzz jette trois fioles sur le terrain. Des grosses boules bleus en sortent !")
+            self.gameMaster.enemyJoin.append("Blob")
+            self.gameMaster.enemyJoin.append("Blob")
+            self.gameMaster.enemyJoin.append("Blob")
+            self.invoked = True
+
+        
+        return super().Play()
+
+    def Special(self):
+        if tools.RollDice(1,20) >= 18:
+            speaker.Speak("SPECIAL\t- Doctresse Octavia Puzz manipule la matière devant vos yeux, et crée une nouvelle entité !")
+            self.gameMaster.enemyJoin.append("Blob")
+
+
+class Blob(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Blob")
+
+    def Dying(self):
+        speaker.Speak("SPECIAL\t- Le blob est sur le point de disparaître, mais au lieu de ça il explose et se divise en deux !")
+        self.gameMaster.enemyJoin.append("Mini blob")
+        self.gameMaster.enemyJoin.append("Mini blob")
+        
+class MiniBlob(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Mini blob")
                     
 class Treiish(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
@@ -627,7 +672,7 @@ class Libraire(Role):
     def Special(self):
         if(tools.RollDice(1,20) >= 17):
             speaker.Speak("SPECIAL\t- Le libraire appelle à l'aide. Un être malvaillant le rejoint.")
-            self.gameMaster.enemyJoin = "Croyant"
+            self.gameMaster.enemyJoin.append("Croyant")
 
 class Moldrick(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
@@ -675,7 +720,7 @@ class HommeDesSables(Role):
         if not self.invoked and tools.RollDice(1,20) >= 19:
             speaker.Speak("SPECIAL\t- L'homme des sables pousse un cri puissant, et frappe le sol à plusieurs reprises...")
             speaker.Speak("???\t- Le sol tremble, le sable s'envole. Un gigantesque ver sort du sol derrière l'homme des sables !")
-            self.gameMaster.enemyJoin = "Ver des sables"
+            self.gameMaster.enemyJoin.append("Ver des sables")
             self.invoked = True
 
 class VerDesSables(Role):

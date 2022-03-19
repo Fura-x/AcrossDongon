@@ -44,7 +44,7 @@
       {
         "name": "Petite dague",
         "damage": [
-          1,
+          3,
           4
         ],
         "effect": [
@@ -60,7 +60,7 @@
         "name": "Hache lourde",
         "damage": [
           2,
-          6
+          10
         ]
       }
     ],
@@ -85,7 +85,7 @@
       {
         "name": "Lance-pierre",
         "damage": [
-          10,
+          9,
           2
         ]
       }
@@ -356,6 +356,62 @@
         "effect": [
           2,
           "CURIEUX"
+        ]
+      }
+    ],
+
+    "Fiole chimique": [
+      "Weapon",
+      {
+        "name": "Fiole chimique",
+        "damage": [
+          1,
+          15
+        ],
+        "effect": [
+          4,
+          "FEU"
+        ]
+      }
+    ],
+
+    "Tentacule mécha": [
+      "Weapon",
+      {
+        "name": "Tentacule mécha",
+        "damage": [
+          4,
+          8
+        ]
+      }
+    ],
+
+    "Pisto-laser": [
+      "Weapon",
+      {
+        "name": "Pisto-laser",
+        "damage": [
+          3,
+          10
+        ],
+        "effect": [
+          4,
+          "FATIGUE"
+        ]
+      }
+    ],
+
+    "Substance dégoulinante": [
+      "Weapon",
+      {
+        "name": "Substance dégoulinante",
+        "damage": [
+          5,
+          1
+        ],
+        "effect": [
+          5,
+          "GEL"
         ]
       }
     ],

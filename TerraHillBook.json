@@ -56,6 +56,20 @@
             "item5": "Little armor"
           }
         }
+      },
+      "Choice3": {
+
+        "enunciate": "Faire demi-tour.",
+
+        "event1": {
+
+          "enunciate": [
+            "On vous suivais !"
+          ],
+          "reward": {
+            "func": "NewRandomMember"
+          }
+        }
       }
     }
   },
@@ -85,7 +99,7 @@
     "adventurer": true,
     "armor": 15,
     "weapon": "Hache lourde",
-    "life": 40,
+    "life": 50,
     "special": [
       1,
       10
@@ -107,7 +121,7 @@
     "pods": 2,
     "armor": 12,
     "weapon": "Massue d'argile",
-    "life": 45,
+    "life": 35,
     "special": [
       0,
       0
@@ -127,7 +141,7 @@
     "adventurer": false,
     "armor": 8,
     "weapon": "Griffes aiguisées",
-    "life": 60,
+    "life": 45,
     "special": [
       0,
       0
@@ -145,6 +159,49 @@
     ],
     "weapon": "Griffes rasoires",
     "weapon1": "Aura royale"
+  },
+
+  "Scientist": {
+    "adventurer": false,
+    "pods": 12,
+    "armor": 16,
+    "armorBreaker": 30,
+    "weapon1": "Fiole chimique",
+    "weapon2": "Tentacule mécha",
+    "weapon3": "Pisto-laser",
+    "life": 50,
+    "special": [
+      0,
+      0
+    ]
+  },
+
+  "Blob": {
+    "adventurer": false,
+    "pods": 30,
+    "armor": 3,
+    "armorBreaker": 100,
+    "weapon": "Substance dégoulinante",
+    "life": 30,
+    "special": [
+      0,
+      0
+    ]
+  },
+
+  "MiniBlob": {
+    "adventurer": false,
+    "pods": 30,
+    "armor": 0,
+    "armorBreaker": 100,
+    "weapon": "Substance dégoulinante",
+    "life": 15,
+    "special": [
+      0,
+      0
+    ]
+
+
   }
 }
 

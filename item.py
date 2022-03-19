@@ -167,10 +167,13 @@ class Inventory:
 	def PopRandom(self):
 		# Remove a random item from inventory
 		lists = []
-		if len(self.Weapons) > 0:
+		if not tools.Empty(self.Weapons):
 			lists.append(self.Weapons)
-		if len(self.Potions) > 0:
+		if not tools.Empty(self.Potion):
 			lists.append(self.Potions)
+
+		if tools.Empty(lists):
+			return None
 
 		items = tools.RandomElement(lists)
 		return tools.PopRandomItem(items)
