@@ -707,7 +707,7 @@
       }
     ],
 
-    "Strenght": [
+    "strength": [
       "Potion",
       {
         "type": "FORCE",
@@ -716,7 +716,7 @@
       }
     ],
 
-    "Good strenght": [
+    "Good strength": [
       "Potion",
       {
         "type": "FORCE",
@@ -725,7 +725,7 @@
       }
     ],
 
-    "Super strenght": [
+    "Super strength": [
       "Potion",
       {
         "type": "FORCE",
@@ -767,7 +767,7 @@
       "func": "GiveItem",
       "item1": "Heal",
       "item2": "Armor",
-      "item3": "Strenght",
+      "item3": "strength",
       "item4": "Spray"
     },
     "reward2": {

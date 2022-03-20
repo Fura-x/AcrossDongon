@@ -202,7 +202,7 @@ class GameMaster():
         
         self.combattants = tools.Reorder(merge)
 
-        # Improve adventurer strenght each round
+        # Improve adventurer strength each round
         for adv in self.advGroup.values():
             adv.baseArmorBreaker = 20 + logbook.battleWon
 

@@ -40,7 +40,7 @@ class Potion(Item):
 		if self.type is PotionType.SOIN: # HEAL
 			return entity.life <= entity.maxLife*0.4
 
-		elif self.type is PotionType.FORCE: # STRENGHT
+		elif self.type is PotionType.FORCE: # strength
 			return tools.RollDice(1, 5) == 1
 
 		elif self.type is PotionType.ARMURE: # ARMOR
@@ -57,7 +57,7 @@ class Potion(Item):
 				speaker.Speak("POTION\t- " + entity.getName() + " se soigne " + str(self.value) + "PV grâce à sa potion.")
 			entity.Hurt(-self.value)
 
-		elif self.type is PotionType.FORCE: # STRENGHT
+		elif self.type is PotionType.FORCE: # strength
 			if not self.used: 
 				speaker.Speak("POTION\t- " + entity.getName() + " utilise une potion de force ! Les dégâts sont augmentés de " + str(self.value) + " pendant " + str(self.lifeTime) + " tours.")
 			entity.turnDamage += self.value

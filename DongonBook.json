@@ -45,7 +45,7 @@
             "func": "GiveItem",
             "item1": "Heal",
             "item2": "Spray",
-            "item3": "Good strenght"
+            "item3": "Good strength"
           }
         }
       },
@@ -99,7 +99,7 @@
     "weapon": "Fiole brisée",
     "potion": "Super heal",
     "potion1": "Super armor",
-    "potion2": "Super strenght",
+    "potion2": "Super strength",
     "life": 15,
     "special": [
       6,
@@ -146,8 +146,8 @@
     "armor": 20,
     "weapon": "Baguette Dondon",
     "weapon2": "Baguette Gongon",
-    "potion": "Strenght",
-    "potion2": "Strenght",
+    "potion": "strength",
+    "potion2": "strength",
     "potion3": "Good heal",
     "life": 70,
     "special": [
@@ -161,7 +161,7 @@
     "armor": 18,
     "weapon": "Bras d'envergure",
     "potion": "Heal",
-    "potion1": "Strenght",
+    "potion1": "strength",
     "life": 52,
     "special": [
       5,

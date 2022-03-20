@@ -56,15 +56,15 @@ class Role:
             effect = ": " + self.effect.name + "\n"
 
             bonusDamage = self.turnDamage + self.baseDamage
-            if bonusDamage > 0: strenght = "\t Force+: " + str(bonusDamage)
-            else: strenght = ""
+            if bonusDamage > 0: strength = "\t Force+: " + str(bonusDamage)
+            else: strength = ""
 
             armor = "\t Armure: " + str(self.turnArmor) + "/" + str(self.baseArmor)
 
             if self.inventory.Empty(): inventory = ""
             else: inventory = "\n" + str(self.inventory)
 
-            return self.getName() + effect + "    PV: " + str(self.life) + "/" + str(self.maxLife) + armor + strenght + inventory
+            return self.getName() + effect + "    PV: " + str(self.life) + "/" + str(self.maxLife) + armor + strength + inventory
 
         return self.getName() + ": mort"
 
