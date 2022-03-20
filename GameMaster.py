@@ -23,10 +23,11 @@ class GameMaster():
 
         speaker.Write("\nChoisissez votre premier aventurier :")
         self.advEnroll = []
-        self.advEnroll.append(tools.CopyEntity(tools.EnumerateAndSelect(self.adventurers)[1]))
+        adventurer = tools.EnumerateAndSelect(self.adventurers)[1]
+        self.AddNewMember(adventurer)
         self.advGroup = tools.RandomDict(self.advEnroll, 20)
 
-        speaker.Write("Vous avez enrollé " + self.advEnroll[0].getName() + " !")
+        speaker.Write("Vous avez enrollé " + adventurer.getName() + " !")
 
         self.battleContext = BattleContext()
         self.questSystem = questSystem.QuestSytem()
@@ -102,7 +103,7 @@ class GameMaster():
 
             adv = self.advGroup.pop(key, None)
             if adv is not None:
-                tools.Pop(self.advEnroll, adv.getName(), lambda name, a: name == a.getName())
+                self.PopMember(adv.getName())
 
             self.hordeGroup.pop(key, None)
 
@@ -308,6 +309,10 @@ class GameMaster():
 
         return
 
+    def AddNewMember(self, adventurer):
+        self.advEnroll.append(tools.CopyEntity(adventurer))
+        logbook.AddKeyItem(adventurer.getName())
+
     def NewRandomMember(self):
         '''Get a random member which is not enrolled'''
         name = []
@@ -318,7 +323,7 @@ class GameMaster():
         for adventurer in self.adventurers:
             if adventurer.getName() in name:
                 continue
-            self.advEnroll.append(tools.CopyEntity(adventurer))
+            self.AddNewMember(adventurer)
             return adventurer
 
         return None
@@ -333,8 +338,12 @@ class GameMaster():
             if adventurer.getName() in name:
                 continue
             if adventurer.getName() is memberName:
-                self.advEnroll.append(tools.CopyEntity(adventurer))
+                self.AddNewMember(adventurer)
                 return adventurer
+
+    def PopMember(self, advName):
+        tools.Pop(self.advEnroll, advName, lambda name, a: namme == a.getName())
+        logbook.PopKeyItem(name)
 
     def GiveItemRandom(self, item, groupIndex = 0):
         '''groupIndex : 0 -adventurers 1- horde 2- all'''

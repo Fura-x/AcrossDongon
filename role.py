@@ -400,7 +400,8 @@ class HommePoisson(Role):
             speaker.Speak("SPECIAL\t- L'homme poisson absorbe l'humidité de l'air.")
             self.charge += 1
             if self.charge == 3:
-                speaker.Speak("SPECIAL\t- Il a absorbé suffisamment d'humidité, il fait déferler un énorme torrent sur les ennemies.")
+                speaker.Speak("SPECIAL\t- Il a absorbé suffisamment d'humidité, il fait déferler un énorme torrent sur les ennemies!")
+                speaker.Speak("ATTAQUE\t- Tous les ennemis subissent 30 de dégâts.")
                 tools.GlobalAttack(self.enemies, 30)
                 self.charge = 0
 

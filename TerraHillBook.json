@@ -71,7 +71,57 @@
           }
         }
       }
+    },
+
+    "L'ASCENSION DU MAGE": {
+
+      "access": {
+        "Mage": true
+      },
+      "enunciate": [
+        "Le mage de votre équipe agite sa baguette dans le vide.",
+        "Il semble être entrain de s'entraîner à jeter des sorts,",
+        "mais pourtant rien ne se produit.",
+        "",
+        "Soudain le mage s'effondre, et crache des jurons",
+        "'J'y suis presque !' dit-il.",
+        "Faîtes-vous confiance au mage ?"
+      ],
+      "choice1": {
+
+        "enunciate": "Oui, le mage doit continuer de pratiquer ce sort inconnu.",
+
+        "event1": {
+
+          "enunciate": [
+            "Le mage se relève plus déterminé que jamais.",
+            "Il continue de tourner sa baguette dans le vide,",
+            "il tremble de tous ses membres, mais là, une étincelle apparaît !",
+            "",
+            "Le mage a réussi son sort de création, vous obtenez une potion"
+          ],
+          "reward": {
+            "func": "GiveItem",
+            "value1": "Good heal",
+            "valu2": "Super heal",
+            "value3": "Good strength",
+            "value4": "Spray"
+          }
+        }
+      },
+      "choice2": {
+
+        "enunciate": "Non, il ne faut pas qu'il s'affaiblisse d'avantage !",
+
+        "event1": {
+
+          "enunciate": [
+            "Ok."
+          ]
+        }
+      }
     }
+
   },
 
   "Mage": {
