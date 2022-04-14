@@ -342,8 +342,8 @@ class GameMaster():
                 return adventurer
 
     def PopMember(self, advName):
-        tools.Pop(self.advEnroll, advName, lambda name, a: namme == a.getName())
-        logbook.PopKeyItem(name)
+        tools.Pop(self.advEnroll, advName, lambda name, a: name == a.getName())
+        logbook.PopKeyItem(advName)
 
     def GiveItemRandom(self, item, groupIndex = 0):
         '''groupIndex : 0 -adventurers 1- horde 2- all'''

@@ -210,7 +210,6 @@ class StoryReward:
 
         return
 
-
     def GiveItem(self, gameMaster):
         # Return weapon or potion
         gameMaster.GiveItem(self.reward)
@@ -265,7 +264,7 @@ class StoryReward:
         victim = tools.RandomItem(gameMaster.advGroup)[1]
         potion = victim.inventory.PopRandomSpec("Potion")
         if potion is None:
-            speaker.Write("En fait, les bandits ne vous ont rien volés...")
+            speaker.Write("On a rien pu vous voler...")
         else:
             speaker.Write(victim.getName() + " s'est fait prendre " + potion.str())
 

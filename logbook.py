@@ -8,13 +8,13 @@ keyItems = {}
 
 def AddKeyItem(key):
     if key not in keyItems.keys():
-        speaker.WriteInput("Add [ " + key + " ] to your key items!")
+        speaker.WriteInput("Item clé [ " + key + " ] obtenu!")
     keyItems[key] = key
 
 def PopKeyItem(key):
     pop = keyItems.pop(key, None)
     if pop is not None:
-        speaker.Speak("Remove [ " + key + " ] from your key items.")
+        speaker.Speak("Item clé [ " + key + " ] retiré.")
 
 def IsKeyItem(key):
     return key in keyItems.keys()

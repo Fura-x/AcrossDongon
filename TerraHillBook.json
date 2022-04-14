@@ -17,7 +17,7 @@
 
             "func": "GiveItem",
             "item1": "Good heal",
-            "item2": "Little armor"
+            "item2": "Armor"
           }
         },
         "event2": {
@@ -53,7 +53,7 @@
             "item2": "Good heal",
             "item3": "Lance opale",
             "item4": "Spray",
-            "item5": "Little armor"
+            "item5": "Armor"
           }
         }
       },
@@ -118,6 +118,219 @@
           "enunciate": [
             "Ok."
           ]
+        }
+      }
+    },
+
+    "LA CACHETTE DU VOLEUR": {
+      "access": {
+        "Voleur": true
+      },
+      "enunciate": [
+        "Vous passez dans un champ curieux.",
+        "Curieux car il y a plein de charettes et tentes abandonnées.",
+        "Vous entourez de débris. Le voleur commence à sourire.",
+        "Ce lieu est en fait son repère ! Cependant il n'est pas seul...",
+        "Il propose d'aller à sa cachette secrète récolter du butin."
+      ],
+
+      "choice1": {
+        "enunciate": "Allons-y !",
+        "event1": {
+          "enunciate": [
+            "Vous suivez le voleur parmis le labyrinthe des chariots en ruine.",
+            "Il rentre alors dans une charette voilée, ouvre un coffre",
+            "et ressort avec le buttin promis !"
+          ],
+          "reward": {
+            "func": "GiveItem",
+            "item1": "Good heal",
+            "item2": "Pistolet à silex",
+            "item3": "Livre épais",
+            "item4": "Dague d'acier"
+          }
+        },
+        "event2": {
+          "enunciate": [
+            "Vous suivez le voleur parmis le labyrinthe des chariots en ruine.",
+            "Il rentre alors dans une charette voilée, ouvre un coffre",
+            "et ressort avec le buttin promis !"
+          ],
+          "reward": {
+            "func": "GiveMoney",
+            "value1": 15,
+            "value2": 25
+          }
+        },
+        "event3": {
+          "enunciate": [
+            "Vous suivez le voleur parmis le labyrinthe des chariots en ruine.",
+            "Malheureusement, une bande de fripouille vous tombe dessus,",
+            "et vous font la misère."
+          ],
+          "reward1": {
+            "func": "TeamHurt",
+            "value": 10
+          },
+          "reward2": {
+            "func": "Text",
+            "value1": "Le voleur est très gêné de ce qu'il vient de se passer."
+          }
+        }
+      },
+      "choice2": {
+        "enunciate": "Non, ne perdons pas de temps ici.",
+
+        "event1": {
+          "enunciate": [
+            "Vous poursuivez votre route, avec quelques regards curieux autour de vous.",
+            "Que des débris, et un voleur bien triste"
+          ]
+        },
+        "event2": {
+          "enunciate": [
+            "Vous poursuivez votre route, avec quelques regards curieux autour de vous.",
+            "Vous remarquez alors un objet qui scintille sous des planches."
+          ],
+          "reward": {
+            "func": "GiveMoney",
+            "value1": 10
+          }
+        }
+      }
+    },
+
+    "LA DESTINEE DU GUERRIER": {
+      "access": {
+        "Guerrier": true,
+        "CHASSE REUSSIE": false
+      },
+      "enunciate": [
+        "Vous êtes actuellement dans une forêt plutôt dense,",
+        "et vous entendez toute sorte de bruits dans les profondeurs du bosquet.",
+        "Le guerrier s'arrête, l'air pensif.",
+        "En fait, il existe une coutume dans son clan qui est de chasser le Caribou légendaire.",
+        "Ce Caribou peut apparaître dans n'importe quelle forêt,",
+        "le guerrier aimerait prendre du temps pour le chasser."
+      ],
+      "choice1": {
+        "enunciate": "Partir à la chasse au Caribou légendaire.",
+        "event1": {
+          "enunciate": [
+            "Votre équipe s'enfonce dans la forêt, à pas de loups.",
+            "Le guerrier explique que la meilleure chose à faire,",
+            "c'est attendre caché dans les fougères..."
+          ],
+          "reward": {
+            "func": "Text",
+            "value1": "Vous avez attendu trop longtemps, et abandonnez la quête.",
+            "value2": "Le guerrier a pourchassé une grande créature, mais l'a perdue de vue.",
+            "value3": "Vous n'avez vu que des lapins et des toufrotins."
+          },
+          "reward2": {
+            "func": "GiveKeyItem",
+            "value": "CHASSE DIFFICILE"
+          }
+        },
+        "event2": {
+          "enunciate": [
+            "Vous courrez dans les bois à la recherche du Caribou.",
+            "Le guerrier utilise son flaire bestiale pour suivre une trace invisible,",
+            "une lumière vous éblouie soudainement.",
+            "",
+            "Des ninjas de la tribu de Dana s'en prenne à vous !",
+            "Ils vous ont pris par surprise, vous ne pouvez rien faire."
+          ],
+          "reward": {
+            "func": "MemberHurt",
+            "value1": 10,
+            "value2": 12,
+            "value3": 14
+          },
+          "reward1": {
+            "func": "LosePotion"
+          },
+          "reward2": {
+            "func": "GiveKeyItem",
+            "value1": "CHASSE DIFFICILE"
+          }
+        },
+        "event3": {
+          "enunciate": [
+            "Vous courrez dans les bois à la recherche du Caribou.",
+            "Le guerrier utilise son flaire bestiale pour suivre une trace invisible,",
+            "une lumière vous éblouie soudainement.",
+            "",
+            "C'est lui ! Le caribou légendaire ! Le guerrier devient fou et se jette sur lui.",
+            "Le caribou légendaire est touché par la hache du guerrier,",
+            "mais la partie blessée de son corps se détache pour être remplacée",
+            "par une peau toute neuve. Le guerrier n'en croit pas ses yeux",
+            "et laisse la créature s'échapper.",
+            "Malgré tout, Le morceau du caribou légendaire affecte votre équipe."
+          ],
+          "reward1": {
+            "func": "TeamHeal",
+            "value": 30
+          },
+          "reward2": {
+            "func": "GiveItem",
+            "value1": "Pouvoir sylvestre"
+          },
+          "reward3": {
+            "func": "GiveKeyItem",
+            "value": "CHASSE DIFFICILE"
+          }
+        }
+      },
+      "choice2": {
+        "enunciate": "Ne pas s'y intéresser.",
+        "event1": {
+          "enunciate": [
+            "Vous n'avez pas de temps à perdre avec les coutumes d'un clan,",
+            "Et vous continuez votre route sans soucis.",
+            "Votre équipe est reposée par le calme des plantes."
+          ],
+          "reward": {
+            "func": "TeamHeal",
+            "value1": 0,
+            "value2": 10,
+            "value3": 20
+          }
+        }
+          
+      },
+      "choice3": {
+        "access": {
+          "CHASSE DIFFICILE": true
+        },
+        "enunciate": "Convaincre le guerrier de ne plus chasser.",
+        "event1": {
+          "enunciate": [
+            "Le guerrier refuse de vous écouter !"
+          ]
+        },
+        "event2": {
+          "enunciate": [
+            "Le guerrier écoute vos paroles avec calme.",
+            "Il admet que cette quête est impossible, et décide de lâcher prise.",
+            "",
+            "C'est alors qu'une lumière divine s'abat juste devant l'équipe.",
+            "Le caribou légendaire fait son apparition ! Il s'approche du guerrier",
+            "et s'incline en signe de respect.",
+            "Le guerrier est ému et prend le caribou légendaire dans ses bras.",
+            "Le caribou légendaire vous offre une aide des dieux."
+          ],
+          "reward": {
+            "func": "TeamHeal",
+            "value": 30
+          },
+          "reward2": {
+            "func": "NewRandomMember"
+          },
+          "reward3": {
+            "func": "GiveKeyItem",
+            "value": "CHASSE REUSSIE"
+          }
         }
       }
     }

@@ -524,6 +524,17 @@
       }
     ],
 
+    "Pouvoir sylvestre": [
+      "Weapon",
+      {
+        "name": "Pouvoir sylvestre",
+        "damage": [
+          1,
+          50
+        ]
+      }
+    ],
+
     "Massue à épine": [
       "Weapon",
       {
