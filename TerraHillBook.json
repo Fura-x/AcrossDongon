@@ -174,7 +174,7 @@
           },
           "reward2": {
             "func": "Text",
-            "value1": "Le voleur est très gêné de ce qu'il vient de se passer."
+            "value1": [ "Le voleur est très gêné de ce qu'il vient de se passer." ]
           }
         }
       },
@@ -203,7 +203,7 @@
     "LA DESTINEE DU GUERRIER": {
       "access": {
         "Guerrier": true,
-        "CHASSE REUSSIE": false
+        "CHASSE REUSSITE": false
       },
       "enunciate": [
         "Vous êtes actuellement dans une forêt plutôt dense,",
@@ -216,6 +216,7 @@
       "choice1": {
         "enunciate": "Partir à la chasse au Caribou légendaire.",
         "event1": {
+          "prob": 2,
           "enunciate": [
             "Votre équipe s'enfonce dans la forêt, à pas de loups.",
             "Le guerrier explique que la meilleure chose à faire,",
@@ -223,9 +224,9 @@
           ],
           "reward": {
             "func": "Text",
-            "value1": "Vous avez attendu trop longtemps, et abandonnez la quête.",
-            "value2": "Le guerrier a pourchassé une grande créature, mais l'a perdue de vue.",
-            "value3": "Vous n'avez vu que des lapins et des toufrotins."
+            "value1": ["Vous avez attendu trop longtemps, et abandonnez la quête."],
+            "value2": ["Le guerrier a pourchassé une grande créature, mais l'a perdue de vue."],
+            "value3": [ "Vous n'avez vu que des lapins et des toufrotins." ]
           },
           "reward2": {
             "func": "GiveKeyItem",
@@ -297,7 +298,7 @@
             "value3": 20
           }
         }
-          
+
       },
       "choice3": {
         "access": {
@@ -329,8 +330,126 @@
           },
           "reward3": {
             "func": "GiveKeyItem",
-            "value": "CHASSE REUSSIE"
+            "value": "CHASSE REUSSITE"
           }
+        }
+      }
+    },
+
+    "LA VOIE DU CHASSEUR": {
+      "access": {
+        "Chasseur": true
+      },
+      "enunciate": [
+        "Le chasseur de votre équipe semble mal à l'aise.",
+        "Il ne se sent pas à sa place parmis les aventuriers,",
+        "peut-être qu'une petite partie de chasse lui ferait du bien ?"
+      ],
+      "choice1": {
+        "enunciate": "Partir à la chasse!",
+        "event1": {
+          "enunciate": [
+            "Vous proposez au chasseur de chasser un peu.",
+            "Ce dernier saute de joie, et vous vous y attelez aussitôt !"
+          ],
+          "reward1": {
+            "func": "Text",
+            "value1": ["Vous avez fait un concours de chasse. Bien sûr, le chasseur le remporte au la main avec ses 7 lapins."],
+            "value2": ["Vous avez pu voir le chasseur à l'oeuvre, et vous vous nourissez de ses toufrotins attrapés."],
+            "value3": [ "Vous êtes tombés sur un camps de gobelin. Le chasseur les a piégé sans problème, et vous avez récupéré leurs vivres." ]
+          },
+          "reward2": {
+            "func": "TeamHeal",
+            "value": 5,
+            "value1": 10,
+            "value2": 20
+          },
+          "reward3": {
+            "func": "Text",
+            "value": [ "Le chasseur se sent bien mieux !" ]
+          }
+        },
+        "event2": {
+          "enunciate": [
+            "Vous proposez au chasseur de chasser un peu.",
+            "Ce dernier saute de joie, et vous vous y attelez aussitôt !",
+            "",
+            "Pendant votre temps de chasse, vous avez rencontrez un voyageur",
+            "très enjoué pour votre activité. Il finit même par rejoindre votre équipe !"
+          ],
+          "reward1": {
+            "func": "NewRandomMember"
+          }
+        }
+      },
+      "choice2": {
+        "enunciate": "Ignorer sa peine.",
+        "event1": {
+          "prob": 3,
+          "enunciate": [
+            "Vous n'avez pas le temps de vous occupez du vide du chasseur.",
+            "Ce dernier devient un peu morause, mais il finit par se remettre d'aplomb,",
+            "prêt au combat !"
+          ]
+        },
+        "event2": {
+          "enunciate": [
+            "Le chasseur s'énerve, et crache des jurons dans l'air.",
+            "Une flèche perdue finit par toucher quelqu'un..."
+          ],
+          "reward1": {
+            "func": "MemberHurt",
+            "value1": 5
+          }
+        }
+      },
+      "choice3": {
+        "enunciate": "Lui faire comprendre qu'il est bien à sa place.",
+        "event1": {
+          "enunciate": [
+            "Nous sommes des aventuriers, notre quête est de renversé l'empereur du mal.",
+            "Certes ce n'est pas une tâche propre au chasseur. Quelle est sa tâche alors ?",
+            "C'est de parcourir la nature, et lui emprunter ses ressources pour les donner à son peuple,",
+            "et le nourir !",
+            "",
+            "Chasseur, sans toi, nous mourrons de faim, sans parler de ta stratégie d'attaque",
+            "qui renverse nos adversaires ! Tu as t'as place parmis nous !"
+          ],
+          "reward1": {
+            "func": "Text",
+            "value1": ["Le chasseur est convaincue !"],
+            "value2": ["Vos paroles touchent à peine le chasseur, mais la nuit lui a laissé le temps d'y réflechir."],
+            "value3": [ "Le chasseur vous remercie de ces sages paroles." ]
+          },
+          "reward2": {
+            "func": "Text",
+            "value": [ "Il sort une potion secrète et la donne à l'équipe." ]
+          },
+          "reward3": {
+            "func": "GiveItem",
+            "value": "Armor",
+            "value1": "Good armor",
+            "value2": "Super armor",
+            "value3": "Hunter armor"
+          }
+        },
+        "event2": {
+          "enunciate": [
+            "Vous dites au chasseur que tout va bien se passer.",
+            "Ces paroles lui semblent un peu ridicule, mais il est quand même rassuré."
+          ]
+        }
+      },
+      "choice4": {
+        "access": {
+          "CHASSE DIFFICILE": true,
+          "CHASSE REUSSITE": false
+        },
+        "enunciate": "Demander conseil pour chasser le Caribou légendaire.",
+        "event1": {
+          "enunciate": [
+            "WIP"
+          ]
         }
       }
     }

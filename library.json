@@ -709,6 +709,15 @@
       }
     ],
 
+    "Hunter armor": [
+      "Potion",
+      {
+        "type": "ARMURE",
+        "value": 10,
+        "lifeTime": 4
+      }
+    ],
+
     "Spray": [
       "Potion",
       {
