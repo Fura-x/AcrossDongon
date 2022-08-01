@@ -169,7 +169,7 @@ class Inventory:
 		lists = []
 		if not tools.Empty(self.Weapons):
 			lists.append(self.Weapons)
-		if not tools.Empty(self.Potion):
+		if not tools.Empty(self.Potions):
 			lists.append(self.Potions)
 
 		if tools.Empty(lists):
