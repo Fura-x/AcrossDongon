@@ -2,6 +2,10 @@ import speaker
 
 battleWon = -1
 storyListened = 0
+enemyKilled = 0
+potionConsumed = 0
+worldDiscovered = 0
+worldCrossed = 0
 
 global keyItems
 keyItems = {}

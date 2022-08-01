@@ -11,6 +11,7 @@ class GameMaster():
     godGift = True
     advGroup = {}
     hordeGroup = {}
+    advEnroll = []
     money = 0
 
     def __init__(self):
@@ -21,13 +22,9 @@ class GameMaster():
         self.bookCase = story.BookCase.FromJson(self, tools.ParseJson("library"))
         self.ReadSelectedBook()
 
-        speaker.Write("\nChoisissez votre premier aventurier :")
-        self.advEnroll = []
-        adventurer = tools.EnumerateAndSelect(self.adventurers)[1]
-        self.AddNewMember(adventurer)
+        speaker.Write("\nChoisissez votre second aventurier :")
+        self.ChoseNewAdventurer()
         self.advGroup = tools.RandomDict(self.advEnroll, 20)
-
-        speaker.Write("Vous avez enrollé " + adventurer.getName() + " !")
 
         self.battleContext = BattleContext()
         self.questSystem = questSystem.QuestSytem()
@@ -85,6 +82,8 @@ class GameMaster():
         speaker.Write("Choisissez un lieu où aller:")
         book = tools.EnumerateAndSelect(list(self.bookCase.books.keys()))[1]
         self.ReadBook(book)
+        speaker.Write("Vous rencontrez des nouveaux personnages! Lequel voulez-vous enroller?")
+        self.ChoseNewAdventurer()
 
     def AdventurersAlive(self):
         return len(self.advGroup) > 0
@@ -147,7 +146,9 @@ class GameMaster():
 
             logbook.battleWon += 1 # battleWon = -1 at beginning
 
-            if logbook.battleWon != 0 and logbook.battleWon % 5 == 0:
+            # CHANGE WORLD
+            worldRatio = 3
+            if logbook.battleWon != 0 and logbook.battleWon % worldRatio == 0:
                 self.ReadSelectedBook()
 
             # QUEST
@@ -204,7 +205,7 @@ class GameMaster():
 
         # Improve adventurer strength each round
         for adv in self.advGroup.values():
-            adv.baseArmorBreaker = 20 + logbook.battleWon
+            adv.baseArmorBreaker = 20 + logbook.battleWon * 2
 
         # Send a signal for battle beginning
         for entity in self.combattants.values():
@@ -353,6 +354,21 @@ class GameMaster():
             tools.RandomItem(self.hordeGroup)[1].GiveItem(item)
         else:
             tools.RandomItem(self.combattants)[1].GiveItem(item)
+
+    def ChoseNewAdventurer(self):
+        availableAdventurers = []
+        for adv in self.adventurers:
+            if adv.getName() not in logbook.keyItems:
+                availableAdventurers.append(adv)
+
+        if tools.Empty(availableAdventurers):
+            return
+
+        adventurer = tools.EnumerateAndSelect(availableAdventurers)[1]
+        self.AddNewMember(adventurer)
+        speaker.Write("Vous avez enrollé " + adventurer.getName() + " !")
+
+
 
     def GetAdventurer(self, name):
         # Find an adventurer by its name

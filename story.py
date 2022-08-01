@@ -268,6 +268,11 @@ class StoryReward:
         else:
             speaker.Write(victim.getName() + " s'est fait prendre " + potion.str())
 
+    def Final(self, gameMaster):
+        #Activate final challenge
+        gameMaster.BossBattle()
+        return
+
     def ValueCast(toCast):
         # Used for string (Items, Key Items) and units (Heal, Damage)
         return toCast

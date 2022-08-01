@@ -114,29 +114,28 @@ class BattleContext:
 
     battle = False
     horde = []
+    adventurerPods = 3
 
     def __init__(self):
         return
 
     def DefineHordeGroup(self, gameMaster):
 
-        adventurerPods = 0
-        for adventurer in gameMaster.advEnroll:
-            adventurerPods += adventurer.pods
-
         hordePods = 0
         # create a random enemy group, based on the pods system
         # hordePods in range(advPods - 3, advPods + 3) 
-        while(hordePods < adventurerPods):
+        while(hordePods < self.adventurerPods):
             monster = tools.CopyEntity(tools.RandomElement(gameMaster.horde))
 
             newHordePods = hordePods + monster.pods
             # Don't accept enemy which are too strong
-            if newHordePods > adventurerPods + 3:
+            if newHordePods > self.adventurerPods + 3:
                 continue
 
             hordePods = newHordePods
             self.horde.append(monster)
+
+        self.adventurerPods += 1
 
         return self.horde
 

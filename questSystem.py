@@ -50,5 +50,25 @@ class Quest:
     def KeyItem(self, init = False):
         return logbook.IsKeyItem(value)
 
+    def EnemyKill(self, init = False):
+        if init:
+            self.goal = logbook.enemyKilled + self.value
+        return logbook.enemyKilled >= self.goal
+
+    def PotionConsuming(self, init = False):
+        if init:
+            self.goal = logbook.potionConsumed + self.value
+        return logbook.potionConsumed >= self.goal
+
+    def WorldDiscover(self, init = False):
+        if init:
+            self.goal = logbook.worldDiscovered + self.value
+        return logbook.worldDiscovered
+
+    def WorldCross(self, init = False):
+        if init:
+            self.goal = logbook.worldCrossed + self.value
+        return logbook.worldCrossed >= self.goal
+
     def FromJson(input):
         return Quest(input["enunciate"], input["condition"], input["value"], story.StoryChoiceEvent.FromJson(input["event"]))
