@@ -2,6 +2,7 @@ import copy, keyboard
 import role, item, story
 import logbook, questSystem
 import speaker, tools
+import questSystem
 
 from battleSystem import BattleContext
 
@@ -12,18 +13,27 @@ class GameMaster():
     advGroup = {}
     hordeGroup = {}
     advEnroll = []
-    money = 0
 
     def __init__(self):
 
         speaker.InitTimer()
         speaker.Write()
 
+        # PARSE LIBRARY.JSON
         self.bookCase = story.BookCase.FromJson(self, tools.ParseJson("library"))
+        self.bookCase.EntitiesFromJson(self, tools.ParseJson("library"))
+        # CHOSE QUEST
+        speaker.Write("Pour commencer,")
+        speaker.Write("Choisissez une mission pour obtenir le soutien des dieux:")
+        self.questSystem = questSystem.QuestSytem()
+        self.questSystem.AddQuest(tools.EnumerateAndSelect(self.bookCase.quests)[1])
+        # CHOSE WORLD AND ADVENTURER
         self.ReadSelectedBook()
-
+        # CHOSE ADVENTURER
         speaker.Write("\nChoisissez votre second aventurier :")
         self.ChoseNewAdventurer()
+
+
         self.advGroup = tools.RandomDict(self.advEnroll, 20)
 
         self.battleContext = BattleContext()
@@ -61,16 +71,19 @@ class GameMaster():
         bookInput = tools.ParseJson(book + "Book")
         bookInput.pop("StoryBook")
 
+        inputEntities = []
+        inputEntities = bookInput.pop("entities")
+
         # ENTITY STORAGE
         self.horde = []
         self.adventurers = []
 
-        for key, value in bookInput.items():
-            entity = role.Role.FromJson(self, key, value)
-            if (entity.adventurer is True):
-                self.adventurers.append(entity)
-            else:
-                self.horde.append(entity)
+        for key, value in self.bookCase.entities.items():
+            if key in inputEntities:
+                if (value.adventurer is True):
+                    self.adventurers.append(value)
+                else:
+                    self.horde.append(value)
 
         self.entities = self.horde + self.adventurers
 
@@ -102,6 +115,7 @@ class GameMaster():
 
             adv = self.advGroup.pop(key, None)
             if adv is not None:
+                logbook.coins -= adv.coins
                 self.PopMember(adv.getName())
 
             self.hordeGroup.pop(key, None)
@@ -153,6 +167,7 @@ class GameMaster():
 
             # QUEST
             self.questSystem.Check(self)
+            speaker.WriteInput(str(self.questSystem))
 
             # STORY
             st = self.bookCase.book.GetRandomStory()
@@ -414,6 +429,7 @@ class GameMaster():
 
         adv = self.SelectAdventurer()
         adv.coins += coins
+        logbook.coins += coins
         speaker.WriteInput("L'argent est donné à " + adv.getName() + " ! Tapez ENTREE pour continuer\n")
 
         return

@@ -51,106 +51,20 @@
     }
   },
 
-  "Chasseur": {
-    "adventurer": true,
-    "armor": 10,
-    "weapon": "Arc en bois",
-    "life": 40,
-    "special": [
-      1,
-      10
-    ]
-  },
-  "Lithologue": {
-    "adventurer": true,
-    "armor": 13,
-    "weapon1": "Bracelet rubis",
-    "weapon2": "Bracelet emeraude",
-    "weapon3": "Bracelet saphir",
-    "life": 32,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "HommePoisson": {
-    "adventurer": true,
-    "armor": 16,
-    "weapon1": "Trident monstre",
-    "potion1": "Fish heal",
-    "potion2": "Fish strength",
-    "life": 28,
-    "special": [
-      0,
-      0
-    ]
-  },
+
+  "entities": [
+    "Chasseur",
+    "Lithologue",
+    "HommePoisson",
 
 
-  "Banshee": {
-    "adventurer": false,
-    "armor": 8,
-    "weapon": "Griffes aiguisées",
-    "life": 60,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Pyrahna": {
-    "adventurer": false,
-    "pods": 2,
-    "armor": 5,
-    "armorBreaker": 18,
-    "weapon": "Petite machoire",
-    "life": 10,
-    "special": [
-      1,
-      3
-    ]
-  },
-  "Gobelin": {
-    "adventurer": false,
-    "pods": 3,
-    "armor": 10,
-    "weapon1": "Epée en bois pourri",
-    "weapon2": "Cuillère tordue",
-    "weapon3": "Fiole brisée",
-    "potion1": "Good heal",
-    "potion2": "Good armor",
-    "potion3": "Spray",
-    "life": 20,
-    "special": [
-      0,
-      0
-    ]
-  },
+    "Banshee",
+    "Pyrahna",
+    "Gobelin",
 
-  "Moldrick": {
-    "adventurer": false,
-    "pods": 9,
-    "armor": 18,
-    "weapon": "Sabre de pirate",
-    "weapon1": "Pistolet à silex",
-    "potion1": "Fish strength",
-    "potion2": "Fish strength",
-    "life": 70,
-    "special": [
-      1,
-      15
-    ]
-  },
+    "Moldrick",
 
-  "Nessie": {
-    "adventurer": false,
-    "pods": 12,
-    "armor": 5,
-    "weapon": "Pouvoir marin",
-    "life": 200,
-    "special": [
-      0,
-      0
-    ]
-  }
+    "Nessie"
+  ]
 
 }

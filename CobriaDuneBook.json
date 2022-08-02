@@ -77,110 +77,19 @@
     }
   },
 
-  "Voleur": {
-    "adventurer": true,
-    "armor": 17,
-    "weapon": "Petite dague",
-    "potion": "Spray",
-    "life": 35,
-    "special": [
-      4,
-      6
-    ]
-  },
-  "Vampire": {
-    "adventurer": true,
-    "armor": 15,
-    "weapon": "Bracelet vampire",
-    "life": 50,
-    "special": [
-      5,
-      4
-    ]
-  },
-  "Nomade": {
-    "adventurer": true,
-    "armor": 11,
-    "weapon": "Sac de survie",
-    "life": 32,
-    "special": [
-      0,
-      0
-    ]
-  },
+  "entities": [
+    "Voleur",
+    "Vampire",
+    "Nomade",
 
-  "Bandit": {
-    "adventurer": false,
-    "armor": 13,
-    "weapon": "Lame secrète",
-    "life": 25,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Scorpion": {
-    "adventurer": false,
-    "pods": 2,
-    "armor": 17,
-    "weapon": "Dard empoisonné",
-    "life": 10,
-    "special": [
-      2,
-      5
-    ]
-  },
-  "Mordu": {
-    "adventurer": false,
-    "armor": 0,
-    "weapon": "Bras décomposé",
-    "weapon1": "Jambe décapitée",
-    "weapon2": "Cervelle écrabouillée",
-    "life": 1,
-    "special": [
-      0,
-      0
-    ]
-  },
+    "Bandit",
+    "Scorpion",
+    "Mordu",
 
-  "Illusos": {
-    "adventurer": false,
-    "pods": 9,
-    "armor": 6,
-    "weapon1": "Sabre de pirate",
-    "weapon2": "Aura royale",
-    "weapon3": "Bras d'envergure",
-    "life": 55,
-    "special": [
-      3,
-      5
-    ]
-  },
+    "Illusos",
 
-  "HommeDesSables": {
-    "adventurer": false,
-    "pods": 12,
-    "armor": 18,
-    "armorBreaker": 24,
-    "weapon1": "Massue à épine",
-    "weapon2": "Bombe tactique",
-    "potion1": "Good heal",
-    "life": 45,
-    "special": [
-      0,
-      0
-    ]
-  },
+    "HommeDesSables",
 
-  "VerDesSables": {
-    "adventurer": false,
-    "pods": 21,
-    "armor": 20,
-    "weapon1": "Pouvoir terrestre",
-    "life": 120,
-    "special": [
-      0,
-      0
-    ]
-  }
+    "VerDesSables"
+  ]
 }

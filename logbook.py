@@ -6,6 +6,7 @@ enemyKilled = 0
 potionConsumed = 0
 worldDiscovered = 0
 worldCrossed = 0
+coins = 0
 
 global keyItems
 keyItems = {}

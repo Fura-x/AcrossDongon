@@ -224,8 +224,8 @@
           ],
           "reward": {
             "func": "Text",
-            "value1": ["Vous avez attendu trop longtemps, et abandonnez la quête."],
-            "value2": ["Le guerrier a pourchassé une grande créature, mais l'a perdue de vue."],
+            "value1": [ "Vous avez attendu trop longtemps, et abandonnez la quête." ],
+            "value2": [ "Le guerrier a pourchassé une grande créature, mais l'a perdue de vue." ],
             "value3": [ "Vous n'avez vu que des lapins et des toufrotins." ]
           },
           "reward2": {
@@ -354,8 +354,8 @@
           ],
           "reward1": {
             "func": "Text",
-            "value1": ["Vous avez fait un concours de chasse. Bien sûr, le chasseur le remporte au la main avec ses 7 lapins."],
-            "value2": ["Vous avez pu voir le chasseur à l'oeuvre, et vous vous nourissez de ses toufrotins attrapés."],
+            "value1": [ "Vous avez fait un concours de chasse. Bien sûr, le chasseur le remporte au la main avec ses 7 lapins." ],
+            "value2": [ "Vous avez pu voir le chasseur à l'oeuvre, et vous vous nourissez de ses toufrotins attrapés." ],
             "value3": [ "Vous êtes tombés sur un camps de gobelin. Le chasseur les a piégé sans problème, et vous avez récupéré leurs vivres." ]
           },
           "reward2": {
@@ -417,8 +417,8 @@
           ],
           "reward1": {
             "func": "Text",
-            "value1": ["Le chasseur est convaincue !"],
-            "value2": ["Vos paroles touchent à peine le chasseur, mais la nuit lui a laissé le temps d'y réflechir."],
+            "value1": [ "Le chasseur est convaincue !" ],
+            "value2": [ "Vos paroles touchent à peine le chasseur, mais la nuit lui a laissé le temps d'y réflechir." ],
             "value3": [ "Le chasseur vous remercie de ces sages paroles." ]
           },
           "reward2": {
@@ -456,134 +456,20 @@
 
   },
 
-  "Mage": {
-    "adventurer": true,
-    "armor": 14,
-    "weapon": "Baguette simple",
-    "life": 30,
-    "special": [
-      4,
-      10
-    ]
-  },
-  "Voleur": {
-    "adventurer": true,
-    "armor": 17,
-    "weapon": "Petite dague",
-    "potion": "Spray",
-    "life": 35,
-    "special": [
-      4,
-      6
-    ]
-  },
-  "Guerrier": {
-    "adventurer": true,
-    "armor": 15,
-    "weapon": "Hache lourde",
-    "life": 50,
-    "special": [
-      1,
-      10
-    ]
-  },
-  "Chasseur": {
-    "adventurer": true,
-    "armor": 10,
-    "weapon": "Arc en bois",
-    "life": 40,
-    "special": [
-      1,
-      10
-    ]
-  },
+  "entities": [
+    "Mage",
+    "Voleur",
+    "Guerrier",
+    "Chasseur",
 
-  "Orc": {
-    "adventurer": false,
-    "pods": 2,
-    "armor": 12,
-    "weapon": "Massue d'argile",
-    "life": 35,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Grick": {
-    "adventurer": false,
-    "armor": 14,
-    "weapon": "Machoire monstre",
-    "life": 27,
-    "special": [
-      1,
-      8
-    ]
-  },
-  "Banshee": {
-    "adventurer": false,
-    "armor": 8,
-    "weapon": "Griffes aiguisées",
-    "life": 45,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Niffleur": {
-    "adventurer": false,
-    "pods": 9,
-    "armor": 12,
-    "armorBreaker": 40,
-    "life": 100,
-    "special": [
-      2,
-      5
-    ],
-    "weapon": "Griffes rasoires",
-    "weapon1": "Aura royale"
-  },
+    "Orc",
+    "Grick",
+    "Banshee",
+    "Niffleur",
 
-  "Scientist": {
-    "adventurer": false,
-    "pods": 12,
-    "armor": 16,
-    "armorBreaker": 30,
-    "weapon1": "Fiole chimique",
-    "weapon2": "Tentacule mécha",
-    "weapon3": "Pisto-laser",
-    "life": 50,
-    "special": [
-      0,
-      0
-    ]
-  },
-
-  "Blob": {
-    "adventurer": false,
-    "pods": 30,
-    "armor": 3,
-    "armorBreaker": 100,
-    "weapon": "Substance dégoulinante",
-    "life": 30,
-    "special": [
-      0,
-      0
-    ]
-  },
-
-  "MiniBlob": {
-    "adventurer": false,
-    "pods": 30,
-    "armor": 0,
-    "armorBreaker": 100,
-    "weapon": "Substance dégoulinante",
-    "life": 15,
-    "special": [
-      0,
-      0
-    ]
-
-
-  }
+    "Scientist",
+    "Blob",
+    "MiniBlob"
+  ]
 }
 

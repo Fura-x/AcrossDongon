@@ -1,20 +1,23 @@
 import copy
 import speaker, tools, role
 import item, logbook
-from questSystem import Quest
+from questSystem import Quest, QuestSytem
 
 class BookCase:
 
-    def __init__(self, books, reserve, chest):
+    def __init__(self, books, reserve, chest, quests):
         self.books = books
         self.reserve = reserve
+        self.entities = {}
         self.chest = chest
+        self.quests = quests
         self.current = ""
 
     def FromJson(gameMaster, input):
         books = {}
         reserve = {}
         chest = []
+        quests = []
 
         bookcase = input.pop("bookcase")
         for book in bookcase.values():
@@ -24,12 +27,22 @@ class BookCase:
         inputReserve = input.pop("reserve")
         for key, itm in inputReserve.items():
             reserve[key] = item.Item.FromJson(itm[0], itm[1])
-            
+
         inputChest = input.pop("chest")
         for key, itm in inputChest.items():
             chest.append(StoryReward.FromJson(itm))
 
-        return BookCase(books, reserve, chest)
+        inputQuests = input.pop("quests")
+        for key, itm in inputQuests.items():
+            quests.append(Quest.FromJson(itm))
+
+        return BookCase(books, reserve, chest, quests)
+
+    def EntitiesFromJson(self, gameMaster, input):
+            # Seconde fonction qui assure que les items sont déjà créés
+        inputEntities = input.pop("entities")
+        for key, itm in inputEntities.items():
+            self.entities[key] = role.Role.FromJson(gameMaster, key, itm)
 
     def SetCurrentBook(self, book):
         self.current = book

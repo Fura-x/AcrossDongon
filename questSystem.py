@@ -8,8 +8,14 @@ class QuestSytem:
     def __init__(self):
         return
 
+    def __str__(self):
+        string = "MISSIONS:\n"
+        for quest in self.quests:
+            string += "\t" + quest.enunciate + " -> " + str(quest.currentValue) + "/" + str(quest.goal) + "\n"
+        return string
+
     def AddQuest(self, quest):
-        speaker.WriteInput("NEW QUEST : " + quest.enunciate)
+        speaker.WriteInput("NOUVELLE MISSION: " + quest.enunciate)
         quest.Reset()
         self.quests.append(quest)
         return
@@ -31,7 +37,11 @@ class Quest:
         self.enunciate = enunciate
         self.condition = condition
         self.value = value
+        self.currentValue = 0
         self.event = event
+
+    def __str__(self):
+        return self.enunciate
 
     def Reset(self):
         getattr(self, self.condition)(True)
@@ -45,7 +55,8 @@ class Quest:
     def BattleHorde(self, init = False):
         if init:
             self.goal = logbook.battleWon + self.value
-        return logbook.battleWon >= self.goal
+        self.currentValue = logbook.battleWon
+        return self.currentValue >= self.goal
 
     def KeyItem(self, init = False):
         return logbook.IsKeyItem(value)
@@ -53,22 +64,32 @@ class Quest:
     def EnemyKill(self, init = False):
         if init:
             self.goal = logbook.enemyKilled + self.value
-        return logbook.enemyKilled >= self.goal
+        self.currentValue = logbook.enemyKilled 
+        return self.currentValue >= self.goal
 
     def PotionConsuming(self, init = False):
         if init:
             self.goal = logbook.potionConsumed + self.value
-        return logbook.potionConsumed >= self.goal
+        self.currentValue = logbook.potionConsumed 
+        return self.currentValue >= self.goal
 
     def WorldDiscover(self, init = False):
         if init:
             self.goal = logbook.worldDiscovered + self.value
-        return logbook.worldDiscovered
+        self.currentValue = logbook.worldDiscovered
+        return self.currentValue >= self.goal
 
     def WorldCross(self, init = False):
         if init:
             self.goal = logbook.worldCrossed + self.value
-        return logbook.worldCrossed >= self.goal
+        self.currentValue = logbook.worldCrossed 
+        return self.currentValue >= self.goal
+
+    def EarnCoin(self, init = False):
+        if init:
+            self.goal = logbook.coins + self.value
+        self.currentValue = logbook.coins 
+        return self.currentValue >= self.goal
 
     def FromJson(input):
         return Quest(input["enunciate"], input["condition"], input["value"], story.StoryChoiceEvent.FromJson(input["event"]))

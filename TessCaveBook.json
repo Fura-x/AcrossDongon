@@ -27,29 +27,9 @@
     }
   },
 
-  "Lithologue": {
-    "adventurer": true,
-    "armor": 13,
-    "weapon1": "Bracelet rubis",
-    "weapon2": "Bracelet emeraude",
-    "weapon3": "Bracelet saphir",
-    "life": 32,
-    "special": [
-      0,
-      0
-    ]
-  },
-
-  "Nessie": {
-    "adventurer": false,
-    "pods": 3,
-    "armor": 5,
-    "weapon": "Pouvoir marin",
-    "life": 200,
-    "special": [
-      0,
-      0
-    ]
-  }
+  "entities": [
+    "Lithologue",
+    "Nessie"
+  ]
 
 }

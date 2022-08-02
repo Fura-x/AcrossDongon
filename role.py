@@ -1,6 +1,6 @@
 from enum import Enum
 from GameMaster import GameMaster
-import item
+import item, logbook
 import tools, time, speaker
 
 from battleSystem import Effect
@@ -234,6 +234,7 @@ class Role:
             elif potion.UseCondition(self):
                 u_potion = potion
                 use = index
+                logbook.potionConsumed += 1
 
             index += 1
 
@@ -475,7 +476,7 @@ class Bandit(Role):
 
                 if item is not None:
                     speaker.Speak("SPECIAL\t- Le bandit dérobe l'item " + str(item) + " à " + enemy.getName() + ".")
-                    self.inventory.AddItem(enemy.inventory.PopRandom())
+                    self.inventory.AddItem(item)
 
 class Croyant(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):

@@ -1,5 +1,6 @@
 from enum import Enum
 import copy
+import logbook
 import speaker, tools
 
 class Effect(Enum):
@@ -56,8 +57,10 @@ class Effect(Enum):
             coins = Effect.Steal(predator, prey)
             if(coins > 0 and predator.adventurer):
                 speaker.Speak("MONEY\t- Vous gagnez " + str(coins) + " pièces !")
+                logbook.coins += coins
             elif(coins > 0 and not predator.adventurer):
                 speaker.Speak("MONEY\t- Vous perdez " + str(coins) + " pièces...")
+                logbook.coins -= coins
 
         if predator.effect is Effect.FEU:
             speaker.Speak("BRULURE\t- " + predator.getName() + " s'est blessé lui-même par brûlure ! Il reçoit " + str(recurse) + " de dommages.")

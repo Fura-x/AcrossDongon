@@ -73,99 +73,15 @@
     }
   },
 
-  "SansAbri": {
-    "adventurer": true,
-    "armor": 0,
-    "weapon": "Lance-pierre",
-    "life": 27,
-    "special": [
-      5,
-      5
-    ]
-  },
-  "Mercenaire": {
-    "adventurer": true,
-    "armor": 17,
-    "weapon": "Longue épée",
-    "life": 40,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Marchant": {
-    "adventurer": true,
-    "armor": 14,
-    "weapon": "Fiole brisée",
-    "potion": "Super heal",
-    "potion1": "Super armor",
-    "potion2": "Super strength",
-    "life": 15,
-    "special": [
-      6,
-      1
-    ]
-  },
+  "entities": [
+  "SansAbri",
+  "Mercenaire",
+  "Marchant",
 
-  "Bandit": {
-    "adventurer": false,
-    "armor": 13,
-    "pods": 3,
-    "weapon": "Lame secrète",
-    "life": 25,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Mechancenaire": {
-    "adventurer": false,
-    "pods": 4,
-    "armor": 16,
-    "weapon": "Longue épée",
-    "life": 30,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Croyant": {
-    "adventurer": false,
-    "pods": 2,
-    "armor": 5,
-    "weapon": "Livre épais",
-    "life": 16,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Treiish": {
-    "adventurer": false,
-    "pods": 12,
-    "armor": 20,
-    "weapon": "Baguette Dondon",
-    "weapon2": "Baguette Gongon",
-    "potion": "strength",
-    "potion2": "strength",
-    "potion3": "Good heal",
-    "life": 70,
-    "special": [
-      0,
-      0
-    ]
-  },
-  "Libraire": {
-    "adventurer": false,
-    "pods": 9,
-    "armor": 18,
-    "weapon": "Bras d'envergure",
-    "potion": "Heal",
-    "potion1": "strength",
-    "life": 52,
-    "special": [
-      5,
-      4
-    ]
-  }
+  "Bandit",
+  "Mechancenaire",
+  "Croyant",
+  "Treiish",
+  "Libraire"
+  ]
 }

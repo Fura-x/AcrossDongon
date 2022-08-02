@@ -8,6 +8,110 @@
     "book5": "TessCave"
   },
 
+  "quests": {
+
+    "battle": {
+      "enunciate": "Survivre 15 batailles.",
+      "value": 15,
+      "condition": "BattleHorde",
+      "event": {
+        "enunciate": [
+          "Vous avez accompli votre mission principal.",
+          "Vous entendez une voix dans votre esprit:",
+          " ' Vous êtes prêt...",
+          " L'avenir de la lumière repose sur vous.'",
+          "",
+          "Un lion de jade géant à la crinière flottante cours vers vous.",
+          "Il vous inspire confiance, vous montez sur son dos,",
+          "et il vous emmène au repère du maître du chaos..."
+        ],
+        "reward": {
+          "func": "NewMember",
+          "value1": "Lion de jade"
+        },
+        "reward2": {
+          "func": "Final",
+          "value": 0
+        }
+      }
+    },
+    "kill": {
+      "enunciate": "Vaincre 20 ennemies.",
+      "value": 20,
+      "condition": "EnemyKill",
+      "event": {
+        "enunciate": [
+          "Vous avez accompli votre mission principal.",
+          "Vous entendez une voix dans votre esprit:",
+          " ' Vous êtes prêt...",
+          " L'avenir de la lumière repose sur vous.'",
+          "",
+          "Un lion de jade géant à la crinière flottante cours vers vous.",
+          "Il vous inspire confiance, vous montez sur son dos,",
+          "et il vous emmène au repère du maître du chaos..."
+        ],
+        "reward": {
+          "func": "NewMember",
+          "value1": "Lion de jade"
+        },
+        "reward2": {
+          "func": "Final",
+          "value": 0
+        }
+      }
+    },
+    "coin": {
+      "enunciate": "Accumuler 200 pièces.",
+      "value": 200,
+      "condition": "EarnCoin",
+      "event": {
+        "enunciate": [
+          "Vous avez accompli votre mission principal.",
+          "Vous entendez une voix dans votre esprit:",
+          " ' Vous êtes prêt...",
+          " L'avenir de la lumière repose sur vous.'",
+          "",
+          "Un lion de jade géant à la crinière flottante cours vers vous.",
+          "Il vous inspire confiance, vous montez sur son dos,",
+          "et il vous emmène au repère du maître du chaos..."
+        ],
+        "reward": {
+          "func": "NewMember",
+          "value1": "Lion de jade"
+        },
+        "reward2": {
+          "func": "Final",
+          "value": 0
+        }
+      }
+    },
+    "potion": {
+      "enunciate": "Boire 7 potions.",
+      "value": 7,
+      "condition": "PotionConsuming",
+      "event": {
+        "enunciate": [
+          "Vous avez accompli votre mission principal.",
+          "Vous entendez une voix dans votre esprit:",
+          " ' Vous êtes prêt...",
+          " L'avenir de la lumière repose sur vous.'",
+          "",
+          "Un lion de jade géant à la crinière flottante cours vers vous.",
+          "Il vous inspire confiance, vous montez sur son dos,",
+          "et il vous emmène au repère du maître du chaos..."
+        ],
+        "reward": {
+          "func": "NewMember",
+          "value1": "Lion de jade"
+        },
+        "reward2": {
+          "func": "Final",
+          "value": 0
+        }
+      }
+    }
+  },
+
   "reserve": {
     "Lame secrète": [
       "Weapon",
@@ -813,5 +917,399 @@
       "item2": 20,
       "item3": 30
     }
+  },
+
+  "entities": {
+
+    "Mage": {
+      "adventurer": true,
+      "armor": 14,
+      "weapon": "Baguette simple",
+      "life": 30,
+      "special": [
+        4,
+        10
+      ]
+    },
+    "Voleur": {
+      "adventurer": true,
+      "armor": 17,
+      "weapon": "Petite dague",
+      "potion": "Spray",
+      "life": 35,
+      "special": [
+        4,
+        6
+      ]
+    },
+    "Guerrier": {
+      "adventurer": true,
+      "armor": 15,
+      "weapon": "Hache lourde",
+      "life": 50,
+      "special": [
+        1,
+        10
+      ]
+    },
+    "Chasseur": {
+      "adventurer": true,
+      "armor": 10,
+      "weapon": "Arc en bois",
+      "life": 40,
+      "special": [
+        1,
+        10
+      ]
+    },
+    "Lithologue": {
+      "adventurer": true,
+      "armor": 13,
+      "weapon1": "Bracelet rubis",
+      "weapon2": "Bracelet emeraude",
+      "weapon3": "Bracelet saphir",
+      "life": 32,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "HommePoisson": {
+      "adventurer": true,
+      "armor": 16,
+      "weapon1": "Trident monstre",
+      "potion1": "Fish heal",
+      "potion2": "Fish strength",
+      "life": 28,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Vampire": {
+      "adventurer": true,
+      "armor": 15,
+      "weapon": "Bracelet vampire",
+      "life": 50,
+      "special": [
+        5,
+        4
+      ]
+    },
+    "Nomade": {
+      "adventurer": true,
+      "armor": 11,
+      "weapon": "Sac de survie",
+      "life": 32,
+      "special": [
+        0,
+        0
+      ]
+    },
+
+    "SansAbri": {
+      "adventurer": true,
+      "armor": 0,
+      "weapon": "Lance-pierre",
+      "life": 27,
+      "special": [
+        5,
+        5
+      ]
+    },
+    "Mercenaire": {
+      "adventurer": true,
+      "armor": 17,
+      "weapon": "Longue épée",
+      "life": 40,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Marchant": {
+      "adventurer": true,
+      "armor": 14,
+      "weapon": "Fiole brisée",
+      "potion": "Super heal",
+      "potion1": "Super armor",
+      "potion2": "Super strength",
+      "life": 15,
+      "special": [
+        6,
+        1
+      ]
+    },
+
+
+
+    "Mechancenaire": {
+      "adventurer": false,
+      "pods": 4,
+      "armor": 16,
+      "weapon": "Longue épée",
+      "life": 30,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Croyant": {
+      "adventurer": false,
+      "pods": 2,
+      "armor": 5,
+      "weapon": "Livre épais",
+      "life": 16,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Bandit": {
+      "adventurer": false,
+      "armor": 13,
+      "weapon": "Lame secrète",
+      "life": 25,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Scorpion": {
+      "adventurer": false,
+      "pods": 2,
+      "armor": 17,
+      "weapon": "Dard empoisonné",
+      "life": 10,
+      "special": [
+        2,
+        5
+      ]
+    },
+    "Mordu": {
+      "adventurer": false,
+      "armor": 0,
+      "weapon": "Bras décomposé",
+      "weapon1": "Jambe décapitée",
+      "weapon2": "Cervelle écrabouillée",
+      "life": 1,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Banshee": {
+      "adventurer": false,
+      "armor": 8,
+      "weapon": "Griffes aiguisées",
+      "life": 60,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Pyrahna": {
+      "adventurer": false,
+      "pods": 2,
+      "armor": 5,
+      "armorBreaker": 18,
+      "weapon": "Petite machoire",
+      "life": 10,
+      "special": [
+        1,
+        3
+      ]
+    },
+    "Gobelin": {
+      "adventurer": false,
+      "pods": 3,
+      "armor": 10,
+      "weapon1": "Epée en bois pourri",
+      "weapon2": "Cuillère tordue",
+      "weapon3": "Fiole brisée",
+      "potion1": "Good heal",
+      "potion2": "Good armor",
+      "potion3": "Spray",
+      "life": 20,
+      "special": [
+        0,
+        0
+      ]
+    },
+
+    "Orc": {
+      "adventurer": false,
+      "pods": 2,
+      "armor": 12,
+      "weapon": "Massue d'argile",
+      "life": 35,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Grick": {
+      "adventurer": false,
+      "armor": 14,
+      "weapon": "Machoire monstre",
+      "life": 27,
+      "special": [
+        1,
+        8
+      ]
+    },
+
+    "Niffleur": {
+      "adventurer": false,
+      "pods": 9,
+      "armor": 12,
+      "armorBreaker": 40,
+      "life": 100,
+      "special": [
+        2,
+        5
+      ],
+      "weapon": "Griffes rasoires",
+      "weapon1": "Aura royale"
+    },
+
+    "Scientist": {
+      "adventurer": false,
+      "pods": 12,
+      "armor": 16,
+      "armorBreaker": 30,
+      "weapon1": "Fiole chimique",
+      "weapon2": "Tentacule mécha",
+      "weapon3": "Pisto-laser",
+      "life": 50,
+      "special": [
+        0,
+        0
+      ]
+    },
+    "Blob": {
+      "adventurer": false,
+      "pods": 30,
+      "armor": 3,
+      "armorBreaker": 100,
+      "weapon": "Substance dégoulinante",
+      "life": 30,
+      "special": [
+        0,
+        0
+      ]
+    },
+
+    "MiniBlob": {
+      "adventurer": false,
+      "pods": 30,
+      "armor": 0,
+      "armorBreaker": 100,
+      "weapon": "Substance dégoulinante",
+      "life": 15,
+      "special": [
+        0,
+        0
+      ]
+    },
+
+    "Treiish": {
+      "adventurer": false,
+      "pods": 12,
+      "armor": 20,
+      "weapon": "Baguette Dondon",
+      "weapon2": "Baguette Gongon",
+      "potion": "strength",
+      "potion2": "strength",
+      "potion3": "Good heal",
+      "life": 70,
+      "special": [
+        0,
+        0
+      ]
+    },
+
+    "Libraire": {
+      "adventurer": false,
+      "pods": 9,
+      "armor": 18,
+      "weapon": "Bras d'envergure",
+      "potion": "Heal",
+      "potion1": "strength",
+      "life": 52,
+      "special": [
+        5,
+        4
+      ]
+    },
+
+    "Moldrick": {
+      "adventurer": false,
+      "pods": 9,
+      "armor": 18,
+      "weapon": "Sabre de pirate",
+      "weapon1": "Pistolet à silex",
+      "potion1": "Fish strength",
+      "potion2": "Fish strength",
+      "life": 70,
+      "special": [
+        1,
+        15
+      ]
+    },
+
+    "Nessie": {
+      "adventurer": false,
+      "pods": 12,
+      "armor": 5,
+      "weapon": "Pouvoir marin",
+      "life": 200,
+      "special": [
+        0,
+        0
+      ]
+    },
+
+    "Illusos": {
+      "adventurer": false,
+      "pods": 9,
+      "armor": 6,
+      "weapon1": "Sabre de pirate",
+      "weapon2": "Aura royale",
+      "weapon3": "Bras d'envergure",
+      "life": 55,
+      "special": [
+        3,
+        5
+      ]
+    },
+
+    "HommeDesSables": {
+      "adventurer": false,
+      "pods": 12,
+      "armor": 18,
+      "armorBreaker": 24,
+      "weapon1": "Massue à épine",
+      "weapon2": "Bombe tactique",
+      "potion1": "Good heal",
+      "life": 45,
+      "special": [
+        0,
+        0
+      ]
+    },
+
+    "VerDesSables": {
+      "adventurer": false,
+      "pods": 21,
+      "armor": 20,
+      "weapon1": "Pouvoir terrestre",
+      "life": 120,
+      "special": [
+        0,
+        0
+      ]
+    }
+
   }
 }
