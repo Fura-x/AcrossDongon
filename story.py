@@ -235,10 +235,6 @@ class StoryReward:
         # Add a new quest to the journey !
         gameMaster.questSystem.AddQuest(self.reward)
 
-    def GiveMoney(self, gameMaster):
-        # Earn money money money !
-        gameMaster.GiveMoney(self.reward)
-
     def Text(self, gameMaster):
         # Just write a text for story
         speaker.ListWrite(self.reward)

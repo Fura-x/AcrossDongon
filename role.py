@@ -26,8 +26,7 @@ class Role:
     life, maxLife = 0, 0
 
     specialDice = 0
-
-    coins = 10
+    
     pods = 0
 
     # ACTION BOOLEAN
@@ -64,7 +63,7 @@ class Role:
             if self.inventory.Empty(): inventory = ""
             else: inventory = "\n" + str(self.inventory)
 
-            return self.getName() + effect + "    PV: " + str(self.life) + "/" + str(self.maxLife) + armor + strength + inventory
+            return self.getName() + effect + "    PV: " + str(self.life) + "/" + str(self.maxLife) + armor+ strength + inventory
 
         return self.getName() + ": mort"
 
@@ -363,7 +362,7 @@ class Marchant(Role):
         if(tools.RollDice(1, 20) >= 10):
             money = tools.RollDice(self.special[0], self.special[1])
             speaker.Speak("SPECIAL\t- Le marchand gère un petit commerce. Vous gagné " + str(money) + " pièces ! Mais comment fait-il ?")
-            self.coins += money
+            speaker.Speak("MONEY\t- L'argent ne sert à rien dans cette version du jeu...")
  
 class SansAbri(Role):
     def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):

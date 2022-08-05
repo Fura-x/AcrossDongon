@@ -60,31 +60,6 @@
         }
       }
     },
-    "coin": {
-      "enunciate": "Accumuler 200 pièces.",
-      "value": 200,
-      "condition": "EarnCoin",
-      "event": {
-        "enunciate": [
-          "Vous avez accompli votre mission principal.",
-          "Vous entendez une voix dans votre esprit:",
-          " ' Vous êtes prêt...",
-          " L'avenir de la lumière repose sur vous.'",
-          "",
-          "Un lion de jade géant à la crinière flottante cours vers vous.",
-          "Il vous inspire confiance, vous montez sur son dos,",
-          "et il vous emmène au repère du maître du chaos..."
-        ],
-        "reward": {
-          "func": "NewMember",
-          "value1": "Lion de jade"
-        },
-        "reward2": {
-          "func": "Final",
-          "value": 0
-        }
-      }
-    },
     "potion": {
       "enunciate": "Boire 7 potions.",
       "value": 7,
@@ -893,15 +868,6 @@
       "item2": "Armor",
       "item3": "strength",
       "item4": "Spray"
-    },
-    "reward2": {
-
-      "func": "GiveMoney",
-      "item1": 5,
-      "item2": 10,
-      "item3": 20,
-      "item4": 30,
-      "item5": 50
     },
     "reward3": {
 

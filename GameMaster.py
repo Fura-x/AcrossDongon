@@ -115,10 +115,11 @@ class GameMaster():
 
             adv = self.advGroup.pop(key, None)
             if adv is not None:
-                logbook.coins -= adv.coins
                 self.PopMember(adv.getName())
 
-            self.hordeGroup.pop(key, None)
+            enemy = self.hordeGroup.pop(key, None)
+            if enemy is not None:
+                logbook.enemyKilled += 1
 
             return True
 
@@ -420,17 +421,6 @@ class GameMaster():
         adv = self.SelectAdventurer()
         adv.GiveItem(item)
         speaker.WriteInput(item.object + " donné à " + adv.getName() + " ! Tapez ENTREE pour continuer\n")
-
-        return
-
-    def GiveMoney(self, coins):
-        '''Give money to the adventurer player will chose'''
-        speaker.Write(" =-= " + str(coins) + " pièces récupérées =-=")
-
-        adv = self.SelectAdventurer()
-        adv.coins += coins
-        logbook.coins += coins
-        speaker.WriteInput("L'argent est donné à " + adv.getName() + " ! Tapez ENTREE pour continuer\n")
 
         return
 

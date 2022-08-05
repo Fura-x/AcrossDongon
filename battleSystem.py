@@ -19,7 +19,7 @@ class Effect(Enum):
     # only on hit
     DRAIN = 30          # get heals of 50% of the damages dealed to the ennemy
     DESTROY = 31        # one-shot
-    VOL = 32            # steal 10 coins from the victim
+    VOL = 32            # TODO
     ENBARTHELEMY = 777
 
     def GetTurn(effect):
@@ -29,17 +29,6 @@ class Effect(Enum):
             return tools.RollDice(1, 3)
         else:
             return tools.RollDice(2, 5)
-
-    def Steal(predator, prey):
-        coins = 0
-        if(prey.coins < 10):
-            coins = prey.coins
-        else:
-            coins = 10
-
-        prey.coins -= coins
-        predator.coins += coins
-        return coins
 
     def Apply(predator, prey, enemies, allies, damage, effect):
         if effect is Effect.NEUTRE:
@@ -53,14 +42,8 @@ class Effect(Enum):
             predator.Heal(recurse)
 
         if effect is Effect.VOL:
-            speaker.Speak("VOL\t- " + predator.getName() + " vole " + prey.getName() + "!")
-            coins = Effect.Steal(predator, prey)
-            if(coins > 0 and predator.adventurer):
-                speaker.Speak("MONEY\t- Vous gagnez " + str(coins) + " pièces !")
-                logbook.coins += coins
-            elif(coins > 0 and not predator.adventurer):
-                speaker.Speak("MONEY\t- Vous perdez " + str(coins) + " pièces...")
-                logbook.coins -= coins
+            speaker.Speak("VOL\t- Un vol est fait, mais l'argent ne sert à rien dans cette version...")
+            #TODO
 
         if predator.effect is Effect.FEU:
             speaker.Speak("BRULURE\t- " + predator.getName() + " s'est blessé lui-même par brûlure ! Il reçoit " + str(recurse) + " de dommages.")
@@ -139,6 +122,8 @@ class BattleContext:
             self.horde.append(monster)
 
         self.adventurerPods += 1
+
+        speaker.Speak(str(self.adventurerPods))
 
         return self.horde
 
