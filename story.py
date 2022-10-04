@@ -275,7 +275,7 @@ class StoryReward:
         if potion is None:
             speaker.Write("On a rien pu vous voler...")
         else:
-            speaker.Write(victim.getName() + " s'est fait prendre " + potion.str())
+            speaker.Write(victim.getName() + " s'est fait prendre " + str(potion))
 
     def Final(self, gameMaster):
         #Activate final challenge

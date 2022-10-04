@@ -19,8 +19,8 @@ class Effect(Enum):
     # only on hit
     DRAIN = 30          # get heals of 50% of the damages dealed to the ennemy
     DESTROY = 31        # one-shot
-    VOL = 32            # TODO
-    ENBARTHELEMY = 777
+    VOL = 32            # steal a potion to the enemy. The potion is deleted from the game.
+    ENBARTHELEMY = 777  # LMAO
 
     def GetTurn(effect):
         if effect.value < 10:
@@ -42,8 +42,9 @@ class Effect(Enum):
             predator.Heal(recurse)
 
         if effect is Effect.VOL:
-            speaker.Speak("VOL\t- Un vol est fait, mais l'argent ne sert à rien dans cette version...")
-            #TODO
+            potion = prey.inventory.PopRandomSpec("Potion")
+            if potion is not None :
+                speaker.Speak("VOL\t- " + predator.getName() + " a volé " + str(potion) + " à " + prey.getName() + "!")
 
         if predator.effect is Effect.FEU:
             speaker.Speak("BRULURE\t- " + predator.getName() + " s'est blessé lui-même par brûlure ! Il reçoit " + str(recurse) + " de dommages.")
