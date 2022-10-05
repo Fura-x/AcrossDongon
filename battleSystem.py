@@ -118,10 +118,15 @@ class BattleContext:
             # Don't accept enemy which are too strong
             if newHordePods > self.adventurerPods + 3:
                 continue
+            # Give potion if pods are equal
+            elif newHordePods == self.adventurerPods:
+                monster.inventory.AddItem(gameMaster.GetItem(tools.RandomElement(gameMaster.bookCase.enemyChest)))
+
 
             hordePods = newHordePods
             self.horde.append(monster)
 
+        # The game become harder
         self.adventurerPods += 1
 
         speaker.Speak(str(self.adventurerPods))

@@ -50,6 +50,9 @@ class Role:
         self.inventory = inventory
         self.inventory.selectEnable = self.adventurer
 
+        if not self.adventurer:
+            self.inventory.selectEnable = False
+
     def __str__(self):
         if self.Alive():
             effect = ": " + self.effect.name + "\n"

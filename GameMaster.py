@@ -399,7 +399,7 @@ class GameMaster():
         return tools.EnumerateAndSelect(self.advEnroll)[1]
 
     def GetItem(self, itemName):
-        return self.bookCase.reserve[itemName]
+        return tools.CopyItem(self.bookCase.reserve[itemName])
 
     def GetRandomItem(self, object = None):
         if (object is None):

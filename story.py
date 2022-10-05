@@ -5,11 +5,12 @@ from questSystem import Quest, QuestSytem
 
 class BookCase:
 
-    def __init__(self, books, reserve, chest, quests):
+    def __init__(self, books, reserve, chest, quests, echest):
         self.books = books
         self.reserve = reserve
         self.entities = {}
         self.chest = chest
+        self.enemyChest = echest
         self.quests = quests
         self.current = ""
 
@@ -36,7 +37,7 @@ class BookCase:
         for key, itm in inputQuests.items():
             quests.append(Quest.FromJson(itm))
 
-        return BookCase(books, reserve, chest, quests)
+        return BookCase(books, reserve, chest, quests, input.pop("echest"))
 
     def EntitiesFromJson(self, gameMaster, input):
             # Seconde fonction qui assure que les items sont déjà créés

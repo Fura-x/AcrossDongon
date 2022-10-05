@@ -885,6 +885,13 @@
     }
   },
 
+  "echest": [
+    "Heal",
+    "Armor",
+    "strength",
+    "Spay"
+  ],
+
   "entities": {
 
     "Mage": {
