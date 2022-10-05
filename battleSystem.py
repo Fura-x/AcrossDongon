@@ -119,7 +119,7 @@ class BattleContext:
             if newHordePods > self.adventurerPods + 3:
                 continue
             # Give potion if pods are equal
-            elif newHordePods == self.adventurerPods:
+            elif newHordePods <= self.adventurerPods + 1:
                 monster.inventory.AddItem(gameMaster.GetItem(tools.RandomElement(gameMaster.bookCase.enemyChest)))
 
 
