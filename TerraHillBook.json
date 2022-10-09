@@ -2,72 +2,656 @@
 
   "StoryBook": {
 
-    "UN CROISEMENT": {
-
-      "enunciate": [ "Vous arrivez à un croisement avec 2 chemins possibles. Aucun indice sur leur direction..." ],
-      "back": [ "Vous arrivez encore à un croisement ! Votre choix :" ],
+    "UN ARBRE MAGIQUE": {
+      "enunciate": [
+        "Votre équipe passe devant un arbre qui attire votre attention.",
+        "Il y a un creux dans le tronc de cet arbre qui brille de mille couleurs,",
+        "que faites-vous ?"
+      ],
+      "back": [
+        "Vous voici à nouveau devant l'arbre au creux magique",
+        "quel est votre décision cette fois-ci ?"
+      ],
       "Choice1": {
 
-        "enunciate": "Vous choisissez de partir à droite.",
+        "enunciate": "Plonger son bras dans le creux.",
         "event1": {
 
-          "enunciate": [ "Le chemin n'était autre qu'un détour, mais vous avez trouvez une potion sur la route !" ],
-          "prob": 2,
+          "enunciate": [
+            "Aïe ! Il s'agissait d'un Niffleur Disco.",
+            "Il a mordu le bras d'un membre du groupe, et sa lumière aveuglante",
+            "vous a fait prendre vos distances avec l'arbre.",
+            "Pas de trésor cette fois..."
+          ],
           "reward1": {
 
-            "func": "GiveItem",
-            "item1": "Good heal",
-            "item2": "Armor"
-          }
-        },
-        "event2": {
-
-          "enunciate": [ "Le chemin n'était autre qu'un détour, et cela vous a épuisé..." ],
-          "reward1": {
-
-            "func": "TeamHurt",
-            "cast": "ValueCast",
-            "item2": 2,
-            "item1": 4,
-            "item3": 6
+            "func": "MemberHurt",
+            "item1": 5
           }
         }
       },
+
       "Choice2": {
 
-        "enunciate": "Vous choisissez de partir à gauche.",
+        "enunciate": "Secouer l'arbre.",
         "event1": {
 
-          "enunciate": [ "La route vous fait passer par de beaux paysages, vous êtes ravis !" ]
+          "enunciate": [
+            "Vous déranger un Niffleur disco, une créature très puissante",
+            "qui aime tout ce qui brille. Cependant elle cherche rarement la bagarre.",
+            "Elle vous jette quelque chose à la figure. Sûrement pour vous dire",
+            "de la laisser tranquille !"
+          ],
+          "reward1": {
+
+            "func": "MemberHurt",
+            "item1": 1
+          },
+          "reward2": {
+
+            "func": "GiveItem",
+            "item1": "Good armor",
+            "item2": "Lame secrète",
+            "item3": "Bombe tactique",
+            "item4": "Griffes aiguisées"
+          }
+        }
+      }
+    },
+
+    "UNE TOMBE DANS LA VALLEE": {
+      "enunciate": [
+        "Vous entourez par des champs.",
+        "Tout semble normal et calme, lorsque vous remarquez une tombe",
+        "au mileu d'un champ. Vous allez voir de quoi il s'agit.",
+        "Sur la tombe est écrit :",
+        "",
+        "'Le chien gris du prince repose ici,'",
+        "'sa noblesse nous a marqué à jamais...'",
+        "",
+        "Vous voyez posé sur la tombe une épée étincelante."
+      ],
+      "back": [
+        "Vous apercevez à nouveau la tombe du chien gris.",
+        "",
+        "'Le chien gris du prince repose ici,'",
+        "'sa noblesse nous a marqué à jamais...'",
+        ""
+      ],
+      "Choice1": {
+
+        "enunciate": "Récupérer l'épée.",
+        "access": {
+          "EPEE CHIEN GRIS": false
         },
-        "event2": {
+        "event1": {
 
           "enunciate": [
-            "Vous vous retrouvez dans des ruines d'un ancien village.",
-            "L'ambiance est lugubre, mais vous trouvez des ressources intéressantes"
+            "Vous prenez l'épée...",
+            "Il ne se passe rien, l'épée est à vous."
           ],
           "reward1": {
 
             "func": "GiveItem",
-            "item1": "Epée en métal",
-            "item2": "Good heal",
-            "item3": "Lance opale",
-            "item4": "Spray",
-            "item5": "Armor"
+            "item1": "Longue épée"
+          },
+          "reward2": {
+
+            "func": "GiveKeyItem",
+            "item1": "EPEE CHIEN GRIS"
+          }
+        }
+      },
+
+      "Choice2": {
+
+        "enunciate": "Ignorer l'épée",
+        "event1": {
+
+          "enunciate": [
+            "Vous laissez son âme reposer en paix,",
+            "votre noblesse lui est égal, vous sentez l'équipe récompensé."
+          ],
+          "reward1": {
+
+            "func": "TeamHeal",
+            "item1": 10
+          }
+        }
+      }
+    },
+
+    "PETITS POISSONS ROUGES": {
+      "enunciate": [
+        "Voilà devant vous un petit lac.",
+        "Vous observez des poissons rouges nager gaiement.",
+        "Et si... et si vous essayez de les attraper ?"
+      ],
+      "Choice1": {
+
+        "enunciate": "Vous tentez d'attraper des poissons rouges.",
+        "access": {
+          "CHASSEUR": false
+        },
+        "event1": {
+
+          "enunciate": [
+            "Vous réussissez à attraper des poissons !",
+            "Vous les dévorer immédiatement, miam miam.",
+            "Ce n'est pas très gourmand, mais très amusant !"
+          ],
+          "prob": 1,
+          "reward1": {
+
+            "func": "TeamHeal",
+            "item1": 3
+          }
+        },
+
+        "event2": {
+
+          "enunciate": [
+            "Votre chasse échoue...",
+            "Peut-être faudrait-il un chasseur avec vous ?",
+            "Cela vous a épuisé."
+          ],
+          "prob": 2,
+          "reward1": {
+
+            "func": "TeamHurt",
+            "item1": 2
           }
         }
       },
       "Choice3": {
 
-        "enunciate": "Faire demi-tour.",
-
+        "enunciate": "Vous demandez au chasseur de pêcher les poissons.",
+        "access": {
+          "CHASSEUR": true
+        },
         "event1": {
 
           "enunciate": [
-            "On vous suivais !"
+            "Vous réussissez à attraper des poissons !",
+            "Vous les dévorer immédiatement, miam miam.",
+            "Ce n'est pas très gourmand, mais très amusant !"
           ],
-          "reward": {
-            "func": "NewRandomMember"
+          "reward1": {
+
+            "func": "TeamHeal",
+            "item1": 3
+          }
+        }
+      },
+
+      "Choice2": {
+
+        "enunciate": "Vous préférez nourir les poissons gentiment.",
+        "event1": {
+
+          "enunciate": [
+            "Vous nourissez les poissons.",
+            "",
+            "Ils sautillent joyeusement et vous tendent à manger à leur tour.",
+            "Les poissons vous donnent des algues du lac délicieuses, cependant vous faites tomber une potion..."
+          ],
+          "reward1": {
+
+            "func": "TeamHeal",
+            "item1": 10
+          },
+          "reward2": {
+
+            "func": "LosePotion",
+            "item1": 0
+          }
+        }
+      }
+    },
+
+    "UN VENT MESSAGER": {
+      "enunciate": [
+        "Vous sentez le vent face à vous.",
+        "Il apporte une bonne odeur fruité."
+      ],
+      "Choice1": {
+
+        "enunciate": "Vous essayer de trouver la source de cette bonne odeur",
+        "event1": {
+
+          "enunciate": [
+            "Vous arrivez à un verger entretenu par un paysan.",
+            "Ce dernier est heureux de vous voir, et vous fait une offrande",
+            "pour vous remercier de vous débarasser des monstres de la région."
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Baie juteuse"
+          },
+          "reward2": {
+
+            "func": "GiveItem",
+            "item1": "Baie juteuse"
+          },
+          "reward3": {
+
+            "func": "GiveItem",
+            "item1": "Baie juteuse",
+            "item2": "Faux de paysan"
+          }
+        }
+      },
+      "Choice2": {
+
+        "enunciate": "Vous vous méfiez et partez dans la direction contraire",
+        "event1": {
+
+          "enunciate": [
+            "Vous tombez alors sur un arbre fruitier dont l'odeur était camouflé par celle du vent.",
+            "Vous prenez quelques fruits et croquez à pleine dent."
+          ],
+          "reward1": {
+
+            "func": "TeamHeal",
+            "item1": 5
+          }
+        }
+      }
+    },
+
+    "LA MARCHE DU PETIT LAPAN": {
+      "enunciate": [
+        "Vous croisez un petit lapan seul.",
+        "Il semble avoir du mal à marcher, mais sa destination semble bien précise."
+      ],
+      "Choice1": {
+
+        "enunciate": "Aider le lapan",
+        "event1": {
+
+          "enunciate": [
+            "Vous portez le lapan en suivant sa direction.",
+            "Il finit par sauter de hors de vos bras, et s'enfoncer dans un terrier.",
+            "Vous êtes satisfait de l'avoir aider.",
+            "Vous remarquez alors que vous êtes dans un endroit particulier,",
+            "avec toute sorte de pierres.",
+            "Vous faites une bonne découverte, dans ce lieu sacré."
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Bracelet rubis",
+            "item2": "Bracelet topaze",
+            "item3": "Bracelet emeraude",
+            "item4": "Bracelet saphir"
+          }
+        }
+      },
+
+      "Choice2": {
+
+        "enunciate": "Laisser la nature décider de son sort",
+        "event1": {
+
+          "enunciate": [
+            "Vous avez gagner du temps et de l'énergie pour votre aventure,",
+            "l'aventure se poursuit !"
+          ]
+        }
+      }
+    },
+
+    "LE TYLEAU ENDIABLE": {
+      "enunciate": [
+        "Un tyleau complétement fou vous charge à toute vitesse.",
+        "Vous l'esquivez de justesse, mais il charge à nouveau sur vous."
+      ],
+      "Choice1": {
+
+        "enunciate": "Vous prenez la fuite.",
+        "event1": {
+
+          "enunciate": [
+            "Vous courrez le plus vite possible pour échapper au Tyleau.",
+            "Votre équipe est épuisé."
+          ],
+          "reward1": {
+
+            "func": "TeamHurt",
+            "item1": 3
+          }
+        }
+      },
+
+      "Choice2": {
+
+        "enunciate": "Vous essayez d'apaiser la créature.",
+        "event1": {
+
+          "enunciate": [
+            "Vous esquivez et tentez d'apprivoiser le Tyleau.",
+            "Ce dernier finit par s'épuiser, et se calme.",
+            "Il se lie d'affection avec vous, et souhaite vous rejoindre !"
+          ],
+          "reward1": {
+
+            "func": "NewMember",
+            "item1": "Tyleau"
+          }
+        }
+      }
+    },
+
+    "LA TERASSE DE TERRAHILL": {
+      "enunciate": [
+        "Vous arrivez dans un petit village.",
+        "Vous espéreriez passer votre chemin,",
+        "mais un tavernier vous accoste et vous invite",
+        "à prendre un verre sur sa nouvelle terasse.",
+        "Le jeune homme étant très aimable, vous ne pouvez refuser...",
+        "Que commandez-vous ?"
+      ],
+      "back": [
+        "Vous êtes de retour dans le village du tavernier.",
+        "Cette fois-ci, vous vous posez sur la terrasse avec plaisir.",
+        "Vous commandez ?"
+      ],
+      "Choice1": {
+
+        "enunciate": "Du lait de lapan",
+        "event1": {
+
+          "enunciate": [
+            "Le goût est étrange, ça ne plait pas à tout le monde."
+          ],
+          "reward1": {
+
+            "func": "MemberHurt",
+            "item1": 2
+          }
+        }
+      },
+      "Choice2": {
+
+        "enunciate": "Un sirop de flussia",
+        "event1": {
+
+          "enunciate": [
+            "Le sirop est succulent, certains reprennent le poile de la bête."
+          ],
+          "reward1": {
+
+            "func": "MemberHeal",
+            "item1": 2
+          }
+        }
+      },
+      "Choice3": {
+
+        "enunciate": "Du thé à bulle de chauvrignoble",
+        "event1": {
+
+          "enunciate": [
+            "Malgré le nom... ignoble, la boisson est un franc succès pour toute l'équipe !"
+          ],
+          "reward1": {
+
+            "func": "TeamHeal",
+            "item1": 5
+          }
+        }
+      },
+      "Choice4": {
+
+        "enunciate": "A emporter svp",
+        "event1": {
+
+          "enunciate": [
+            "Vous n'avez pas le temps, vous commandez une potion à emporter."
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Heal",
+            "item2": "Good heal",
+            "item3": "Bad heal"
+          }
+        }
+      }
+    },
+
+    "LE MARCHANT ITINERANT": {
+      "enunciate": [
+        "Vous rencontrez un marchant vagabond.",
+        "Ses produits vous intéressent,",
+        "mais vous n'avez pas la même monnaie d'échanges"
+      ],
+      "Choice1": {
+
+        "enunciate": "Faire un échange",
+        "event1": {
+
+          "enunciate": [
+            "Seul solution, faire un troc.",
+            "Vous donnez une de vos potions, et espérez obtenir mieux."
+          ],
+
+          "reward2": {
+
+            "func": "LosePotion",
+            "item3": 0
+          },
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Good strength",
+            "item2": "Good armor",
+            "item3": "Spray"
+          }
+        }
+      },
+
+      "Choice2": {
+
+        "enunciate": "Arnaquer le marchand",
+        "event1": {
+
+          "enunciate": [
+            "Vous volez une potion,",
+            "mais le marchand réussis à vous jetez une lance pendant votre fuite."
+          ],
+
+          "reward2": {
+
+            "func": "MemberHurt",
+            "item3": 10
+          },
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Good strength",
+            "item2": "Good armor",
+            "item3": "Spray"
+          }
+        }
+      },
+
+
+      "Choice3": {
+
+        "enunciate": "Ignorer le marchand",
+        "event1": {
+
+          "enunciate": [
+            "Vous poursuivez votre route"
+          ]
+        }
+      },
+
+      "Choice4": {
+
+        "enunciate": "Laissez faire votre marchant",
+        "access": {
+          "MARCHANT": true
+        },
+        "event1": {
+
+          "enunciate": [
+            "Votre marchant discute avec le vagabond.",
+            "Il finit par conclure une bonne affaire, et ils se serrent la main.",
+            "Vous voilà riche ! Bon... n'exagérons rien."
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Good strength",
+            "item2": "Good armor",
+            "item3": "Spray"
+          }
+        }
+      }
+    },
+
+    "UN SOLDAT EN DETRESSE": {
+      "enunciate": [
+        "'A l'aide ! A l'aide'",
+        "",
+        "Vous entendez quelqu'un crier à l'aide.",
+        "Il s'agit d'un soldat pris dans les ronces d'un fossé.",
+        "Aidez-vous le soldat ?"
+      ],
+      "Choice1": {
+
+        "enunciate": "Lui porter secours.",
+        "event1": {
+
+          "enunciate": [
+            "Vous découpez les ronces qui le trouaient de toute part,",
+            "il peut ainsi se libérer.",
+            "C'est alors qu'il se transforme en banshee et vous fige de terreur !",
+            "En plus de vous blesser, la banshee spectral vous dérobe des objets.",
+            "La banshee spectral disparaît avec sa magie,",
+            "en ne laissant qu'un rire sinistre derrière elle."
+          ],
+          "reward1": {
+
+            "func": "MemberHurt",
+            "item1": 15
+          },
+
+          "reward2": {
+
+            "func": "LoseItem",
+            "item1": 0
+          },
+
+          "reward3": {
+
+            "func": "LoseItem",
+            "item1": 0
+          }
+        }
+      },
+      "Choice2": {
+
+        "enunciate": "Rester méfiant et l'ignorer.",
+        "event1": {
+
+          "enunciate": [
+            "Vous ignorez sa détresse.",
+            "Cela est difficile pour vous, ses cris sont de plus en plus douloureux.",
+            "C'est alors qu'une explosion de fumée pourpre se produit",
+            "en même temps que les bruits cessent.",
+            "Un autre soldat arrive vers vous en courant et vous dit:",
+            "",
+            "'Vous avez éliminé la banshee spectral ?! Super, merci infiniment, prenez ça.'",
+            "",
+            "Il s'avère que le soldat était un leurre, un être maléfique...",
+            "Vous continuez votre route soulagé avec votre récompense."
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Good strength",
+            "item2": "Good armor",
+            "item3": "Super armor"
+          }
+        }
+      }
+    },
+
+    "AUTOUR D'UN FEU": {
+      "enunciate": [
+        "Vous rencontrez un autre groupe d'aventurier.",
+        "Naturellement, vous échangez avec eux,",
+        "et vous décidez de passer une nuit autour d'un feu de camp.",
+        "",
+        "La soirée est plaisante, un membre de l'autre groupe propose un concours de bras de fer.",
+        "L'équipe gagnante remporte une potion de l'équipe perdante."
+      ],
+      "back": [
+        "Vous croisez à nouveau l'équipe d'aventurier.",
+        "Ayant sympathisé une première fois déjà, vous établissez immédiatement un camp commun.",
+        "Voulez-vous tenter le concours de bras de fer cette fois-ci ?"
+      ],
+      "Choice1": {
+
+        "enunciate": "Participer au concours.",
+        "event1": {
+
+          "enunciate": [
+            "Vous remportez le tournoi !",
+            "Vous recevez la récompense, et, le lendemain,",
+            "les deux équipes se séparent et vous repartez à l'aventure."
+          ],
+          "reward1": {
+
+            "func": "GiveItem",
+            "item1": "Hunter armor",
+            "item2": "Fish strength",
+            "item3": "Fish heal"
+          },
+          "reward2": {
+
+            "func": "TeamHeal",
+            "item3": 10
+          }
+        },
+
+        "event2": {
+
+          "enunciate": [
+            "Vous perdez le tournoi...",
+            "Vous videz vos poches, et, le lendemain,",
+            "les deux équipes se séparent et vous repartez à l'aventure."
+          ],
+          "reward1": {
+
+            "func": "LosePotion",
+            "item3": 0
+          },
+          "reward2": {
+
+            "func": "TeamHeal",
+            "item3": 10
+          }
+        }
+      },
+      "Choice2": {
+
+        "enunciate": "Refuser et profiter tranquillement de la soirée.",
+        "event1": {
+
+          "enunciate": [
+            "Ce fut une excellente nuitée !",
+            "Le lendemain...",
+            "les deux équipes se séparent et vous repartez à l'aventure."
+          ],
+          "reward1": {
+
+            "func": "TeamHeal",
+            "item3": 20
           }
         }
       }

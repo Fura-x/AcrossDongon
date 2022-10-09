@@ -74,14 +74,16 @@
   },
 
   "entities": [
-  "SansAbri",
-  "Mercenaire",
-  "Marchant",
+    "SansAbri",
+    "Mercenaire",
+    "Marchant",
+    "Mage",
 
-  "Bandit",
-  "Mechancenaire",
-  "Croyant",
-  "Treiish",
-  "Libraire"
+    "Bandit",
+    "Mechancenaire",
+    "Croyant",
+
+    "Treiish",
+    "Libraire"
   ]
 }

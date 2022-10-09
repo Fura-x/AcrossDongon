@@ -271,12 +271,30 @@ class StoryReward:
 
     def LosePotion(self, gameMaster):
         # Lose a random potion from random adventurer
-        victim = tools.RandomItem(gameMaster.advGroup)[1]
-        potion = victim.inventory.PopRandomSpec("Potion")
-        if potion is None:
-            speaker.Write("On a rien pu vous voler...")
-        else:
-            speaker.Write(victim.getName() + " s'est fait prendre " + str(potion))
+        self.LoseAny(gameMaster,"Potion")
+
+    def LoseWeapon(self, gameMaster):
+        # Lose a random weapon from random adventurer
+        self.LoseAny(gameMaster, "Weapon")
+
+    def LoseItem(self, gameMaster):
+        # Lose a random item from random adventurer
+        self.LoseAny(gameMaster, None)
+
+    def LoseAny(self, gameMaster, itemType):
+        for victim in gameMaster.advGroup.values():
+
+            if itemType is None:
+                item = victim.inventory.PopRandom()
+            else:
+                item = victim.inventory.PopRandomSpec(itemType)
+
+            if item is not None:
+                speaker.WriteInput(victim.getName() + " s'est fait prendre " + str(item))
+                return
+
+        speaker.WriteInput("Vous n'avez perdu aucun item.")
+
 
     def Final(self, gameMaster):
         #Activate final challenge

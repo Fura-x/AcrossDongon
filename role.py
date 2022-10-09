@@ -149,18 +149,21 @@ class Role:
             # Compute damage
             weapon = self.SelectWeapon()
 
+            # If no weapon is available, deal only 5 damages
             if weapon is None:
-                speaker.Speak("ECHEC\t- L'attaque de " + self.getName() + " échoue sur " + target.getName())
-                return False, None
+                damage, effect = 5, None
+                weaponName = "coup de poing"
+            else:
+                damage, effect = weapon.Use(self.specialDice)
+                weaponName = weapon.name
 
-            damage, effect = weapon.Use(self.specialDice)
             damage += self.baseDamage + self.turnDamage
 
             if critical:
                 damage *= 2
-                speaker.Speak("CRIT.\t- " + self.getName() + " fait une attaque critique contre " + target.getName() + " avec son arme " + weapon.name + ". " + str(damage) + " dégâts causés.")
+                speaker.Speak("CRIT.\t- " + self.getName() + " fait une attaque critique contre " + target.getName() + " avec son arme " + weaponName + ". " + str(damage) + " dégâts causés.")
             else:
-                speaker.Speak("ATTAQUE\t- " + self.getName() + " attaque " + target.getName() + " avec son arme " + weapon.name + ". " + str(damage) + " dégâts causés.")
+                speaker.Speak("ATTAQUE\t- " + self.getName() + " attaque " + target.getName() + " avec son arme " + weaponName + ". " + str(damage) + " dégâts causés.")
 
             # EFFECT
             Effect.Apply(self, target, self.enemies, self.allies, damage, effect)
@@ -434,6 +437,10 @@ class Nomade(Role):
                 else:
                     speaker.Speak("SPECIAL\t- Le nomade n'a plus de potions. Il sort " + str(potion) + " de son sac pour se protéger !")
                 ally.GiveItem(potion)
+
+class Tyleau(Role):
+    def __init__(self, gameMaster, armor, weapon, life, special, adventurer, pods, name= ""):
+        super().__init__(gameMaster, armor, weapon, life, special, adventurer, pods, "Tyleau")
 
 
 

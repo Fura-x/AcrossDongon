@@ -181,6 +181,21 @@
       }
     ],
 
+    "Faux de paysan": [
+      "Weapon",
+      {
+        "name": "Faux de paysan",
+        "damage": [
+          2,
+          11
+        ],
+        "effect": [
+          3,
+          "EFFROI"
+        ]
+      }
+    ],
+
     "Bracelet rubis": [
       "Weapon",
       {
@@ -252,6 +267,17 @@
         "effect": [
           2,
           "DRAIN"
+        ]
+      }
+    ],
+
+    "Cornes crochues": [
+      "Weapon",
+      {
+        "name": "Cornes crochues",
+        "damage": [
+          2,
+          8
         ]
       }
     ],
@@ -539,7 +565,7 @@
     "Baguette Gongon": [
       "Weapon",
       {
-        "name": "Baguette Dondon",
+        "name": "Baguette Gongon",
         "damage": [
           1,
           25
@@ -750,12 +776,31 @@
       }
     ],
 
+    "Baie juteuse": [
+      "Potion",
+      {
+
+        "type": "SOIN",
+        "value": 5,
+        "lifeTime": 1
+      }
+    ],
+
     "Fish heal": [
       "Potion",
       {
         "type": "SOIN",
         "value": 5,
         "lifeTime": 10
+      }
+    ],
+
+    "Bad heal": [
+      "Potion",
+      {
+        "type": "SOIN",
+        "value": -3,
+        "lifeTime": 3
       }
     ],
 
@@ -873,15 +918,15 @@
 
       "func": "TeamHeal",
       "item1": 5,
-      "item2": 10,
-      "item3": 15
+      "item2": 7,
+      "item3": 10
     },
     "reward4": {
 
       "func": "MemberHeal",
-      "item1": 10,
-      "item2": 20,
-      "item3": 30
+      "item1": 5,
+      "item2": 10,
+      "item3": 15
     }
   },
 
@@ -889,7 +934,7 @@
     "Heal",
     "Armor",
     "strength",
-    "Spay"
+    "Spray"
   ],
 
   "entities": {
@@ -933,6 +978,16 @@
       "special": [
         1,
         10
+      ]
+    },
+    "Tyleau": {
+      "adventurer": true,
+      "armor": 16,
+      "weapon": "Cornes crochues",
+      "life": 15,
+      "special": [
+        0,
+        0
       ]
     },
     "Lithologue": {

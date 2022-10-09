@@ -27,14 +27,7 @@
 
             "func": "",
             "cast": "ValueCast",
-            "item1": [
-              "Potion",
-              {
-                "type": "HEAL",
-                "value": 10,
-                "lifeTime": 2
-              }
-            ]
+            "item1": "Heal"
           }
         }
       }
@@ -67,6 +60,8 @@
 
     "CHASSE DIFFICILE",
     "CHASSE REUSSITE",
+
+    "EPEE CHIEN GRIS",
 
     "LAST KEY"
   ]

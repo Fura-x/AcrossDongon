@@ -351,10 +351,11 @@ class GameMaster():
         for adventurer in self.advEnroll:
             name.append(adventurer.getName())
 
-        for adventurer in self.adventurers:
+        for adventurer in self.bookCase.entities.values():
             if adventurer.getName() in name:
                 continue
-            if adventurer.getName() is memberName:
+            if adventurer.getName() == memberName:
+
                 self.AddNewMember(adventurer)
                 return adventurer
 
